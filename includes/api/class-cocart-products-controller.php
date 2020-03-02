@@ -1,13 +1,12 @@
 <?php
 /**
- * CoCart - Products controller
+ * CoCart Products - Products controller
  *
  * Handles requests to the products endpoint.
  *
  * @author   Sébastien Dumont
  * @category API
- * @package  CoCart/API
- * @since    2.1.0
+ * @package  CoCart Products/API
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
