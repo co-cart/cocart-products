@@ -132,7 +132,7 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 
 		$response = rest_ensure_response( $data );
 
-		$response->add_links( $this->prepare_links( $item ) );
+		$response->add_links( $this->prepare_links( $item, $request ) );
 
 		/**
 		 * Filter a attribute item returned from the API.
@@ -144,28 +144,6 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 		 * @param WP_REST_Request   $request   Request used to generate the response.
 		 */
 		return apply_filters( 'cocart_prepare_product_attribute', $response, $item, $request );
-	}
-
-	/**
-	 * Prepare links for the request.
-	 *
-	 * @access protected
-	 * @param  object $attribute Attribute object.
-	 * @return array Links for the given attribute.
-	 */
-	protected function prepare_links( $attribute ) {
-		$base  = '/' . $this->namespace . '/' . $this->rest_base;
-
-		$links = array(
-			'self' => array(
-				'href' => rest_url( trailingslashit( $base ) . $attribute->attribute_id ),
-			),
-			'collection' => array(
-				'href' => rest_url( $base ),
-			),
-		);
-
-		return $links;
 	}
 
 	/**
