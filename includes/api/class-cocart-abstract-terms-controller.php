@@ -41,7 +41,6 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 	 * Register the routes for terms.
 	 */
 	public function register_routes() {
-		// Get Product Categories - cocart/v1/products/categories (GET)
 		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
 			array(
 				'methods'             => WP_REST_Server::READABLE,
