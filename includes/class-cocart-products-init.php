@@ -46,7 +46,7 @@ class CoCart_Products_Rest_API {
 		}
 
 		// Include REST API Controllers.
-		add_action( 'wp_loaded', array( $this, 'rest_api_includes' ) );
+		add_action( 'rest_api_init', array( $this, 'rest_api_includes' ), 10 );
 
 		// Register CoCart Products REST API routes.
 		add_action( 'rest_api_init', array( $this, 'register_products_routes' ), 11 );
