@@ -39,6 +39,8 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 
 	/**
 	 * Register the routes for terms.
+	 *
+	 * @access public
 	 */
 	public function register_routes() {
 		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
@@ -55,6 +57,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_item' ),
+				'permission_callback' => array( $this, 'get_item_permissions_check' ),
 				'args'                => array(
 					'id'              => array(
 						'description' => __( 'Unique identifier for the resource.','cocart-products' ),
@@ -83,6 +86,27 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 
 		if ( ! $permissions ) {
 			return new WP_Error( 'cocart_cannot_view', __( 'Sorry, you cannot list resources.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Check if a given request has access to read a term.
+	 *
+	 * @access public
+	 * @param  WP_REST_Request $request Full details about the request.
+	 * @return WP_Error|boolean
+	 */
+	public function get_item_permissions_check( $request ) {
+		$permissions = $this->check_permissions( $request, 'read' );
+
+		if ( is_wp_error( $permissions ) ) {
+			return $permissions;
+		}
+
+		if ( ! $permissions ) {
+			return new WP_Error( 'cocart_cannot_view', __( 'Sorry, you cannot view this resource.',  'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;
