@@ -97,7 +97,7 @@ class CoCart_Product_Categories_Controller extends CoCart_REST_Terms_Controller 
 		 * @param object            $item      The original term object.
 		 * @param WP_REST_Request   $request   Request used to generate the response.
 		 */
-		return apply_filters( "cocart_rest_prepare_{$this->taxonomy}", $response, $item, $request );
+		return apply_filters( "cocart_prepare_{$this->taxonomy}", $response, $item, $request );
 	}
 
 	/**
