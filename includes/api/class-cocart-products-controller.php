@@ -2,7 +2,7 @@
 /**
  * CoCart Products - Products controller
  *
- * Handles requests to the products endpoint.
+ * Handles requests to the /products/ endpoint.
  *
  * @author   Sébastien Dumont
  * @category API
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * REST API Product controller class.
  *
- * @package CoCart/API
+ * @package CoCart Products/API
  * @extends WP_REST_Controller
  */
 class CoCart_Products_Controller extends WP_REST_Controller {
