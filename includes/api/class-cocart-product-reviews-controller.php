@@ -403,9 +403,9 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 		$review = get_comment( $review_id );
 
 		/**
-		 * Fires after a comment is created or updated via the REST API.
+		 * Fires after a comment is created via the REST API.
 		 *
-		 * @param WP_Comment      $review   Inserted or updated comment object.
+		 * @param WP_Comment      $review   Inserted comment object.
 		 * @param WP_REST_Request $request  Request object.
 		 * @param bool            $creating True when creating a comment, false when updating.
 		 */
@@ -879,7 +879,7 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 	}
 
 	/**
-	 * Sets the comment_status of a given review object when creating or updating a review.
+	 * Sets the comment_status of a given review object when creating a review.
 	 *
 	 * @access protected
 	 * @param  string|int $new_status New review status.
