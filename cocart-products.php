@@ -116,7 +116,7 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 
 			$this->define('COCART_STORE_URL', 'https://cocart.xyz/');
 			$this->define('COCART_PRODUCTS_REVIEW_URL', 'https://cocart.xyz/submit-review/');
-			$this->define('COCART_PRODUCTS_DOCUMENTATION_URL', 'https://docs.cocart.xyz/add-ons.html#products');
+			$this->define('COCART_PRODUCTS_DOCUMENTATION_URL', 'https://docs.cocart.xyz/products.html');
 		} // END setup_constants()
 
 		/**
