@@ -671,27 +671,25 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 			),
 		);
 
-		//if ( get_option( 'show_avatars' ) ) {
-			$avatar_properties = array();
-			$avatar_sizes      = rest_get_avatar_sizes();
+		$avatar_properties = array();
+		$avatar_sizes      = rest_get_avatar_sizes();
 
-			foreach ( $avatar_sizes as $size ) {
-				$avatar_properties[ $size ] = array(
-					/* translators: %d: avatar image size in pixels */
-					'description' => sprintf( __( 'Avatar URL with image size of %d pixels.', 'cocart-products' ), $size ),
-					'type'        => 'string',
-					'format'      => 'uri',
-					'context'     => array( 'embed', 'view', 'edit' ),
-				);
-			}
-			$schema['properties']['reviewer_avatar_urls'] = array(
-				'description' => __( 'Avatar URLs for the object reviewer.', 'cocart-products' ),
-				'type'        => 'object',
-				'context'     => array( 'view', 'edit' ),
-				'readonly'    => true,
-				'properties'  => $avatar_properties,
+		foreach ( $avatar_sizes as $size ) {
+			$avatar_properties[ $size ] = array(
+				/* translators: %d: avatar image size in pixels */
+				'description' => sprintf( __( 'Avatar URL with image size of %d pixels.', 'cocart-products' ), $size ),
+				'type'        => 'string',
+				'format'      => 'uri',
+				'context'     => array( 'embed', 'view', 'edit' ),
 			);
-		//}
+		}
+		$schema['properties']['reviewer_avatar_urls'] = array(
+			'description' => __( 'Avatar URLs for the object reviewer.', 'cocart-products' ),
+			'type'        => 'object',
+			'context'     => array( 'view', 'edit' ),
+			'readonly'    => true,
+			'properties'  => $avatar_properties,
+		);
 
 		return $this->add_additional_fields_schema( $schema );
 	}
