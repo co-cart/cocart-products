@@ -41,9 +41,12 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	protected $post_type = 'product_variation';
 
 	/**
-	 * Register the routes for products.
+	 * Register the routes for product variations.
+	 *
+	 * @access public
 	 */
 	public function register_routes() {
+		// Get Products - cocart/v1/products/32/variations (GET)
 		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
 			'args' => array(
 				'product_id' => array(
@@ -59,6 +62,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 			'schema' => array( $this, 'get_public_item_schema' ),
 		) );
 
+		// Get Products - cocart/v1/products/32/variations/148 (GET)
 		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
 			array(
 				'methods'             => WP_REST_Server::READABLE,
@@ -79,18 +83,9 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	}
 
 	/**
-	 * Get object.
-	 *
-	 * @param  int $id Object ID.
-	 * @return WC_Data
-	 */
-	protected function get_object( $id ) {
-		return wc_get_product( $id );
-	}
-
-	/**
 	 * Prepare a single variation output for response.
 	 *
+	 * @access public
 	 * @param  WC_Data         $object  Object data.
 	 * @param  WP_REST_Request $request Request object.
 	 * @return WP_REST_Response
@@ -155,7 +150,8 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	/**
 	 * Get the image for a product variation.
 	 *
-	 * @param WC_Product_Variation $variation Variation data.
+	 * @access protected
+	 * @param  WC_Product_Variation $variation Variation data.
 	 * @return array
 	 */
 	protected function get_image( $variation ) {
@@ -191,8 +187,9 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	/**
 	 * Prepare links for the request.
 	 *
-	 * @param WC_Data         $object  Object data.
-	 * @param WP_REST_Request $request Request object.
+	 * @access protected
+	 * @param  WC_Data         $object  Object data.
+	 * @param  WP_REST_Request $request Request object.
 	 * @return array                   Links for the given post.
 	 */
 	protected function prepare_links( $object, $request ) {
@@ -218,6 +215,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	/**
 	 * Get the Variation's schema, conforming to JSON Schema.
 	 *
+	 * @access public
 	 * @return array
 	 */
 	public function get_item_schema() {
@@ -508,6 +506,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	/**
 	 * Prepare objects query.
 	 *
+	 * @access protected
 	 * @param  WP_REST_Request $request Full details about the request.
 	 * @return array
 	 */
@@ -580,6 +579,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	/**
 	 * Get the query params for collections of attachments.
 	 *
+	 * @access public
 	 * @return array
 	 */
 	public function get_collection_params() {
@@ -605,4 +605,5 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 
 		return $params;
 	}
+
 }
