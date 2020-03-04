@@ -581,7 +581,8 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 
 		if ( 0 !== (int) $review->comment_post_ID ) {
 			$links['product'] = array(
-				'href' => rest_url( sprintf( '/%s/products/%d', $this->namespace, $review->comment_post_ID ) ),
+				'href'      => rest_url( sprintf( '/%s/products/%d', $this->namespace, $review->comment_post_ID ) ),
+				'permalink' => get_permalink( $review->comment_post_ID ),
 			);
 		}
 
