@@ -214,9 +214,20 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		);
 
 		if ( $product->get_parent_id() ) {
-			$links['up'] = array(
+			$links['parent_product'] = array(
 				'href' => rest_url( sprintf( '/%s/products/%d', $this->namespace, $product->get_parent_id() ) ),
 			);
+		}
+
+		// If product is a variable product, return links to all variations.
+		if ( $product->is_type( 'variable' ) && $product->has_child() ) {
+			$variations = $product->get_children();
+
+			foreach( $variations as $variation_product ) {
+				$links['variations'][ $variation_product ] = array(
+					'href' => rest_url( sprintf( '/%s/products/%d/variations/%d', $this->namespace, $product->get_id(), $variation_product ) ),
+				);
+			}
 		}
 
 		return $links;
@@ -853,7 +864,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		$dimension_unit = get_option( 'woocommerce_dimension_unit' );
 
 		$schema         = array(
-			'$schema'    => 'http://json-schema.org/draft-04/schema#',
+			'schema'    => 'http://json-schema.org/draft-04/schema#',
 			'title'      => $this->post_type,
 			'type'       => 'object',
 			'properties' => array(
