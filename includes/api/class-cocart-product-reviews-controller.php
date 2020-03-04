@@ -118,7 +118,7 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 	 */
 	public function get_items_permissions_check( $request ) {
 		if ( ! wc_rest_check_product_reviews_permissions( 'read' ) ) {
-			return new WP_Error( 'cocart_cannot_view', __( 'Sorry, you cannot list reviews.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'cocart_cannot_list_reviews', __( 'Sorry, you cannot list reviews.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;
@@ -136,7 +136,7 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 		$review = get_comment( $id );
 
 		if ( $review && ! wc_rest_check_product_reviews_permissions( 'read', $review->comment_ID ) ) {
-			return new WP_Error( 'cocart_cannot_view', __( 'Sorry, you cannot view this review.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'cocart_cannot_view_review', __( 'Sorry, you cannot view this review.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;

@@ -85,7 +85,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 		}
 
 		if ( ! $permissions ) {
-			return new WP_Error( 'cocart_cannot_view', __( 'Sorry, you cannot list resources.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'cocart_cannot_list_resources', __( 'Sorry, you cannot list resources.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;
@@ -106,7 +106,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 		}
 
 		if ( ! $permissions ) {
-			return new WP_Error( 'cocart_cannot_view', __( 'Sorry, you cannot view this resource.',  'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'cocart_cannot_view_resource', __( 'Sorry, you cannot view this resource.',  'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;
@@ -132,7 +132,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 			$term = get_term( $id, $taxonomy );
 
 			if ( is_wp_error( $term ) || ! $term || $term->taxonomy !== $taxonomy ) {
-				return new WP_Error( 'cocart_term_invalid', __( 'Resource does not exist.','cocart-products' ), array( 'status' => 404 ) );
+				return new WP_Error( 'cocart_term_invalid', __( 'Term does not exist.','cocart-products' ), array( 'status' => 404 ) );
 			}
 
 			return wc_rest_check_product_term_permissions( $taxonomy, 'read', $term->term_id );

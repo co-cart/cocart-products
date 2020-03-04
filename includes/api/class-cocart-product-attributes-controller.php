@@ -44,7 +44,7 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 	 */
 	public function get_items_permissions_check( $request ) {
 		if ( ! wc_rest_check_manager_permissions( 'attributes', 'read' ) ) {
-			return new WP_Error( 'cocart_cannot_view', __( 'Sorry, you cannot list resources.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'cocart_cannot_list_attributes', __( 'Sorry, you cannot list attributes.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;
@@ -59,11 +59,11 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 	 */
 	public function get_item_permissions_check( $request ) {
 		if ( ! $this->get_taxonomy( $request ) ) {
-			return new WP_Error( 'cocart_taxonomy_invalid', __( 'Resource does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
+			return new WP_Error( 'cocart_taxonomy_invalid', __( 'Attribute does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
 		}
 
 		if ( ! wc_rest_check_manager_permissions( 'attributes', 'read' ) ) {
-			return new WP_Error( 'cocart_cannot_view', __( 'Sorry, you cannot view this resource.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'cocart_cannot_view_attribute', __( 'Sorry, you cannot view this attribute.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;
@@ -257,7 +257,7 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 		 ", $id ) );
 
 		if ( is_wp_error( $attribute ) || is_null( $attribute ) ) {
-			return new WP_Error( 'cocart_attribute_invalid', __( 'Resource does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
+			return new WP_Error( 'cocart_attribute_invalid', __( 'Attribute does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
 		}
 
 		return $attribute;
