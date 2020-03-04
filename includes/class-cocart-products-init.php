@@ -65,6 +65,7 @@ class CoCart_Products_Rest_API {
 		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-reviews-controller.php' );
 		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-tags-controller.php' );
 		include_once( dirname( __FILE__ ) . '/api/class-cocart-products-controller.php' );
+		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-variations-controller.php' );
 	} // rest_api_includes()
 
 	/**
@@ -79,7 +80,8 @@ class CoCart_Products_Rest_API {
 			'CoCart_Product_Categories_Controller',
 			'CoCart_Product_Reviews_Controller',
 			'CoCart_Product_Tags_Controller',
-			'CoCart_Products_Controller'
+			'CoCart_Products_Controller',
+			'CoCart_Product_Variations_Controller'
 		);
 
 		sort( $controllers );
