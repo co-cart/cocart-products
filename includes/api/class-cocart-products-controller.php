@@ -779,7 +779,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'average_rating'        => $average,
 			'rating_count'          => $rating_count,
 			'review_count'          => $review_count,
-			'rating_html'           => wc_get_rating_html( $average, $rating_count ),
+			'rating_html'           => html_entity_decode( strip_tags( wc_get_rating_html( $average, $rating_count ) ) ),
 			'reviews'               => array(),
 			'related_ids'           => array_map( 'absint', array_values( wc_get_related_products( $product->get_id() ) ) ),
 			'upsell_ids'            => array_map( 'absint', $product->get_upsell_ids( 'view' ) ),
