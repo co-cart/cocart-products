@@ -21,7 +21,7 @@
 	"requires_php": "5.6",
 	"tested_up_to": "5.3.2",
 	"wc_requires": "3.0.0",
-	"wc_tested_up_to": "3.9.2",
+	"wc_tested_up_to": "3.9.3",
 	"license": "GPL-3.0",
 	"copyright": "Copyright (c) 2020, Sébastien Dumont",
 	"description": "Access products without the requirement of authenticating. Get each variation for a variable product in one request and more.",
