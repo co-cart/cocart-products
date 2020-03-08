@@ -502,7 +502,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 	protected function get_images( $product ) {
 		$images           = array();
 		$attachment_ids   = array();
-		$attachment_sizes = apply_filters( 'cocart_products_image_sizes', get_intermediate_image_sizes() );
+		$attachment_sizes = apply_filters( 'cocart_products_image_sizes', array_merge( get_intermediate_image_sizes(), array( 'full', 'custom' ) ) );
 
 		// Add featured image.
 		if ( $product->get_image_id() ) {

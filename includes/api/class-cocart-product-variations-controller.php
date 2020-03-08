@@ -161,7 +161,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 
 		$attachment_id    = $variation->get_image_id();
 		$attachment_post  = get_post( $attachment_id );
-		$attachment_sizes = apply_filters( 'cocart_products_variation_image_sizes', get_intermediate_image_sizes() );
+		$attachment_sizes = apply_filters( 'cocart_products_variation_image_sizes', array_merge( get_intermediate_image_sizes(), array( 'full', 'custom' ) ) );
 
 		if ( is_null( $attachment_post ) ) {
 			return;
