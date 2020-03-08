@@ -59,7 +59,7 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 	 */
 	public function get_item_permissions_check( $request ) {
 		if ( ! $this->get_taxonomy( $request ) ) {
-			return new WP_Error( 'cocart_taxonomy_invalid', __( 'Attribute does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
+			return new WP_Error( 'cocart_attribute_invalid', __( 'Attribute does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
 		}
 
 		if ( ! wc_rest_check_manager_permissions( 'attributes', 'read' ) ) {
