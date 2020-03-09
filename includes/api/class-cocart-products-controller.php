@@ -424,16 +424,6 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			);
 		}
 
-		// Filter by tax class.
-		if ( ! empty( $request['tax_class'] ) ) {
-			$args['meta_query'] = $this->add_meta_query( // WPCS: slow query ok.
-				$args, array(
-					'key'   => '_tax_class',
-					'value' => 'standard' !== $request['tax_class'] ? $request['tax_class'] : '',
-				)
-			);
-		}
-
 		// Price filter.
 		if ( ! empty( $request['min_price'] ) || ! empty( $request['max_price'] ) ) {
 			$args['meta_query'] = $this->add_meta_query( $args, wc_get_min_max_price_meta_query( $request ) );  // WPCS: slow query ok.
