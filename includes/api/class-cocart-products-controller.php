@@ -332,9 +332,34 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		$args['name']                = $request['slug'];
 		$args['post_parent__in']     = $request['parent'];
 		$args['post_parent__not_in'] = $request['parent_exclude'];
-	
-		if ( 'date' === $args['orderby'] ) {
-			$args['orderby'] = 'date ID';
+
+		// If order by is not set then use WooCommerce default catalog setting.
+		if ( empty( $args['orderby'] ) ) {
+			$args['orderby'] = get_option( 'woocommerce_default_catalog_orderby' );
+		}
+
+		switch ( $args['orderby'] ) {
+			case 'id':
+				$args['orderby'] = 'ID';
+				break;
+			case 'menu_order':
+				$args['orderby'] = 'menu_order title';
+				break;
+			case 'title':
+				$args['orderby'] = 'title';
+				$args['order']   = ( 'DESC' === $order ) ? 'DESC' : 'ASC';
+				break;
+			case 'relevance':
+				$args['orderby'] = 'relevance';
+				$args['order']   = 'DESC';
+				break;
+			case 'rand':
+				$args['orderby'] = 'rand';
+				break;
+			case 'date':
+				$args['orderby'] = 'date ID';
+				$args['order']   = ( 'ASC' === $order ) ? 'ASC' : 'DESC';
+				break;
 		}
 
 		$args['date_query'] = array();
