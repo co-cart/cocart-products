@@ -48,8 +48,11 @@ class CoCart_Products_Rest_API {
 		// Include REST API Controllers.
 		add_action( 'rest_api_init', array( $this, 'rest_api_includes' ), 10 );
 
+		// Supports WooCommerce extensions by filtering the products to apply additional data.
+		add_action( 'rest_api_init', array( $this, 'support_extensions' ), 12 );
+
 		// Register CoCart Products REST API routes.
-		add_action( 'rest_api_init', array( $this, 'register_products_routes' ), 11 );
+		add_action( 'rest_api_init', array( $this, 'register_products_routes' ), 20 );
 	} // cart_rest_api_init()
 
 	/**
@@ -67,6 +70,18 @@ class CoCart_Products_Rest_API {
 		include_once( dirname( __FILE__ ) . '/api/class-cocart-products-controller.php' );
 		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-variations-controller.php' );
 	} // rest_api_includes()
+
+	/**
+	 * Includes filtered data for WooCommerce Extensions.
+	 *
+	 * @access public
+	 */
+	public function support_extensions() {
+		// WooCommerce Subscriptions
+		if ( class_exists( 'WC_Subscriptions' ) ) {
+			include_once( dirname( __FILE__ ) . '/extensions/subscriptions/class-cocart-products-subscriptions.php' );
+		}
+	} // support_extensions()
 
 	/**
 	 * Register CoCart Products REST API routes.
