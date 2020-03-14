@@ -7,6 +7,7 @@
  * @author   Sébastien Dumont
  * @category API
  * @package  CoCart Products/API
+ * @license  GPL-2.0+
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -360,6 +361,16 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				$args['orderby'] = 'date ID';
 				$args['order']   = ( 'ASC' === $order ) ? 'ASC' : 'DESC';
 				break;
+			/*case 'price':
+				$callback = 'DESC' === $order ? 'order_by_price_desc_post_clauses' : 'order_by_price_asc_post_clauses';
+				add_filter( 'posts_clauses', array( $this, $callback ) );
+				break;
+			case 'popularity':
+				add_filter( 'posts_clauses', array( $this, 'order_by_popularity_post_clauses' ) );
+				break;
+			case 'rating':
+				add_filter( 'posts_clauses', array( $this, 'order_by_rating_post_clauses' ) );
+				break;*/
 		}
 
 		$args['date_query'] = array();
