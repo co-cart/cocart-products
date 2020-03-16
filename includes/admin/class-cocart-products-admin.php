@@ -23,6 +23,9 @@ if ( ! class_exists( 'CoCart_Products_Admin' ) ) {
 		 * @access public
 		 */
 		public function __construct() {
+			register_activation_hook( COCART_PRODUCTS_FILE, array( $this, 'activated' ) );
+			register_deactivation_hook( COCART_PRODUCTS_FILE, array( $this, 'deactivated' ) );
+
 			// Include classes.
 			self::includes();
 		} // END __construct()
@@ -162,6 +165,44 @@ if ( ! class_exists( 'CoCart_Products_Admin' ) ) {
 				return __( 'a second', 'cocart-products' );
 			}
 		} // END cocart_seconds_to_words()
+
+		/**
+		 * Runs when the plugin is activated.
+		 *
+		 * Adds plugin to list of installed CoCart add-ons.
+		 *
+		 * @access public
+		 */
+		public function activated() {
+			$addons_installed = get_site_option( 'cocart_addons_installed', array() );
+
+			$plugin = plugin_basename( COCART_PRODUCTS_FILE );
+
+			// Check if plugin is already added to list of installed add-ons.
+			if ( ! in_array( $plugin, $addons_installed, true ) ) {
+				array_push( $addons_installed, $plugin );
+				update_site_option( 'cocart_addons_installed', $addons_installed );
+			}
+		} // END activated()
+
+		/**
+		 * Runs when the plugin is deactivated.
+		 *
+		 * Removes plugin from list of installed CoCart add-ons.
+		 *
+		 * @access public
+		 */
+		public function deactivated() {
+			$addons_installed = get_site_option( 'cocart_addons_installed', array() );
+
+			$plugin = plugin_basename( COCART_PRODUCTS_FILE );
+			
+			// Remove plugin from list of installed add-ons.
+			if ( in_array( $plugin, $addons_installed, true ) ) {
+				$addons_installed = array_diff( $addons_installed, array( $plugin ) );
+				update_site_option( 'cocart_addons_installed', $addons_installed );
+			}
+		} // END deactivated()
 
 	} // END class
 
