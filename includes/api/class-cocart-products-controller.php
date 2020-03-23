@@ -379,6 +379,13 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				$args['orderby']  = array( 'meta_value_num' => 'DESC', 'title' => 'ASC' );
 				$args['meta_key'] = '_wc_review_count';
 				break;
+			case 'on_sale_first':
+				$args['orderby']      = array( 'meta_value_num' => 'DESC', 'title' => 'ASC' );
+				$args['meta_key']     = '_sale_price';
+				$args['meta_value']   = 0;
+				$args['meta_compare'] = '>=';
+				$args['meta_type']    = 'NUMERIC';
+				break;
 			/*case 'price':
 				$callback = 'DESC' === $order ? 'order_by_price_desc_post_clauses' : 'order_by_price_asc_post_clauses';
 				add_filter( 'posts_clauses', array( $this, $callback ) );
