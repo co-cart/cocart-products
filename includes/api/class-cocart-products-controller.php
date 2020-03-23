@@ -470,6 +470,18 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			$args['tax_query'] = $tax_query; // WPCS: slow query ok.
 		}
 
+		// Hide free products.
+		if ( ! empty( $request['hide_free'] ) ) {
+			$args['meta_query'] = $this->add_meta_query(
+				$args, array(
+					'key'     => '_price',
+					'value'   => 0,
+					'compare' => '>',
+					'type'    => 'DECIMAL',
+				)
+			);
+		}
+
 		// Filter featured.
 		if ( is_bool( $request['featured'] ) ) {
 			$args['tax_query'][] = array(
