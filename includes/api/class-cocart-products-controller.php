@@ -358,7 +358,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				break;
 			case 'title':
 				$args['orderby'] = 'title';
-				$args['order']   = ( 'DESC' === $order ) ? 'DESC' : 'ASC';
+				$args['order']   = ( 'DESC' === $args['order'] ) ? 'DESC' : 'ASC';
 				break;
 			case 'relevance':
 				$args['orderby'] = 'relevance';
@@ -369,7 +369,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				break;
 			case 'date':
 				$args['orderby'] = 'date ID';
-				$args['order']   = ( 'ASC' === $order ) ? 'ASC' : 'DESC';
+				$args['order']   = ( 'ASC' === $args['order'] ) ? 'ASC' : 'DESC';
 				break;
 			/*case 'price':
 				$callback = 'DESC' === $order ? 'order_by_price_desc_post_clauses' : 'order_by_price_asc_post_clauses';
