@@ -512,7 +512,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 
 		// Price filter.
 		if ( ! empty( $request['min_price'] ) || ! empty( $request['max_price'] ) ) {
-			$args['meta_query'] = $this->add_meta_query( $args, wc_get_min_max_price_meta_query( $request ) );  // WPCS: slow query ok.
+			$args['meta_query'] = $this->add_meta_query( $args, wc_get_min_max_price_meta_query( $request ) ); // WPCS: slow query ok.
 		}
 
 		// Filter product in stock or out of stock.
