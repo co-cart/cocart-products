@@ -67,23 +67,23 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 					$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ), array(
 						'product_id'     => array(
 							'required'    => true,
-							'description' => __( 'Unique identifier for the product.',  'cocart-products' ),
+							'description' => __( 'Unique identifier for the product.', 'cocart-products' ),
 							'type'        => 'integer',
 						),
 						'review'         => array(
 							'required'    => true,
 							'type'        => 'string',
-							'description' => __( 'Review content.',  'cocart-products' ),
+							'description' => __( 'Review content.', 'cocart-products' ),
 						),
 						'reviewer'       => array(
 							'required'    => true,
 							'type'        => 'string',
-							'description' => __( 'Name of the reviewer.',  'cocart-products' ),
+							'description' => __( 'Name of the reviewer.', 'cocart-products' ),
 						),
 						'reviewer_email' => array(
 							'required'    => true,
 							'type'        => 'string',
-							'description' => __( 'Email of the reviewer.',  'cocart-products' ),
+							'description' => __( 'Email of the reviewer.', 'cocart-products' ),
 						),
 					)
 				),
