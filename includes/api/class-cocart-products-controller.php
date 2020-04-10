@@ -1349,7 +1349,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 							),
 							'src'               => array(
 								'description' => __( 'Image URL.', 'cocart-products' ),
-								'type'        => 'string',
+								'type'        => 'array',
 								'format'      => 'uri',
 								'context'     => array( 'view' ),
 							),
