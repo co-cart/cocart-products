@@ -40,8 +40,8 @@ class CoCart_Products_Rest_API {
 			return;
 		}
 
-		// If CoCart Pro does not exists then do nothing!
-		if ( ! class_exists( 'CoCart_Pro' ) ) {
+		// If CoCart does not exists then do nothing!
+		if ( ! class_exists( 'CoCart' ) ) {
 			return;
 		}
 
