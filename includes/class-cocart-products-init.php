@@ -40,6 +40,11 @@ class CoCart_Products_Rest_API {
 			return;
 		}
 
+		// If WooCommerce does not exists then do nothing!
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return;
+		}
+
 		// If CoCart does not exists then do nothing!
 		if ( ! class_exists( 'CoCart' ) ) {
 			return;
@@ -102,8 +107,10 @@ class CoCart_Products_Rest_API {
 		sort( $controllers );
 
 		foreach ( $controllers as $controller ) {
-			$this->$controller = new $controller();
-			$this->$controller->register_routes();
+			if ( class_exists( $controller ) ) {
+				$this->$controller = new $controller();
+				$this->$controller->register_routes();
+			}
 		}
 	} // END register_products_routes()
 

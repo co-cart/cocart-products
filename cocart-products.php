@@ -9,8 +9,10 @@
  * Text Domain: cocart-products
  * Domain Path: /languages/
  *
+ * Requires at least: 5.2
+ * Requires PHP: 7.0
  * WC requires at least: 3.6.0
- * WC tested up to: 4.0.1
+ * WC tested up to: 4.3.0
  *
  * Copyright: © 2020 Sébastien Dumont, (mailme@sebastiendumont.com)
  *
@@ -20,14 +22,6 @@
 
 if ( ! class_exists( 'CoCart_Products' ) ) {
 	class CoCart_Products {
-
-		/**
-		 * @var CoCart_Products - the single instance of the class.
-		 *
-		 * @access protected
-		 * @static
-		 */
-		protected static $_instance = null;
 
 		/**
 		 * Plugin Version
@@ -44,6 +38,14 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 		 * @static
 		 */
 		public static $required_cocart = '2.0.0';
+
+		/**
+		 * @var CoCart_Products - the single instance of the class.
+		 *
+		 * @access protected
+		 * @static
+		 */
+		protected static $_instance = null;
 
 		/**
 		 * Main CoCart Products Instance.
@@ -91,11 +93,11 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 			// Setup Constants.
 			$this->setup_constants();
 
-			// Include admin classes to handle all back-end functions.
-			$this->admin_includes();
-
 			// Include required files.
-			add_action( 'init', array( $this, 'includes' ) );
+			add_action( 'plugins_loaded', array( $this, 'includes' ) );
+
+			// Includes setup for CoCart Products and notices.
+			add_action( 'init', array( $this, 'admin_includes' ) );
 
 			// Load translation files.
 			add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
@@ -115,7 +117,7 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 			$this->define('COCART_PRODUCTS_FILE_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 			$this->define('COCART_STORE_URL', 'https://cocart.xyz/');
-			$this->define('COCART_PRODUCTS_REVIEW_URL', 'https://cocart.xyz/submit-review/');
+			$this->define('COCART_PRODUCTS_REVIEW_URL', 'https://cocart.xyz/submit-review/?wpf15410_12=CoCart%20Products');
 			$this->define('COCART_PRODUCTS_DOCUMENTATION_URL', 'https://docs.cocart.xyz/products.html');
 			$this->define('COCART_PRODUCTS_TRANSLATION_URL', 'https://translate.cocart.xyz/projects/cocart-products/');
 		} // END setup_constants()
@@ -134,14 +136,16 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 		} // END define()
 
 		/**
-		 * Includes REST-API Controllers.
+		 * Includes CoCart Products REST-API.
 		 *
 		 * @access public
 		 * @return void
 		 */
 		public function includes() {
 			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-autoloader.php' );
+			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-helpers.php' );
 			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-init.php' );
+			require_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-install.php' );
 		} // END includes()
 
 		/**
@@ -153,7 +157,6 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 		public function admin_includes() {
 			if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 				include_once( COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin.php' );
-				require_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-install.php' ); // Install CoCart Products.
 			}
 		} // END admin_includes()
 

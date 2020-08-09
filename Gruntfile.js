@@ -82,47 +82,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Minify JavaScript.
-		uglify: {
-			options: {
-				compress: {
-					global_defs: {
-						"EO_SCRIPT_DEBUG": false
-					},
-					dead_code: true
-				},
-				banner: '/*! <%= pkg.title %> v<%= pkg.version %> <%= grunt.template.today("dddd dS mmmm yyyy HH:MM:ss TT Z") %> */'
-			},
-			build: {
-				files: [{
-					expand: true, // Enable dynamic expansion.
-					src: [
-						'assets/js/*.js',
-						'!assets/js/*.min.js'
-					],
-					ext: '.min.js', // Dest file paths will have this extension.
-				}]
-			}
-		},
-
-		// Check for Javascript errors.
-		jshint: {
-			options: {
-				reporter: require('jshint-stylish'),
-				globals: {
-					"EO_SCRIPT_DEBUG": false,
-				},
-				'-W099': true, // Mixed spaces and tabs
-				'-W083': true, // Fix functions within loop
-				'-W082': true, // Declarations should not be placed in blocks
-				'-W020': true, // Read only - error when assigning EO_SCRIPT_DEBUG a value.
-			},
-			all: [
-				'assets/js/*.js',
-				'!assets/js/*.min.js'
-			]
-		},
-
 		// Watch for changes made in SASS.
 		watch: {
 			css: {
@@ -251,6 +210,14 @@ module.exports = function(grunt) {
 						to: "Description: <%= pkg.description %>"
 					},
 					{
+						from: /Requires at least:.*$/m,
+						to: "Requires at least: <%= pkg.requires %>"
+					},
+					{
+						from: /Requires PHP:.*$/m,
+						to: "Requires PHP: <%= pkg.requires_php %>"
+					},
+					{
 						from: /WC requires at least:.*$/m,
 						to: "WC requires at least: <%= pkg.wc_requires %>"
 					},
@@ -265,6 +232,14 @@ module.exports = function(grunt) {
 					{
 						from: /public static \$version = \'.*.'/m,
 						to: "public static $version = '<%= pkg.version %>'"
+					},
+					{
+						from: /public static \$required_wp = \'.*.'/m,
+						to: "public static $required_wp = '<%= pkg.requires %>'"
+					},
+					{
+						from: /public static \$required_woo = \'.*.'/m,
+						to: "public static $required_woo = '<%= pkg.wc_requires %>'"
 					}
 				]
 			},
@@ -284,10 +259,6 @@ module.exports = function(grunt) {
 						to: 'Requires PHP:$1$2<%= pkg.requires_php %>$3'
 					},
 					{
-						from: /Stable tag:(\*\*|)(\s*?)[0-9.-]+(\s*?)$/mi,
-						to: 'Stable tag:$1$2<%= pkg.version %>$3'
-					},
-					{
 						from: /Tested up to:(\*\*|)(\s*?)[0-9.-]+(\s*?)$/mi,
 						to: 'Tested up to:$1$2<%= pkg.tested_up_to %>$3'
 					},
@@ -298,6 +269,18 @@ module.exports = function(grunt) {
 					{
 						from: /WC tested up to:(\*\*|)(\s*?)[a-zA-Z0-9.-]+(\s*?)$/mi,
 						to: 'WC tested up to:$1$2<%= pkg.wc_tested_up_to %>$3'
+					},
+				]
+			},
+			stable: {
+				src: [
+					'readme.txt',
+				],
+				overwrite: true,
+				replacements: [
+					{
+						from: /Stable tag:(\*\*|)(\s*?)[0-9.-]+(\s*?)$/mi,
+						to: 'Stable tag:$1$2<%= pkg.version %>$3'
 					},
 				]
 			}
@@ -364,13 +347,16 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'check', [ 'devUpdate' ] );
 
 	// Checks for errors.
-	grunt.registerTask( 'test', [ 'stylelint', 'jshint', 'checktextdomain' ]);
+	grunt.registerTask( 'test', [ 'stylelint', 'checktextdomain' ]);
 
-	// Build CSS, minify CSS, minify JS and runs i18n tasks.
-	grunt.registerTask( 'build', [ 'sass', 'postcss', 'cssmin', 'newer:uglify', 'update-pot' ]);
+	// Build CSS, minify CSS and runs i18n tasks.
+	grunt.registerTask( 'build', [ 'sass', 'postcss', 'cssmin', 'update-pot' ]);
 
 	// Update version of plugin.
-	grunt.registerTask( 'version', [ 'replace' ] );
+	grunt.registerTask( 'version', [ 'replace:php', 'replace:readme' ] );
+
+	// Update stable version of plugin.
+	grunt.registerTask( 'stable', [ 'replace:stable' ] );
 
 	/**
 	 * Run i18n related tasks.
