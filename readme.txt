@@ -2,8 +2,6 @@
 
 This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews without the need to authenticate.
 
-As you have purchased the Agency tier you get early access to try out the add-on before it is made available to the public.
-
 > Once you have the plugin installed you will see new routes registered under `/cocart/v1/products`.
 
 ## Features
@@ -21,7 +19,7 @@ As you have purchased the Agency tier you get early access to try out the add-on
 
 ## Requirement
 
-You will need to be using CoCart Pro **v1.x.x** and up before installing this add-on.
+You will need to be using CoCart **v2.x.x** and up before installing this add-on.
 
 ## Installation
 

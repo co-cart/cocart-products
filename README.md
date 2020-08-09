@@ -1,8 +1,8 @@
 # CoCart - Products
 
-![CoCart Logo](https://cocart.xyz/wp-content/uploads/2019/09/Logo-1024x534.jpg.webp)
+<p align="center"><img src="https://raw.githubusercontent.com/co-cart/co-cart/master/.github/Logo-1024x534.png.webp" alt="CoCart" /></p>
 
-This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews without the need to authenticate. Those with CoCart Pro Developer or Agency Tier will have access to support and plugin updates.
+This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews without the need to authenticate.
 
 ## Features
 
@@ -19,7 +19,7 @@ This premium add-on provides a public version of accessing products, categories,
 
 ## Requirement
 
-You will need to be using CoCart Pro **v1.x.x** and up before installing this add-on.
+You will need to be using CoCart **v2.x.x** and up before installing this add-on.
 
 ## Installation
 
