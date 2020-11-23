@@ -41,12 +41,6 @@ if ( ! class_exists( 'CoCart_Products_Admin_Assets' ) ) {
 				wp_register_style( COCART_PRODUCTS_SLUG . '_admin', COCART_PRODUCTS_URL_PATH . '/assets/css/admin/cocart' . $suffix . '.css' );
 				wp_enqueue_style( COCART_PRODUCTS_SLUG . '_admin' );
 			}
-
-			// Modal
-			if ( in_array( 'plugins', CoCart_Products_Admin::cocart_get_admin_screens() ) ) {
-				wp_register_style( COCART_PRODUCTS_SLUG . '_modal', COCART_PRODUCTS_URL_PATH . '/assets/css/admin/modal' . $suffix . '.css' );
-				wp_enqueue_style( COCART_PRODUCTS_SLUG . '_modal' );
-			}
 		} // END admin_styles()
 
 	} // END class
