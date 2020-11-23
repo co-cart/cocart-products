@@ -1,13 +1,32 @@
+# Editors
+.vscode
+
 # Grunt
-/build/
-/releases/
 /node_modules/
 npm-debug.log
 
-# Various file types to ignore when exporting.
+# OS X metadata
 .DS_Store
+
+# Windows junk
 Thumbs.db
+
+# Composer
+/vendor/
+composer.lock
+contributors.html
+
+# Languages
+/languages/*
+!/languages/README.md
+
+# Build & Releases
+/build/
+/releases/
+
+# Various file types to ignore when exporting.
 *.sh
 .gitconfig
 *.zip
-package-lock.json
+*.json
+*.yml
