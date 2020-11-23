@@ -1,0 +1,57 @@
+{
+	"name": "co-cart/cocart-products",
+	"description": "Access products without the requirement of authenticating. Get each variation for a variable product in one request and more.",
+	"homepage": "https://cocart.xyz",
+	"type": "wordpress-plugin",
+	"keywords": [
+		"wordpress",
+		"wordpress-development",
+		"feature-plugin",
+		"plugin",
+		"woocommerce",
+		"woocommerce-api",
+		"woocommerce-extension",
+		"woocommerce-plugin",
+		"e-commerce",
+		"api",
+		"products",
+		"rest",
+		"rest-api",
+		"JSON"
+	],
+	"license": "GPL-3.0-or-later",
+	"prefer-stable": true,
+	"minimum-stability": "dev",
+	"authors": [
+		{
+			"name": "Sébastien Dumont",
+			"email": "mailme@sebastiendumont.com",
+			"homepage": "https://sebastiendumont.com",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/co-cart/cocart-products/issues"
+	},
+	"require": {
+		"composer/installers": "1.9.0",
+		"woocommerce/woocommerce-sniffs": "0.0.9"
+	},
+	"scripts": {
+		"phpcs": [
+			"phpcs . -s -p -n"
+		],
+		"phpcs-pre-commit": [
+			"phpcs . -s -p -n"
+		],
+		"phpcbf": [
+			"phpcbf . -p"
+		]
+	},
+	"extra": {
+		"scripts-description": {
+			"phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+			"phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier"
+		}
+	}
+}
