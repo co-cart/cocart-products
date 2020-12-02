@@ -123,12 +123,14 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 	protected function check_permissions( $request ) {
 		// Get taxonomy.
 		$taxonomy = $this->get_taxonomy( $request );
+
 		if ( ! $taxonomy || ! taxonomy_exists( $taxonomy ) ) {
 			return new WP_Error( 'cocart_taxonomy_invalid', __( 'Taxonomy does not exist.','cocart-products' ), array( 'status' => 404 ) );
 		}
 
 		// Check permissions for a single term.
 		$id = intval( $request['id'] );
+
 		if ( $id ) {
 			$term = get_term( $id, $taxonomy );
 
