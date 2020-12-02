@@ -132,15 +132,23 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 	}
 
 	/**
-	 * Check if a given request has access to create a new product review.
+	 * Check if the user has permission to create a new product review.
 	 *
 	 * @access public
 	 * @param  WP_REST_Request $request Full details about the request.
 	 * @return WP_Error|boolean
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! wc_rest_check_product_reviews_permissions( 'create' ) ) {
-			return new WP_Error( 'cocart_cannot_create', __( 'Sorry, you are not allowed to create reviews.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+		$verified = false;
+
+		if ( 'product' === get_post_type( $request['product_id'] ) ) {
+			$user_data = get_user_by( 'email', $request['reviewer_email'] );
+			$user_id = $user_data->ID;
+			$verified = wc_customer_bought_product( $request['reviewer_email'], $user_id, $request['product_id'] );
+		}
+
+		if ( ! $verified ) {
+			return new WP_Error( 'cocart_cannot_create', __( 'Sorry, you are not allowed to create a review for this product.', 'cocart-products' ), array( 'status' => 403 ) );
 		}
 
 		return true;
