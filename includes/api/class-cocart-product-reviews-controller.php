@@ -101,7 +101,7 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_item' ),
-				'permission_callback' => array( $this, 'get_item_permissions_check' ),
+				'permission_callback' => array( $this, 'check_review_exists' ),
 				'args'                => array(
 					'context' => $this->get_context_param( array( 'default' => 'view' ) ),
 				),
@@ -111,33 +111,21 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 	}
 
 	/**
-	 * Check whether a given request has permission to read webhook deliveries.
+	 * Check if the requested product review exists before returning.
 	 *
 	 * @access public
 	 * @param  WP_REST_Request $request Full details about the request.
 	 * @return WP_Error|boolean
 	 */
-	public function get_items_permissions_check( $request ) {
-		if ( ! wc_rest_check_product_reviews_permissions( 'read' ) ) {
-			return new WP_Error( 'cocart_cannot_list_reviews', __( 'Sorry, you cannot list reviews.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Check if a given request has access to read a product review.
-	 *
-	 * @access public
-	 * @param  WP_REST_Request $request Full details about the request.
-	 * @return WP_Error|boolean
-	 */
-	public function get_item_permissions_check( $request ) {
+	public function check_review_exists( $request ) {
 		$id     = (int) $request['id'];
 		$review = get_comment( $id );
 
-		if ( $review && ! wc_rest_check_product_reviews_permissions( 'read', $review->comment_ID ) ) {
-			return new WP_Error( 'cocart_cannot_view_review', __( 'Sorry, you cannot view this review.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+		$product = wc_get_product( $review->comment_post_ID );
+
+		// If the review does not exist or the comment is not assigned to a product then it's not a review.
+		if ( ! $review || ! $product ) {
+			return new WP_Error( 'cocart_cannot_view_review', __( 'Sorry, this product review does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
 		}
 
 		return true;
