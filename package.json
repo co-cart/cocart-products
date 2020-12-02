@@ -1,7 +1,7 @@
 {
 	"title": "CoCart - Products",
 	"name": "cocart-products",
-	"version": "1.0.0-beta.10",
+	"version": "1.0.0-beta.11",
 	"private": true,
 	"contributors": [
 		"sebd86",
@@ -13,16 +13,16 @@
 	"main": "Gruntfile.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/co-cart/co-cart-products.git"
+		"url": "https://github.com/co-cart/cocart-products.git"
 	},
 	"bugs": {
-		"url": "https://github.com/co-cart/co-cart-products/issues"
+		"url": "https://github.com/co-cart/cocart-products/issues"
 	},
 	"requires": "5.2",
 	"requires_php": "7.0",
-	"tested_up_to": "5.4",
-	"wc_requires": "4.0.0",
-	"wc_tested_up_to": "4.3.0",
+	"tested_up_to": "5.5",
+	"wc_requires": "4.0",
+	"wc_tested_up_to": "4.7",
 	"license": "GPL-3.0",
 	"copyright": "Copyright (c) 2020, Sébastien Dumont",
 	"description": "Access products without the requirement of authenticating. Get each variation for a variable product in one request and more.",
@@ -78,6 +78,10 @@
 	},
 	"dependencies": {
 		"stylelint": "13.8.0"
+	},
+	"engines": {
+		"node": ">=10.15.0",
+		"npm": ">=6.4.1"
 	},
 	"stylelint": {
 		"extends": [
