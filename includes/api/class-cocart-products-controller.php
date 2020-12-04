@@ -1162,6 +1162,13 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 					'context'           => array( 'view' ),
 					'readonly'          => true,
 				),
+				'has_options'           => array(
+					'description'       => __( 'Determines whether or not the product has additional options that need selecting before adding to cart.', 'cocart-products' ),
+					'type'              => 'boolean',
+					'default'           => false,
+					'context'           => array( 'view' ),
+					'readonly'          => true,
+				),
 				'in_stock'              => array(
 					'description'       => __( 'Determines if product is listed as "in stock" or "out of stock".', 'cocart-products' ),
 					'type'              => 'boolean',
@@ -1540,6 +1547,25 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 								'type'        => 'mixed',
 								'context'     => array( 'view' ),
 							),
+						),
+					),
+					'readonly'          => true,
+				),
+				'add_to_cart'            => array(
+					'description'       => __( 'Add to Cart button.', 'cocart-products' ),
+					'type'              => 'object',
+					'context'           => array( 'view' ),
+					'properties'        => array(
+						'text' => array(
+							'description' => __( 'Text', 'cocart-products' ),
+							'type'        => 'string',
+							'default'     => __( 'Add to Cart', 'cocart-products' ),
+							'context'     => array( 'view' ),
+						),
+						'description' => array(
+							'description' => __( 'Description', 'cocart-products' ),
+							'type'        => 'string',
+							'context'     => array( 'view' ),
 						),
 					),
 					'readonly'          => true,
