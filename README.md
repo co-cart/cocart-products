@@ -2,10 +2,10 @@
 
 <p align="center"><img src="https://raw.githubusercontent.com/co-cart/co-cart/master/.github/Logo-1024x534.png.webp" alt="CoCart" /></p>
 
-This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews without the need to authenticate.
+This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews without authentication.
 
 ---
-CoCart Products is a commercial plugin that is available from [https://cocart.xyz](https://cocart.xyz/add-ons/products/).
+CoCart Products is a commercial plugin that is available with CoCart Pro from [https://cocart.xyz](https://cocart.xyz/pro/).
 
 The plugin is hosted here on a public GitHub repository in order to better facilitate community contributions from developers and users alike.
 
@@ -16,6 +16,10 @@ I do ask, however, that if you are using the plugin on a live site that you plea
 Thank you.
 
 ---
+
+## Looking for documentation?
+
+Head over here: [https://docs.cocart.xyz/products.html](https://docs.cocart.xyz/products.html?utm_medium=github.com&utm_source=repository&utm_campaign=readme&utm_content=cocart)
 
 ## Features
 
@@ -28,7 +32,8 @@ Thank you.
  * Return a product attribute terms.
  * Return all product reviews.
  * Return an individual product review.
- * Create a product review. (Requires authentication as customer)
+ * Create a product review. (Requires customer to use same email address used for ordering the product)
+ * No authentication required.
 
 ## Requirement
 
