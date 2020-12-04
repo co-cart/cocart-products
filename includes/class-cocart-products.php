@@ -162,7 +162,7 @@ final class CoCart_Products {
 	public static function activation_check() {
 		if ( ! CoCart_Products_Helpers::is_environment_compatible() ) {
 			self::deactivate_plugin();
-			wp_die( sprintf( __( '%1$s could not be activated. %2$s', 'cocart-cli' ), 'CoCart Products', CoCart_Products_Helpers::get_environment_message() ) );
+			wp_die( sprintf( __( '%1$s could not be activated. %2$s', 'cocart-products' ), 'CoCart Products', CoCart_Products_Helpers::get_environment_message() ) );
 		}
 	} // END activation_check()
 
