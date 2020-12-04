@@ -138,10 +138,10 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 				return new WP_Error( 'cocart_term_invalid', __( 'Term does not exist.','cocart-products' ), array( 'status' => 404 ) );
 			}
 
-			return wc_rest_check_product_term_permissions( $taxonomy, 'read', $term->term_id );
+			return true;
 		}
 
-		return wc_rest_check_product_term_permissions( $taxonomy, 'read' );
+		return true;
 	}
 
 	/**
