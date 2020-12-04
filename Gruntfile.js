@@ -347,10 +347,10 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'check', [ 'devUpdate' ] );
 
 	// Checks for errors.
-	grunt.registerTask( 'test', [ 'stylelint', 'checktextdomain' ]);
+	grunt.registerTask( 'test', [ 'stylelint', 'checktextdomain' ] );
 
 	// Build CSS, minify CSS and runs i18n tasks.
-	grunt.registerTask( 'build', [ 'sass', 'postcss', 'cssmin', 'update-pot' ]);
+	grunt.registerTask( 'build', [ 'sass', 'postcss', 'cssmin', 'update-pot' ] );
 
 	// Update version of plugin.
 	grunt.registerTask( 'version', [ 'replace:php', 'replace:readme' ] );
@@ -364,11 +364,11 @@ module.exports = function(grunt) {
 	 * This includes extracting translatable strings, updating the master pot file.
 	 * If this is part of a deploy process, it should come before zipping everything up.
 	 */
-	grunt.registerTask( 'update-pot', [ 'checktextdomain', 'makepot' ]);
+	grunt.registerTask( 'update-pot', [ 'checktextdomain', 'makepot' ] );
 
 	/**
 	 * Creates a deployable plugin zipped up ready to upload
 	 * and install on a WordPress installation.
 	 */
-	grunt.registerTask( 'zip', [ 'copy:build', 'compress', 'clean:build' ]);
+	grunt.registerTask( 'zip', [ 'copy:build', 'compress', 'clean:build' ] );
 };

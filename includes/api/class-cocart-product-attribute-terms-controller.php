@@ -78,7 +78,7 @@ class CoCart_Product_Attribute_Terms_Controller extends CoCart_REST_Terms_Contro
 	 * Prepare a single product attribute term output for response.
 	 *
 	 * @access public
-	 * @param  WP_Term $item Term object.
+	 * @param  WP_Term         $item Term object.
 	 * @param  WP_REST_Request $request
 	 * @return WP_REST_Response $response
 	 */
@@ -95,8 +95,8 @@ class CoCart_Product_Attribute_Terms_Controller extends CoCart_REST_Terms_Contro
 			'count'       => (int) $item->count,
 		);
 
-		$data    = $this->add_additional_fields_to_object( $data, $request );
-		$data    = $this->filter_response_by_context( $data, 'view' );
+		$data = $this->add_additional_fields_to_object( $data, $request );
+		$data = $this->filter_response_by_context( $data, 'view' );
 
 		$response = rest_ensure_response( $data );
 
@@ -122,17 +122,17 @@ class CoCart_Product_Attribute_Terms_Controller extends CoCart_REST_Terms_Contro
 	 */
 	public function get_item_schema() {
 		$schema = array(
-			'schema'              => 'http://json-schema.org/draft-04/schema#',
-			'title'                => 'product_attribute_term',
-			'type'                 => 'object',
-			'properties'           => array(
-				'id' => array(
+			'schema'     => 'http://json-schema.org/draft-04/schema#',
+			'title'      => 'product_attribute_term',
+			'type'       => 'object',
+			'properties' => array(
+				'id'          => array(
 					'description' => __( 'Unique identifier for the attribute term.', 'cocart-products' ),
 					'type'        => 'integer',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
-				'name' => array(
+				'name'        => array(
 					'description' => __( 'Term name.', 'cocart-products' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
@@ -140,7 +140,7 @@ class CoCart_Product_Attribute_Terms_Controller extends CoCart_REST_Terms_Contro
 						'sanitize_callback' => 'sanitize_text_field',
 					),
 				),
-				'slug' => array(
+				'slug'        => array(
 					'description' => __( 'An alphanumeric identifier for the attribute term unique to its type.', 'cocart-products' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
@@ -156,12 +156,12 @@ class CoCart_Product_Attribute_Terms_Controller extends CoCart_REST_Terms_Contro
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-				'menu_order' => array(
+				'menu_order'  => array(
 					'description' => __( 'Menu order, used to custom sort the attribute term.', 'cocart-products' ),
 					'type'        => 'integer',
 					'context'     => array( 'view' ),
 				),
-				'count' => array(
+				'count'       => array(
 					'description' => __( 'Number of published products for the attribute term.', 'cocart-products' ),
 					'type'        => 'integer',
 					'context'     => array( 'view' ),

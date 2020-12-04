@@ -64,9 +64,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 			if ( ! CoCart_Products_Helpers::is_cocart_installed() ) {
 				add_action( 'admin_notices', array( $this, 'cocart_not_installed' ) );
 				return false;
-			}
-
-			else if ( version_compare( COCART_VERSION, CoCart_Products::$required_cocart, '<' ) ) {
+			} elseif ( version_compare( COCART_VERSION, CoCart_Products::$required_cocart, '<' ) ) {
 				add_action( 'admin_notices', array( $this, 'required_cocart_version_failed' ) );
 				return false;
 			}
@@ -110,9 +108,9 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 
 		/**
 		 * Displays plugin review notice.
-		 * 
+		 *
 		 * Shown after 2 weeks or more from the time the plugin was installed.
-		 * 
+		 *
 		 * @access public
 		 * @global $current_user
 		 * @return void|bool
@@ -144,7 +142,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 
 		/**
 		 * Displays notice if user is testing pre-release version of the plugin.
-		 * 
+		 *
 		 * @access public
 		 * @global $current_user
 		 * @return void|bool
@@ -175,7 +173,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 		 * @return void
 		 */
 		public function cocart_not_installed() {
-			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-cocart-not-installed.php' );
+			include_once COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-cocart-not-installed.php';
 		} // END cocart_not_installed()
 
 		/**
@@ -186,7 +184,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 		 * @return void
 		 */
 		public function required_cocart_version_failed() {
-			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-required-cocart.php' );
+			include_once COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-required-cocart.php';
 		} // END required_cocart_version_failed()
 
 		/**
@@ -195,7 +193,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 		 * @access public
 		 */
 		public function beta_notice() {
-			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-trying-beta.php' );
+			include_once COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-trying-beta.php';
 		} // END beta_notice()
 
 		/**
@@ -206,7 +204,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 		public function plugin_review_notice() {
 			$install_date = self::$install_date;
 
-			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-please-review.php' );
+			include_once COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-please-review.php';
 		} // END plugin_review_notice()
 
 	} // END class.

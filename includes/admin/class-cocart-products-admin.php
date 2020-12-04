@@ -36,10 +36,10 @@ if ( ! class_exists( 'CoCart_Products_Admin' ) ) {
 		 * @access public
 		 */
 		public function includes() {
-			include( COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-action-links.php' ); // Action Links
-			include( COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-assets.php' );  // Admin Assets
-			include( COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-notices.php' ); // Plugin Notices
-			include( COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-updater.php' ); // Plugin Updater
+			include COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-action-links.php'; // Action Links
+			include COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-assets.php';  // Admin Assets
+			include COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-notices.php'; // Plugin Notices
+			include COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-updater.php'; // Plugin Updater
 		} // END includes()
 
 		/**
@@ -54,12 +54,12 @@ if ( ! class_exists( 'CoCart_Products_Admin' ) ) {
 			if ( is_multisite() ) {
 				$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
 			}
-	
+
 			return in_array( 'cart-rest-api-for-woocommerce/cart-rest-api-for-woocommerce.php', $active_plugins ) || array_key_exists( 'cart-rest-api-for-woocommerce/cart-rest-api-for-woocommerce.php', $active_plugins );
 		} // END is_cocart_installed()
 
 		/**
-		 * These are the only screens CoCart will focus 
+		 * These are the only screens CoCart will focus
 		 * on displaying notices or enqueue scripts/styles.
 		 *
 		 * @access public
@@ -70,7 +70,7 @@ if ( ! class_exists( 'CoCart_Products_Admin' ) ) {
 			return array(
 				'dashboard',
 				'plugins',
-				'toplevel_page_cocart'
+				'toplevel_page_cocart',
 			);
 		} // END cocart_get_admin_screens()
 
@@ -196,7 +196,7 @@ if ( ! class_exists( 'CoCart_Products_Admin' ) ) {
 			$addons_installed = get_site_option( 'cocart_addons_installed', array() );
 
 			$plugin = plugin_basename( COCART_PRODUCTS_FILE );
-			
+
 			// Remove plugin from list of installed add-ons.
 			if ( in_array( $plugin, $addons_installed, true ) ) {
 				$addons_installed = array_diff( $addons_installed, array( $plugin ) );

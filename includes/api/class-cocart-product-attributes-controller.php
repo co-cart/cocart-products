@@ -80,12 +80,12 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 	public function get_items( $request ) {
 		$attributes = wc_get_attribute_taxonomies();
 
-		$data       = array();
+		$data = array();
 
 		foreach ( $attributes as $attribute_obj ) {
 			$attribute = $this->prepare_item_for_response( $attribute_obj, $request );
 			$attribute = $this->prepare_response_for_collection( $attribute );
-			$data[] = $attribute;
+			$data[]    = $attribute;
 		}
 
 		return rest_ensure_response( $data );
@@ -114,7 +114,7 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 	 * Prepare a single product attribute output for response.
 	 *
 	 * @access public
-	 * @param  obj $item Term object.
+	 * @param  obj             $item Term object.
 	 * @param  WP_REST_Request $request
 	 * @return WP_REST_Response $response
 	 */
@@ -128,8 +128,8 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 			'has_archives' => (bool) $item->attribute_public,
 		);
 
-		$data    = $this->add_additional_fields_to_object( $data, $request );
-		$data    = $this->filter_response_by_context( $data, 'view' );
+		$data = $this->add_additional_fields_to_object( $data, $request );
+		$data = $this->filter_response_by_context( $data, 'view' );
 
 		$response = rest_ensure_response( $data );
 
@@ -155,17 +155,17 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 	 */
 	public function get_item_schema() {
 		$schema = array(
-			'schema'              => 'http://json-schema.org/draft-04/schema#',
-			'title'                => 'product_attribute',
-			'type'                 => 'object',
-			'properties'           => array(
-				'id' => array(
+			'schema'     => 'http://json-schema.org/draft-04/schema#',
+			'title'      => 'product_attribute',
+			'type'       => 'object',
+			'properties' => array(
+				'id'           => array(
 					'description' => __( 'Unique identifier for the resource.', 'cocart-products' ),
 					'type'        => 'integer',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
-				'name' => array(
+				'name'         => array(
 					'description' => __( 'Attribute name.', 'cocart-products' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
@@ -173,7 +173,7 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 						'sanitize_callback' => 'sanitize_text_field',
 					),
 				),
-				'slug' => array(
+				'slug'         => array(
 					'description' => __( 'An alphanumeric identifier for the resource unique to its type.', 'cocart-products' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
@@ -181,14 +181,14 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
-				'type' => array(
+				'type'         => array(
 					'description' => __( 'Type of attribute.', 'cocart-products' ),
 					'type'        => 'string',
 					'default'     => 'select',
 					'enum'        => array_keys( wc_get_attribute_types() ),
 					'context'     => array( 'view' ),
 				),
-				'order_by' => array(
+				'order_by'     => array(
 					'description' => __( 'Sort order.', 'cocart-products' ),
 					'type'        => 'string',
 					'default'     => 'menu_order',
@@ -214,7 +214,7 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 	 * @return array
 	 */
 	public function get_collection_params() {
-		$params = array();
+		$params            = array();
 		$params['context'] = $this->get_context_param( array( 'default' => 'view' ) );
 
 		return $params;

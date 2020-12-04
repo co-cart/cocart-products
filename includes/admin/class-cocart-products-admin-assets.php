@@ -34,7 +34,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Assets' ) ) {
 		public function admin_styles() {
 			$screen    = get_current_screen();
 			$screen_id = $screen ? $screen->id : '';
-			$suffix    = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+			$suffix    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 			// CoCart Page and Notices
 			if ( ! CoCart_Products_Admin::is_cocart_installed() && in_array( $screen_id, CoCart_Products_Admin::cocart_get_admin_screens() ) ) {

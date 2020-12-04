@@ -143,8 +143,8 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 
 		if ( 'product' === get_post_type( $request['product_id'] ) ) {
 			$user_data = get_user_by( 'email', $request['reviewer_email'] );
-			$user_id = $user_data->ID;
-			$verified = wc_customer_bought_product( $request['reviewer_email'], $user_id, $request['product_id'] );
+			$user_id   = $user_data->ID;
+			$verified  = wc_customer_bought_product( $request['reviewer_email'], $user_id, $request['product_id'] );
 		}
 
 		if ( ! $verified ) {

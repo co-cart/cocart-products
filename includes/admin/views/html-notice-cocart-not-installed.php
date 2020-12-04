@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				endif;
 
-			else:
+			else :
 
 				if ( current_user_can( 'install_plugins' ) ) {
 					$url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=cart-rest-api-for-woocommerce' ), 'install-plugin_cart-rest-api-for-woocommerce' );
@@ -50,8 +50,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			if ( current_user_can( 'deactivate_plugin', plugin_basename( COCART_PRODUCTS_FILE ) ) ) :
 
-				echo sprintf( 
-					' <a href="%1$s" class="button button-secondary" aria-label="%2$s">%2$s</a>', 
+				echo sprintf(
+					' <a href="%1$s" class="button button-secondary" aria-label="%2$s">%2$s</a>',
 					esc_url( wp_nonce_url( 'plugins.php?action=deactivate&plugin=' . plugin_basename( COCART_PRODUCTS_FILE ) . '&plugin_status=inactive', 'deactivate-plugin_' . plugin_basename( COCART_PRODUCTS_FILE ) ) ),
 					sprintf( esc_html__( 'Turn off the %s Products plugin', 'cocart-products' ), 'CoCart' )
 				);
