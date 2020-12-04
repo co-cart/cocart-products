@@ -43,6 +43,10 @@ You will need to be using [CoCart **v2.0**](https://wordpress.org/plugins/cart-r
 
 Download the latest release and upload to your WordPress dashboard via the plugins page and then activate.
 
+## Contributing to CoCart Products
+
+If you have a patch or have stumbled upon an issue with CoCart Products, you can contribute this back to the code. Please read the [contributor guidelines](https://github.com/co-cart/cocart-products/blob/master/.github/CONTRIBUTING.md) for more information how you can do this.
+
 ---
 
 ## License
