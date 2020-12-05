@@ -2,7 +2,19 @@
 
 <p align="center"><img src="https://raw.githubusercontent.com/co-cart/co-cart/master/.github/Logo-1024x534.png.webp" alt="CoCart" /></p>
 
-This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews without authentication.
+This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews from your WooCommerce store without authentication.
+
+<p align="center">
+	<a href="https://wordpress.org/" target="_blank">
+		<img src="https://img.shields.io/static/v1?label=&message=5.2+-+5.5&color=blue&style=flat-square&logo=wordpress&logoColor=white" alt="WordPress Versions">
+	</a>
+	<a href="https://woocommerce.com/" target="_blank">
+		<img src="https://img.shields.io/static/v1?label=&message=4.0+-+4.7&color=96588A&style=flat-square&logo=woocommerce&logoColor=white" alt="WooCommerce Versions">
+	</a>
+	<a href="https://www.php.net/" target="_blank">
+		<img src="https://img.shields.io/static/v1?label=&message=7.0+-+7.4&color=777bb4&style=flat-square&logo=php&logoColor=white" alt="PHP Versions">
+	</a>
+</p>
 
 ---
 CoCart Products is a commercial plugin that is available with CoCart Pro from [https://cocart.xyz](https://cocart.xyz/pro/).
