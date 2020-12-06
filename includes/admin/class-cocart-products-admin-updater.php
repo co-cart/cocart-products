@@ -72,7 +72,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 
 			// Auto update CoCart Products.
 			add_action( 'manage_plugins_custom_column', array( $this, 'wp_autoupdates_plugin_column' ), 10, 3 );
-			add_filter( 'wp_plugin_allows_auto_update', 'disable_auto_updates_action', 10, 2 );
+			add_filter( 'wp_plugin_allows_auto_update', array( $this, 'disable_auto_updates_action' ), 10, 2 );
 			add_filter( 'auto_update_plugin', array( $this, 'auto_update_plugin' ), 100, 2 );
 			add_filter( 'wp_plugin_bulk_enabled_autoupdate', array( $this, 'remove_bulk_autoupdate' ), 10 );
 			add_filter( 'wp_plugin_bulk_disabled_autoupdate', array( $this, 'remove_bulk_autoupdate' ), 10 );
@@ -208,12 +208,12 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		/**
 		 * Disables WordPress plugin auto updates actions in the plugins table.
 		 *
-		 * @access protected
+		 * @access public
 		 * @param  bool   $status
 		 * @param  string $plugin_file
 		 * @return bool   $status
 		 */
-		protected function disable_auto_updates_action( $status, $plugin_file ) {
+		public function disable_auto_updates_action( $status, $plugin_file ) {
 			if ( $plugin_file === plugin_basename( $this->config['file'] ) ) {
 				return false;
 			}
