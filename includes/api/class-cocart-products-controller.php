@@ -1520,6 +1520,18 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'sanitize_callback' => 'sanitize_text_field',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
+		$params['show_reviews'] = array(
+			'description'       => __( 'Returns product reviews for all products or an individual product.', 'cocart-products' ),
+			'type'              => 'boolean',
+			'sanitize_callback' => 'wc_string_to_bool',
+			'validate_callback' => 'rest_validate_request_arg',
+		);
+		$params['return_variations'] = array(
+			'description'       => __( 'Returns all variations for variable products.', 'cocart-products' ),
+			'type'              => 'boolean',
+			'sanitize_callback' => 'wc_string_to_bool',
+			'validate_callback' => 'rest_validate_request_arg',
+		);
 
 		$params['orderby']['enum'] = array( 'price', 'popularity', 'rating' );
 
