@@ -307,6 +307,7 @@ module.exports = function(grunt) {
 								'!<%= pkg.name %>-svn/**',
 								'!node_modules/**',
 								'!releases/**',
+								'!vendor/**',
 								'readme.txt',
 								'assets/images/**',
 								'assets/js/**'
