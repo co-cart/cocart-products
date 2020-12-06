@@ -159,15 +159,19 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 			return;
 		}
 
-		$attachment_id   = $variation->get_image_id();
-		$attachment_post = get_post( $attachment_id );
+		$attachment_id    = $variation->get_image_id();
+		$attachment_post  = get_post( $attachment_id );
+		$attachment_sizes = apply_filters( 'cocart_products_variation_image_sizes', get_intermediate_image_sizes() );
+
 		if ( is_null( $attachment_post ) ) {
 			return;
 		}
 
-		$attachment = wp_get_attachment_image_src( $attachment_id, 'full' );
-		if ( ! is_array( $attachment ) ) {
-			return;
+		$attachment = array();
+
+		// Get each image size of the attachment.
+		foreach( $attachment_sizes as $size ) {
+			$attachment[$size] = current( wp_get_attachment_image_src( $attachment_id, $size ) );
 		}
 
 		if ( ! isset( $image ) ) {
@@ -177,7 +181,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 				'date_created_gmt'  => wc_rest_prepare_date_response( strtotime( $attachment_post->post_date_gmt ) ),
 				'date_modified'     => wc_rest_prepare_date_response( $attachment_post->post_modified, false ),
 				'date_modified_gmt' => wc_rest_prepare_date_response( strtotime( $attachment_post->post_modified_gmt ) ),
-				'src'               => current( $attachment ),
+				'src'               => $attachment,
 				'name'              => get_the_title( $attachment_id ),
 				'alt'               => get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ),
 			);

@@ -500,8 +500,9 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 	 * @return array $images
 	 */
 	protected function get_images( $product ) {
-		$images         = array();
-		$attachment_ids = array();
+		$images           = array();
+		$attachment_ids   = array();
+		$attachment_sizes = apply_filters( 'cocart_products_image_sizes', get_intermediate_image_sizes() );
 
 		// Add featured image.
 		if ( $product->get_image_id() ) {
@@ -518,9 +519,11 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				continue;
 			}
 
-			$attachment = wp_get_attachment_image_src( $attachment_id, 'full' );
-			if ( ! is_array( $attachment ) ) {
-				continue;
+			$attachments = array();
+
+			// Get each image size of the attachment.
+			foreach( $attachment_sizes as $size ) {
+				$attachments[$size] = current( wp_get_attachment_image_src( $attachment_id, $size ) );
 			}
 
 			$images[] = array(
@@ -529,7 +532,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				'date_created_gmt'  => wc_rest_prepare_date_response( strtotime( $attachment_post->post_date_gmt ) ),
 				'date_modified'     => wc_rest_prepare_date_response( $attachment_post->post_modified, false ),
 				'date_modified_gmt' => wc_rest_prepare_date_response( strtotime( $attachment_post->post_modified_gmt ) ),
-				'src'               => current( $attachment ),
+				'src'               => $attachments,
 				'name'              => get_the_title( $attachment_id ),
 				'alt'               => get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ),
 				'position'          => (int) $position,
