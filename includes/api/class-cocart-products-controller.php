@@ -450,11 +450,15 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 
 		// Filter product type by slug.
 		if ( ! empty( $request['type'] ) ) {
-			$tax_query[] = array(
-				'taxonomy' => 'product_type',
-				'field'    => 'slug',
-				'terms'    => $request['type'],
-			);
+			if ( 'variation' === $request['type'] ) {
+				$args['post_type'] = 'product_variation';
+			} else {
+				$tax_query[] = array(
+					'taxonomy' => 'product_type',
+					'field'    => 'slug',
+					'terms'    => $request['type'],
+				);
+			}
 		}
 
 		// Filter by attribute and term.
