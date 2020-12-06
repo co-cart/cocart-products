@@ -332,9 +332,44 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		$args['name']                = $request['slug'];
 		$args['post_parent__in']     = $request['parent'];
 		$args['post_parent__not_in'] = $request['parent_exclude'];
-	
-		if ( 'date' === $args['orderby'] ) {
-			$args['orderby'] = 'date ID';
+
+		// If order by is not set then use WooCommerce default catalog setting.
+		if ( empty( $args['orderby'] ) ) {
+			$args['orderby'] = get_option( 'woocommerce_default_catalog_orderby' );
+		}
+
+		switch ( $args['orderby'] ) {
+			case 'id':
+				$args['orderby'] = 'ID';
+				break;
+			case 'menu_order':
+				$args['orderby'] = 'menu_order title';
+				break;
+			case 'title':
+				$args['orderby'] = 'title';
+				$args['order']   = ( 'DESC' === $order ) ? 'DESC' : 'ASC';
+				break;
+			case 'relevance':
+				$args['orderby'] = 'relevance';
+				$args['order']   = 'DESC';
+				break;
+			case 'rand':
+				$args['orderby'] = 'rand';
+				break;
+			case 'date':
+				$args['orderby'] = 'date ID';
+				$args['order']   = ( 'ASC' === $order ) ? 'ASC' : 'DESC';
+				break;
+			/*case 'price':
+				$callback = 'DESC' === $order ? 'order_by_price_desc_post_clauses' : 'order_by_price_asc_post_clauses';
+				add_filter( 'posts_clauses', array( $this, $callback ) );
+				break;
+			case 'popularity':
+				add_filter( 'posts_clauses', array( $this, 'order_by_popularity_post_clauses' ) );
+				break;
+			case 'rating':
+				add_filter( 'posts_clauses', array( $this, 'order_by_rating_post_clauses' ) );
+				break;*/
 		}
 
 		$args['date_query'] = array();
