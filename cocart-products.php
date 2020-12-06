@@ -5,7 +5,7 @@
  * Description: Access products without the requirement of authenticating. Get each variation for a variable product in one request and more.
  * Author:      Sébastien Dumont
  * Author URI:  https://sebastiendumont.com
- * Version:     1.0.0-beta.3
+ * Version:     1.0.0-beta.4
  * Text Domain: cocart-products
  * Domain Path: /languages/
  *
@@ -35,7 +35,7 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 		 * @access public
 		 * @static
 		 */
-		public static $version = '1.0.0-beta.3';
+		public static $version = '1.0.0-beta.4';
 
 		/**
 		 * Required CoCart Version
