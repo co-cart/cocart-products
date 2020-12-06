@@ -1641,6 +1641,12 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'sanitize_callback' => 'sanitize_text_field',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
+		$params['hide_free'] = array(
+			'description'       => __( 'Limit result set to hide free products.', 'cocart-products' ),
+			'type'              => 'boolean',
+			'sanitize_callback' => 'wc_string_to_bool',
+			'validate_callback' => 'rest_validate_request_arg',
+		);
 		$params['featured'] = array(
 			'description'       => __( 'Limit result set to featured products.', 'cocart-products' ),
 			'type'              => 'boolean',
