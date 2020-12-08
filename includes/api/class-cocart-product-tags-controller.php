@@ -40,7 +40,7 @@ class CoCart_Product_Tags_Controller extends CoCart_REST_Terms_Controller {
 	 * Prepare a single product tag output for response.
 	 *
 	 * @access public
-	 * @param  obj $item Term object.
+	 * @param  obj             $item Term object.
 	 * @param  WP_REST_Request $request
 	 * @return WP_REST_Response $response
 	 */
@@ -53,8 +53,8 @@ class CoCart_Product_Tags_Controller extends CoCart_REST_Terms_Controller {
 			'count'       => (int) $item->count,
 		);
 
-		$data    = $this->add_additional_fields_to_object( $data, $request );
-		$data    = $this->filter_response_by_context( $data, 'view' );
+		$data = $this->add_additional_fields_to_object( $data, $request );
+		$data = $this->filter_response_by_context( $data, 'view' );
 
 		$response = rest_ensure_response( $data );
 
@@ -80,17 +80,17 @@ class CoCart_Product_Tags_Controller extends CoCart_REST_Terms_Controller {
 	 */
 	public function get_item_schema() {
 		$schema = array(
-			'schema'              => 'http://json-schema.org/draft-04/schema#',
-			'title'                => $this->taxonomy,
-			'type'                 => 'object',
-			'properties'           => array(
-				'id' => array(
+			'schema'     => 'http://json-schema.org/draft-04/schema#',
+			'title'      => $this->taxonomy,
+			'type'       => 'object',
+			'properties' => array(
+				'id'          => array(
 					'description' => __( 'Unique identifier for the resource.', 'cocart-products' ),
 					'type'        => 'integer',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
-				'name' => array(
+				'name'        => array(
 					'description' => __( 'Tag name.', 'cocart-products' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
@@ -98,7 +98,7 @@ class CoCart_Product_Tags_Controller extends CoCart_REST_Terms_Controller {
 						'sanitize_callback' => 'sanitize_text_field',
 					),
 				),
-				'slug' => array(
+				'slug'        => array(
 					'description' => __( 'An alphanumeric identifier for the resource unique to its type.', 'cocart-products' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
@@ -114,7 +114,7 @@ class CoCart_Product_Tags_Controller extends CoCart_REST_Terms_Controller {
 						'sanitize_callback' => 'wp_filter_post_kses',
 					),
 				),
-				'count' => array(
+				'count'       => array(
 					'description' => __( 'Number of published products for the resource.', 'cocart-products' ),
 					'type'        => 'integer',
 					'context'     => array( 'view' ),

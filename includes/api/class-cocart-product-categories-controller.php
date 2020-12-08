@@ -81,8 +81,8 @@ class CoCart_Product_Categories_Controller extends CoCart_REST_Terms_Controller 
 			);
 		}
 
-		$data    = $this->add_additional_fields_to_object( $data, $request );
-		$data    = $this->filter_response_by_context( $data, 'view' );
+		$data = $this->add_additional_fields_to_object( $data, $request );
+		$data = $this->filter_response_by_context( $data, 'view' );
 
 		$response = rest_ensure_response( $data );
 
@@ -108,7 +108,7 @@ class CoCart_Product_Categories_Controller extends CoCart_REST_Terms_Controller 
 	 */
 	public function get_item_schema() {
 		$schema = array(
-			'schema'    => 'http://json-schema.org/draft-04/schema#',
+			'schema'     => 'http://json-schema.org/draft-04/schema#',
 			'title'      => $this->taxonomy,
 			'type'       => 'object',
 			'properties' => array(

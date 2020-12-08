@@ -171,8 +171,8 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 		$attachment = array();
 
 		// Get each image size of the attachment.
-		foreach( $attachment_sizes as $size ) {
-			$attachment[$size] = current( wp_get_attachment_image_src( $attachment_id, $size ) );
+		foreach ( $attachment_sizes as $size ) {
+			$attachment[ $size ] = current( wp_get_attachment_image_src( $attachment_id, $size ) );
 		}
 
 		if ( ! isset( $image ) ) {
@@ -200,16 +200,16 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	protected function prepare_links( $object, $request ) {
 		$product_id = (int) $request['product_id'];
 
-		$base       = str_replace( '(?P<product_id>[\d]+)', $product_id, $this->rest_base );
+		$base = str_replace( '(?P<product_id>[\d]+)', $product_id, $this->rest_base );
 
-		$links      = array(
-			'self'       => array(
+		$links = array(
+			'self'           => array(
 				'href' => rest_url( sprintf( '/%s/%s/%d', $this->namespace, $base, $object->get_id() ) ),
 			),
-			'collection' => array(
+			'collection'     => array(
 				'href' => rest_url( sprintf( '/%s/%s', $this->namespace, $base ) ),
 			),
-			'parent_product'         => array(
+			'parent_product' => array(
 				'href'      => rest_url( sprintf( '/%s/products/%d', $this->namespace, $product_id ) ),
 				'permalink' => get_permalink( $product_id ),
 			),
@@ -227,8 +227,8 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 		$weight_unit    = get_option( 'woocommerce_weight_unit' );
 		$dimension_unit = get_option( 'woocommerce_dimension_unit' );
 
-		$schema         = array(
-			'schema'    => 'http://json-schema.org/draft-04/schema#',
+		$schema = array(
+			'schema'     => 'http://json-schema.org/draft-04/schema#',
 			'title'      => $this->post_type,
 			'type'       => 'object',
 			'properties' => array(

@@ -123,12 +123,14 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 	protected function check_permissions( $request ) {
 		// Get taxonomy.
 		$taxonomy = $this->get_taxonomy( $request );
+
 		if ( ! $taxonomy || ! taxonomy_exists( $taxonomy ) ) {
 			return new WP_Error( 'cocart_taxonomy_invalid', __( 'Taxonomy does not exist.','cocart-products' ), array( 'status' => 404 ) );
 		}
 
 		// Check permissions for a single term.
 		$id = intval( $request['id'] );
+
 		if ( $id ) {
 			$term = get_term( $id, $taxonomy );
 
@@ -150,7 +152,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function get_items( $request ) {
-		$taxonomy      = $this->get_taxonomy( $request );
+		$taxonomy = $this->get_taxonomy( $request );
 
 		$prepared_args = array(
 			'exclude'    => $request['exclude'],
@@ -237,7 +239,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 		$max_pages = ceil( $total_terms / $per_page );
 		$response->header( 'X-WP-TotalPages', (int) $max_pages );
 
-		$base  = str_replace( '(?P<attribute_id>[\d]+)', $request['attribute_id'], $this->rest_base );
+		$base = str_replace( '(?P<attribute_id>[\d]+)', $request['attribute_id'], $this->rest_base );
 		$base = add_query_arg( $request->get_query_params(), rest_url( '/' . $this->namespace . '/' . $base ) );
 
 		if ( $page > 1 ) {
@@ -405,7 +407,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 		$params['context']['default'] = 'view';
 
 		$params['exclude'] = array(
-			'description'       => __( 'Ensure result set excludes specific IDs.','cocart-products' ),
+			'description'       => __( 'Ensure result set excludes specific IDs.', 'cocart-products' ),
 			'type'              => 'array',
 			'items'             => array(
 				'type' => 'integer',
@@ -414,7 +416,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 			'sanitize_callback' => 'wp_parse_id_list',
 		);
 		$params['include'] = array(
-			'description'       => __( 'Limit result set to specific ids.','cocart-products' ),
+			'description'       => __( 'Limit result set to specific ids.', 'cocart-products' ),
 			'type'              => 'array',
 			'items'             => array(
 				'type' => 'integer',
@@ -424,14 +426,14 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 		);
 		if ( ! $taxonomy->hierarchical ) {
 			$params['offset'] = array(
-				'description'       => __( 'Offset the result set by a specific number of items.','cocart-products' ),
+				'description'       => __( 'Offset the result set by a specific number of items.', 'cocart-products' ),
 				'type'              => 'integer',
 				'sanitize_callback' => 'absint',
 				'validate_callback' => 'rest_validate_request_arg',
 			);
 		}
 		$params['order']      = array(
-			'description'       => __( 'Order sort attribute ascending or descending.','cocart-products' ),
+			'description'       => __( 'Order sort attribute ascending or descending.', 'cocart-products' ),
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_key',
 			'default'           => 'asc',
@@ -442,7 +444,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 			'validate_callback' => 'rest_validate_request_arg',
 		);
 		$params['orderby']    = array(
-			'description'       => __( 'Sort collection by resource attribute.','cocart-products' ),
+			'description'       => __( 'Sort collection by resource attribute.', 'cocart-products' ),
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_key',
 			'default'           => 'name',
@@ -458,27 +460,27 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 			'validate_callback' => 'rest_validate_request_arg',
 		);
 		$params['hide_empty'] = array(
-			'description'       => __( 'Whether to hide resources not assigned to any products.','cocart-products' ),
+			'description'       => __( 'Whether to hide resources not assigned to any products.', 'cocart-products' ),
 			'type'              => 'boolean',
 			'default'           => false,
 			'validate_callback' => 'rest_validate_request_arg',
 		);
 		if ( $taxonomy->hierarchical ) {
 			$params['parent'] = array(
-				'description'       => __( 'Limit result set to resources assigned to a specific parent.','cocart-products' ),
+				'description'       => __( 'Limit result set to resources assigned to a specific parent.', 'cocart-products' ),
 				'type'              => 'integer',
 				'sanitize_callback' => 'absint',
 				'validate_callback' => 'rest_validate_request_arg',
 			);
 		}
 		$params['product'] = array(
-			'description'       => __( 'Limit result set to resources assigned to a specific product.','cocart-products' ),
+			'description'       => __( 'Limit result set to resources assigned to a specific product.', 'cocart-products' ),
 			'type'              => 'integer',
 			'default'           => null,
 			'validate_callback' => 'rest_validate_request_arg',
 		);
 		$params['slug']    = array(
-			'description'       => __( 'Limit result set to resources with a specific slug.','cocart-products' ),
+			'description'       => __( 'Limit result set to resources with a specific slug.', 'cocart-products' ),
 			'type'              => 'string',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
