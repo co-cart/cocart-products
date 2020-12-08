@@ -56,7 +56,7 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_items' ),
-				'permission_callback' => array( $this, 'get_items_permissions_check' ),
+				'permission_callback' => '__return_true',
 				'args'                => $this->get_collection_params(),
 			),
 			array(

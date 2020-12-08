@@ -59,6 +59,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_items' ),
 				'args'                => $this->get_collection_params(),
+				'permission_callback' => '__return_true',
 			),
 			'schema' => array( $this, 'get_public_item_schema' ),
 		) );
@@ -78,6 +79,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 						'type'        => 'integer',
 					),
 				),
+				'permission_callback' => '__return_true',
 			),
 			'schema' => array( $this, 'get_public_item_schema' ),
 		) );

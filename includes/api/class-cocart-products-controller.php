@@ -52,9 +52,10 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		// Get Products - cocart/v1/products (GET)
 		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
 			array(
-				'methods'  => WP_REST_Server::READABLE,
-				'callback' => array( $this, 'get_items' ),
-				'args'     => $this->get_collection_params(),
+				'methods'              => WP_REST_Server::READABLE,
+				'callback'             => array( $this, 'get_items' ),
+				'args'                 => $this->get_collection_params(),
+				'permission_callback'  => '__return_true',
 			),
 			'schema' => array( $this, 'get_public_item_schema' ),
 		) );
@@ -75,6 +76,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 						'default' => 'view',
 					) ),
 				),
+				'permission_callback' => '__return_true',
 			),
 			'schema' => array( $this, 'get_public_item_schema' ),
 		) );
