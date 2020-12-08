@@ -25,7 +25,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Action_Links' ) ) {
 		 * @access public
 		 */
 		public function __construct() {
-			add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta'), 10, 3 );
+			add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 3 );
 		} // END __construct()
 
 		/**
@@ -39,12 +39,12 @@ if ( ! class_exists( 'CoCart_Products_Admin_Action_Links' ) ) {
 		 */
 		public function plugin_row_meta( $metadata, $file, $data ) {
 			if ( $file == plugin_basename( COCART_PRODUCTS_FILE ) ) {
-				$metadata[ 1 ] = sprintf( __( 'Developed By %s', 'cocart-products' ), '<a href="' . $data[ 'AuthorURI' ] . '" aria-label="' . esc_attr__( 'View the developers site', 'cocart-products' ) . '">' . $data[ 'Author' ] . '</a>' );
+				$metadata[1] = sprintf( __( 'Developed By %s', 'cocart-products' ), '<a href="' . $data['AuthorURI'] . '" aria-label="' . esc_attr__( 'View the developers site', 'cocart-products' ) . '">' . $data['Author'] . '</a>' );
 
 				$row_meta = array(
-					'docs' => '<a href="' . esc_url( COCART_PRODUCTS_DOCUMENTATION_URL ) . '" aria-label="' . sprintf( esc_attr__( 'View %s Products documentation', 'cocart-products' ), 'CoCart' ) . '" target="_blank">' . esc_attr__( 'Documentation', 'cocart-products' ) . '</a>',
+					'docs'      => '<a href="' . esc_url( COCART_PRODUCTS_DOCUMENTATION_URL ) . '" aria-label="' . sprintf( esc_attr__( 'View %s Products documentation', 'cocart-products' ), 'CoCart' ) . '" target="_blank">' . esc_attr__( 'Documentation', 'cocart-products' ) . '</a>',
 					'translate' => '<a href="' . esc_url( COCART_PRODUCTS_TRANSLATION_URL ) . '" aria-label="' . sprintf( esc_attr__( 'Translate %s', 'cocart-products' ), 'CoCart' ) . '" target="_blank">' . esc_attr__( 'Translate', 'cocart-products' ) . '</a>',
-					'review' => '<a href="' . esc_url( COCART_PRODUCTS_REVIEW_URL ) . '" aria-label="' . sprintf( esc_attr__( 'Review %s on CoCart.xyz', 'cocart-products' ), 'CoCart' ) . '" target="_blank">' . esc_attr__( 'Leave a Review', 'cocart-products' ) . '</a>',
+					'review'    => '<a href="' . esc_url( COCART_PRODUCTS_REVIEW_URL ) . '" aria-label="' . sprintf( esc_attr__( 'Review %s on CoCart.xyz', 'cocart-products' ), 'CoCart' ) . '" target="_blank">' . esc_attr__( 'Leave a Review', 'cocart-products' ) . '</a>',
 				);
 
 				$metadata = array_merge( $metadata, $row_meta );
