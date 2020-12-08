@@ -346,9 +346,19 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			case 'menu_order':
 				$args['orderby'] = 'menu_order title';
 				break;
+			case 'alphabetical':
+				$args['orderby']  = 'title';
+				$args['order']    = 'ASC';
+				$args['meta_key'] = '';
+				break;
+			case 'reverse_alpha':
+				$args['orderby']  = 'title';
+				$args['order']    = 'DESC';
+				$args['meta_key'] = '';
+				break;
 			case 'title':
 				$args['orderby'] = 'title';
-				$args['order']   = ( 'DESC' === $order ) ? 'DESC' : 'ASC';
+				$args['order']   = ( 'DESC' === $args['order'] ) ? 'DESC' : 'ASC';
 				break;
 			case 'relevance':
 				$args['orderby'] = 'relevance';
@@ -359,18 +369,46 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				break;
 			case 'date':
 				$args['orderby'] = 'date ID';
-				$args['order']   = ( 'ASC' === $order ) ? 'ASC' : 'DESC';
+				$args['order']   = ( 'ASC' === $args['order'] ) ? 'ASC' : 'DESC';
 				break;
-			/*case 'price':
-				$callback = 'DESC' === $order ? 'order_by_price_desc_post_clauses' : 'order_by_price_asc_post_clauses';
-				add_filter( 'posts_clauses', array( $this, $callback ) );
+			case 'by_stock':
+				$args['orderby']  = array( 'meta_value_num' => 'DESC', 'title' => 'ASC' );
+				$args['meta_key'] = '_stock';
 				break;
-			case 'popularity':
-				add_filter( 'posts_clauses', array( $this, 'order_by_popularity_post_clauses' ) );
+			case 'review_count':
+				$args['orderby']  = array( 'meta_value_num' => 'DESC', 'title' => 'ASC' );
+				$args['meta_key'] = '_wc_review_count';
+				break;
+			case 'on_sale_first':
+				$args['orderby']      = array( 'meta_value_num' => 'DESC', 'title' => 'ASC' );
+				$args['meta_key']     = '_sale_price';
+				$args['meta_value']   = 0;
+				$args['meta_compare'] = '>=';
+				$args['meta_type']    = 'NUMERIC';
+				break;
+			case 'featured_first':
+				$args['orderby']  = array( 'meta_value' => 'DESC', 'title' => 'ASC' );
+				$args['meta_key'] = '_featured';
+				break;
+			case 'price_asc':
+				$args['orderby']  = 'meta_value_num';
+				$args['order']    = 'ASC';
+				$args['meta_key'] = '_price';
+				break;
+			case 'price_desc':
+				$args['orderby']  = 'meta_value_num';
+				$args['order']    = 'DESC';
+				$args['meta_key'] = '_price';
+				break;
+			case 'sales':
+				$args['orderby']  = 'meta_value_num';
+				$args['meta_key'] = 'total_sales';
 				break;
 			case 'rating':
-				add_filter( 'posts_clauses', array( $this, 'order_by_rating_post_clauses' ) );
-				break;*/
+				$args['orderby']  = 'meta_value_num';
+				$args['order']    = 'DESC';
+				$args['meta_key'] = '_wc_average_rating';
+				break;
 		}
 
 		$args['date_query'] = array();
@@ -474,7 +512,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 
 		// Price filter.
 		if ( ! empty( $request['min_price'] ) || ! empty( $request['max_price'] ) ) {
-			$args['meta_query'] = $this->add_meta_query( $args, wc_get_min_max_price_meta_query( $request ) );  // WPCS: slow query ok.
+			$args['meta_query'] = $this->add_meta_query( $args, wc_get_min_max_price_meta_query( $request ) ); // WPCS: slow query ok.
 		}
 
 		// Filter product in stock or out of stock.
