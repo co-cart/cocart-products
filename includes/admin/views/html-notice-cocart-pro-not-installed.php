@@ -38,15 +38,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			else:
 
-				echo '<a href="' . esc_url( 'https://cocart.xyz/pricing/' ) . '" class="button button-primary" aria-label="' . sprintf( esc_html__( 'Purchase %s', 'cocart-products' ), 'CoCart Pro' ) . '">' . sprintf( esc_html__( 'Purchase %s', 'cocart-products' ), 'CoCart Pro' ) . '</a>';
+				echo '<a href="' . esc_url( 'https://cocart.xyz/pro/' ) . '" class="button button-primary" aria-label="' . sprintf( esc_html__( 'Purchase %s', 'cocart-products' ), 'CoCart Pro' ) . '">' . sprintf( esc_html__( 'Purchase %s', 'cocart-products' ), 'CoCart Pro' ) . '</a>';
 
 			endif;
 
-			if ( current_user_can( 'deactivate_plugin', 'cocart-products/cocart-products.php' ) ) :
+			if ( current_user_can( 'deactivate_plugin', plugin_basename( COCART_PRODUCTS_FILE ) ) ) :
 
 				echo sprintf( 
 					' <a href="%1$s" class="button button-secondary" aria-label="%2$s">%2$s</a>', 
-					esc_url( wp_nonce_url( 'plugins.php?action=deactivate&plugin=cocart-pro/cocart-pro.php&plugin_status=inactive', 'deactivate-plugin_cocart-pro/cocart-pro.php' ) ),
+					esc_url( wp_nonce_url( 'plugins.php?action=deactivate&plugin=' . plugin_basename( COCART_PRODUCTS_FILE ) . '&plugin_status=inactive', 'deactivate-plugin_' . plugin_basename( COCART_PRODUCTS_FILE ) ) ),
 					sprintf( esc_html__( 'Turn off the %s Products plugin', 'cocart-products' ), 'CoCart' )
 				);
 
