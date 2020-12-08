@@ -4,7 +4,6 @@ This premium add-on provides a public version of accessing products, categories,
 
 As you have purchased the Agency tier you get early access to try out the add-on before it is made available to the public.
 
-> Please know that the documentation is still being written and will be complete soon so you will have to use the WooCommerce REST API as a **reference** in the mean time. The parameters are the same, you just don't need to authenticate.
 > Once you have the plugin installed you will see new routes registered under `/cocart/v1/products`.
 
 ## Features
