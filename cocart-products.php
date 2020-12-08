@@ -22,20 +22,12 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 	class CoCart_Products {
 
 		/**
-		 * @var CoCart_Products - the single instance of the class.
-		 *
-		 * @access protected
-		 * @static
-		 */
-		protected static $_instance = null;
-
-		/**
 		 * Plugin Version
 		 *
 		 * @access public
 		 * @static
 		 */
-		public static $version = '1.0.0-beta.9';
+		public static $version = '1.0.0-beta.10';
 
 		/**
 		 * Required CoCart Version
@@ -44,6 +36,14 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 		 * @static
 		 */
 		public static $required_cocart = '2.0.0';
+
+		/**
+		 * @var CoCart_Products - the single instance of the class.
+		 *
+		 * @access protected
+		 * @static
+		 */
+		protected static $_instance = null;
 
 		/**
 		 * Main CoCart Products Instance.
