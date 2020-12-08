@@ -115,7 +115,7 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 			$this->define('COCART_PRODUCTS_FILE_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 			$this->define('COCART_STORE_URL', 'https://cocart.xyz/');
-			$this->define('COCART_PRODUCTS_REVIEW_URL', 'https://cocart.xyz/submit-review/');
+			$this->define('COCART_PRODUCTS_REVIEW_URL', 'https://cocart.xyz/submit-review/?wpf15410_12=CoCart%20Products');
 			$this->define('COCART_PRODUCTS_DOCUMENTATION_URL', 'https://docs.cocart.xyz/products.html');
 			$this->define('COCART_PRODUCTS_TRANSLATION_URL', 'https://translate.cocart.xyz/projects/cocart-products/');
 		} // END setup_constants()
