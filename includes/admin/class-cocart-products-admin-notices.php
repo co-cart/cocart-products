@@ -38,10 +38,11 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 			add_action( 'admin_init', array( $this, 'dont_bug_me' ), 15 );
 
 			// Check CoCart Products dependency.
-			add_action( 'admin_print_styles', array( $this, 'check_cocart_products_dependency' ), 0 );
+			add_action( 'admin_init', array( $this, 'check_cocart_products_dependency' ), 12 );
 
 			// Display other admin notices when required. All are dismissible.
-			add_action( 'admin_print_styles', array( $this, 'add_notices' ), 10 );
+			add_action( 'admin_print_styles', array( $this, 'add_review_notice' ), 0 );
+			add_action( 'admin_print_styles', array( $this, 'add_pre_release_notice' ), 0 );
 		} // END __construct()
 
 		/**
@@ -51,20 +52,17 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 		 */
 		public function check_cocart_products_dependency() {
 			// If the current user can not install plugins then return nothing!
-			if ( ! current_user_can( 'install_plugins' ) ) {
+			if ( ! CoCart_Products_Helpers::user_has_capabilities() ) {
 				return false;
 			}
 
-			$screen    = get_current_screen();
-			$screen_id = $screen ? $screen->id : '';
-
-			// Notices should only show on the main dashboard and on the plugins screen.
-			if ( ! in_array( $screen_id, CoCart_Products_Admin::cocart_get_admin_screens() ) ) {
+			// Notice should only show on a CoCart page.
+			if ( ! CoCart_Products_Helpers::is_cocart_admin_page() ) {
 				return false;
 			}
 
-			if ( ! defined( 'COCART_PRO_VERSION' ) ) {
-				add_action( 'admin_notices', array( $this, 'cocart_pro_not_installed' ) );
+			if ( ! CoCart_Products_Helpers::is_cocart_installed() ) {
+				add_action( 'admin_notices', array( $this, 'cocart_not_installed' ) );
 				return false;
 			}
 
@@ -86,14 +84,20 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 			$user_hidden_notice = false;
 
 			// If the user is allowed to install plugins and requested to hide the review notice then hide it for that user.
-			if ( ! empty( $_GET['hide_cocart_products_review_notice'] ) && current_user_can( 'install_plugins' ) ) {
+			if ( ! empty( $_GET['hide_cocart_products_review_notice'] ) && CoCart_Products_Helpers::user_has_capabilities() ) {
 				add_user_meta( $current_user->ID, 'cocart_products_hide_review_notice', '1', true );
 				$user_hidden_notice = true;
 			}
 
 			// Hide the beta notice for two weeks if requested.
-			if ( ! empty( $_GET['hide_cocart_products_beta_notice'] ) && current_user_can( 'install_plugins' ) ) {
+			if ( ! empty( $_GET['hide_cocart_products_beta_notice'] ) && CoCart_Products_Helpers::user_has_capabilities() ) {
 				set_transient( 'cocart_products_beta_notice_hidden', 'hidden', apply_filters( 'cocart_products_beta_notice_expiration', WEEK_IN_SECONDS * 2 ) );
+				$user_hidden_notice = true;
+			}
+
+			// If the user is allowed to install plugins and requested to dismiss beta notice forever.
+			if ( ! empty( $_GET['hide_forever_cocart_products_beta_notice'] ) && CoCart_Helpers::user_has_capabilities() ) {
+				set_transient( 'cocart_products_beta_notice_hidden', 'hidden' );
 				$user_hidden_notice = true;
 			}
 
@@ -105,28 +109,24 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 		} // END dont_bug_me()
 
 		/**
-		 * Displays admin notices for the following:
-		 *
-		 * 1. Plugin review, shown after 14 days or more from the time the plugin was installed.
-		 * 2. Testing a beta/pre-release version of the plugin.
+		 * Displays plugin review notice.
+		 * 
+		 * Shown after 2 weeks or more from the time the plugin was installed.
 		 * 
 		 * @access public
 		 * @global $current_user
 		 * @return void|bool
 		 */
-		public function add_notices() {
+		public function add_review_notice() {
 			global $current_user;
 
 			// If the current user can not install plugins then return nothing!
-			if ( ! current_user_can( 'install_plugins' ) ) {
+			if ( ! CoCart_Products_Helpers::user_has_capabilities() ) {
 				return false;
 			}
 
-			$screen    = get_current_screen();
-			$screen_id = $screen ? $screen->id : '';
-
-			// Notices should only show on the main dashboard and on the plugins screen.
-			if ( ! in_array( $screen_id, CoCart_Products_Admin::cocart_get_admin_screens() ) ) {
+			// Notice should only show on a CoCart page.
+			if ( ! CoCart_Products_Helpers::is_cocart_admin_page() ) {
 				return false;
 			}
 
@@ -140,21 +140,42 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 					add_action( 'admin_notices', array( $this, 'plugin_review_notice' ) );
 				}
 			}
-
-			// Is this version of CoCart Products a beta/pre-release?
-			if ( CoCart_Products_Admin::is_cocart_products_beta() && empty( get_transient( 'cocart_products_beta_notice_hidden' ) ) ) {
-				add_action( 'admin_notices', array( $this, 'beta_notice' ) );
-			}
-		} // END add_notices()
+		} // END add_review_notice()
 
 		/**
-		 * CoCart Pro is Not Installed or Activated Notice.
+		 * Displays notice if user is testing pre-release version of the plugin.
+		 * 
+		 * @access public
+		 * @global $current_user
+		 * @return void|bool
+		 */
+		public function add_pre_release_notice() {
+			global $current_user;
+
+			// If the current user can not install plugins then return nothing!
+			if ( ! CoCart_Products_Helpers::user_has_capabilities() ) {
+				return false;
+			}
+
+			// Notice should only show on a CoCart page.
+			if ( ! CoCart_Products_Helpers::is_cocart_admin_page() ) {
+				return false;
+			}
+
+			// Is this version of CoCart Products a pre-release?
+			if ( CoCart_Products_Helpers::is_cocart_products_pre_release() && empty( get_transient( 'cocart_products_beta_notice_hidden' ) ) ) {
+				add_action( 'admin_notices', array( $this, 'beta_notice' ) );
+			}
+		} // END add_pre_release_notice()
+
+		/**
+		 * CoCart is Not Installed or Activated Notice.
 		 *
 		 * @access public
 		 * @return void
 		 */
-		public function cocart_pro_not_installed() {
-			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-cocart-pro-not-installed.php' );
+		public function cocart_not_installed() {
+			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/admin/views/html-notice-cocart-not-installed.php' );
 		} // END cocart_not_installed()
 
 		/**
