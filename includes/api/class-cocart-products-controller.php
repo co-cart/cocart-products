@@ -522,11 +522,11 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		}
 
 		// Filter product in stock or out of stock.
-		if ( is_bool( $request['in_stock'] ) ) {
+		if ( is_bool( $request['stock_status'] ) ) {
 			$args['meta_query'] = $this->add_meta_query( // WPCS: slow query ok.
 				$args, array(
 					'key'   => '_stock_status',
-					'value' => true === $request['in_stock'] ? 'instock' : 'outofstock',
+					'value' => true === $request['stock_status'] ? 'instock' : 'outofstock',
 				)
 			);
 		}
