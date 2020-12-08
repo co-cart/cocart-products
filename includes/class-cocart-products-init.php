@@ -45,6 +45,8 @@ class CoCart_Products_Rest_API {
 			return;
 		}
 
+		// If CoCart does not exists then do nothing!
+		if ( ! class_exists( 'CoCart' ) ) {
 			return;
 		}
 
