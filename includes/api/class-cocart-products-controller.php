@@ -893,6 +893,10 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'grouped_products'      => array(),
 			'menu_order'            => $product->get_menu_order( 'view' ),
 			'meta_data'             => $product->get_meta_data(),
+			'add_to_cart'           => array(
+				'text'        => $product->add_to_cart_text(),
+				'description' => $product->add_to_cart_description(),
+			),
 		);
 
 		return $data;
@@ -1539,6 +1543,25 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 								'type'        => 'mixed',
 								'context'     => array( 'view' ),
 							),
+						),
+					),
+					'readonly'          => true,
+				),
+				'add_to_cart'            => array(
+					'description'       => __( 'Add to Cart button.', 'cocart-products' ),
+					'type'              => 'object',
+					'context'           => array( 'view' ),
+					'properties'        => array(
+						'text' => array(
+							'description' => __( 'Text', 'cocart-products' ),
+							'type'        => 'string',
+							'default'     => __( 'Add to Cart', 'cocart-products' ),
+							'context'     => array( 'view' ),
+						),
+						'description' => array(
+							'description' => __( 'Description', 'cocart-products' ),
+							'type'        => 'string',
+							'context'     => array( 'view' ),
 						),
 					),
 					'readonly'          => true,
