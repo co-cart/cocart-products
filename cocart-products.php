@@ -141,6 +141,7 @@ if ( ! class_exists( 'CoCart_Products' ) ) {
 		 */
 		public function includes() {
 			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-autoloader.php' );
+			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-helpers.php' );
 			include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-init.php' );
 		} // END includes()
 
