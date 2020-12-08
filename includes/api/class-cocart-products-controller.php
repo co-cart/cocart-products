@@ -324,17 +324,21 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 	 * @return array
 	 */
 	protected function prepare_objects_query( $request ) {
-		$args                        = array();
-		$args['offset']              = $request['offset'];
-		$args['order']               = strtoupper( $request['order'] );
-		$args['orderby']             = strtolower( $request['orderby'] );
-		$args['paged']               = $request['page'];
-		$args['post__in']            = $request['include'];
-		$args['post__not_in']        = $request['exclude'];
-		$args['posts_per_page']      = $request['per_page'];
-		$args['name']                = $request['slug'];
-		$args['post_parent__in']     = $request['parent'];
-		$args['post_parent__not_in'] = $request['parent_exclude'];
+		$args = array(
+			'offset'              => $request['offset'],
+			'order'               => strtoupper( $request['order'] ),
+			'orderby'             => strtolower( $request['orderby'] ),
+			'paged'               => $request['page'],
+			'post__in'            => $request['include'],
+			'post__not_in'        => $request['exclude'],
+			'posts_per_page'      => $request['per_page'],
+			'name'                => $request['slug'],
+			'post_parent__in'     => $request['parent'],
+			'post_parent__not_in' => $request['parent_exclude'],
+			'ignore_sticky_posts' => true,
+			'post_status'         => 'publish',
+			'date_query'          => array(),
+		);
 
 		// If order by is not set then use WooCommerce default catalog setting.
 		if ( empty( $args['orderby'] ) ) {
@@ -413,7 +417,6 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				break;
 		}
 
-		$args['date_query'] = array();
 		// Set before into date query. Date query must be specified as an array of an array.
 		if ( isset( $request['before'] ) ) {
 			$args['date_query'][0]['before'] = $request['before'];
@@ -423,9 +426,6 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		if ( isset( $request['after'] ) ) {
 			$args['date_query'][0]['after'] = $request['after'];
 		}
-
-		// Set post_status.
-		$args['post_status'] = 'publish';
 
 		// Taxonomy query to filter products by type, category,
 		// tag and attribute.
