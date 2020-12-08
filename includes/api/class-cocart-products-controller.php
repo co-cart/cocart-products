@@ -721,7 +721,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				if ( 0 === strpos( $attribute_name, 'attribute_pa_' ) ) {
 					$option_term  = get_term_by( 'slug', $attribute, $name );
 
-					$attributes[ 'attribute_pa_' . $name ] = array(
+					$attributes[ 'attribute_' . $name ] = array(
 						'id'     => wc_attribute_taxonomy_id_by_name( $name ),
 						'name'   => $this->get_attribute_taxonomy_name( $name, $_product ),
 						'option' => $option_term && ! is_wp_error( $option_term ) ? $option_term->name : $attribute,
