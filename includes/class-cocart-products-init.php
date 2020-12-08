@@ -107,8 +107,10 @@ class CoCart_Products_Rest_API {
 		sort( $controllers );
 
 		foreach ( $controllers as $controller ) {
-			$this->$controller = new $controller();
-			$this->$controller->register_routes();
+			if ( class_exists( $controller ) ) {
+				$this->$controller = new $controller();
+				$this->$controller->register_routes();
+			}
 		}
 	} // END register_products_routes()
 
