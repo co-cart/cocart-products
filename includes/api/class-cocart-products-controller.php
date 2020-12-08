@@ -588,14 +588,14 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		// Add gallery images.
 		$attachment_ids = array_merge( $attachment_ids, $product->get_gallery_image_ids() );
 
+		$attachments = array();
+
 		// Build image data.
 		foreach ( $attachment_ids as $position => $attachment_id ) {
 			$attachment_post = get_post( $attachment_id );
 			if ( is_null( $attachment_post ) ) {
 				continue;
 			}
-
-			$attachments = array();
 
 			// Get each image size of the attachment.
 			foreach( $attachment_sizes as $size ) {
@@ -617,13 +617,18 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 
 		// Set a placeholder image if the product has no images set.
 		if ( empty( $images ) ) {
+			// Get each image size of the attachment.
+			foreach( $attachment_sizes as $size ) {
+				$attachments[$size] = current( wp_get_attachment_image_src( get_option( 'woocommerce_placeholder_image', 0 ), $size ) );
+			}
+
 			$images[] = array(
 				'id'                => 0,
 				'date_created'      => wc_rest_prepare_date_response( current_time( 'mysql' ), false ), // Default to now.
 				'date_created_gmt'  => wc_rest_prepare_date_response( current_time( 'timestamp', true ) ), // Default to now.
 				'date_modified'     => wc_rest_prepare_date_response( current_time( 'mysql' ), false ),
 				'date_modified_gmt' => wc_rest_prepare_date_response( current_time( 'timestamp', true ) ),
-				'src'               => wc_placeholder_img_src(),
+				'src'               => $attachments,
 				'name'              => __( 'Placeholder', 'cocart-products' ),
 				'alt'               => __( 'Placeholder', 'cocart-products' ),
 				'position'          => 0,
