@@ -856,6 +856,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'button_text'           => $product->is_type( 'external' ) ? $product->get_button_text( 'view' ) : '',
 			'manage_stock'          => $product->managing_stock(),
 			'stock_quantity'        => $product->get_stock_quantity( 'view' ),
+			'has_options'           => $product->has_options(),
 			'in_stock'              => $product->is_in_stock(),
 			'stock_status'          => $product->get_stock_status( 'view' ),
 			'backorders'            => $product->get_backorders( 'view' ),
@@ -1162,6 +1163,13 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				'stock_quantity'        => array(
 					'description'       => __( 'Stock quantity.', 'cocart-products' ),
 					'type'              => 'integer',
+					'context'           => array( 'view' ),
+					'readonly'          => true,
+				),
+				'has_options'           => array(
+					'description'       => __( 'Determines whether or not the product has additional options that need selecting before adding to cart.', 'cocart-products' ),
+					'type'              => 'boolean',
+					'default'           => false,
 					'context'           => array( 'view' ),
 					'readonly'          => true,
 				),
