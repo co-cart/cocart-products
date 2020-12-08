@@ -5,6 +5,7 @@
  * @author   Sébastien Dumont
  * @category API
  * @package  CoCart Products/API
+ * @license  GPL-2.0+
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
