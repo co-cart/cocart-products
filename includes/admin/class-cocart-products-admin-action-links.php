@@ -43,6 +43,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Action_Links' ) ) {
 
 				$row_meta = array(
 					'docs' => '<a href="' . esc_url( COCART_PRODUCTS_DOCUMENTATION_URL ) . '" aria-label="' . sprintf( esc_attr__( 'View %s Products documentation', 'cocart-products' ), 'CoCart' ) . '" target="_blank">' . esc_attr__( 'Documentation', 'cocart-products' ) . '</a>',
+					'translate' => '<a href="' . esc_url( COCART_PRODUCTS_TRANSLATION_URL ) . '" aria-label="' . sprintf( esc_attr__( 'Translate %s', 'cocart-products' ), 'CoCart' ) . '" target="_blank">' . esc_attr__( 'Translate', 'cocart-products' ) . '</a>',
 					'review' => '<a href="' . esc_url( COCART_PRODUCTS_REVIEW_URL ) . '" aria-label="' . sprintf( esc_attr__( 'Review %s on CoCart.xyz', 'cocart-products' ), 'CoCart' ) . '" target="_blank">' . esc_attr__( 'Leave a Review', 'cocart-products' ) . '</a>',
 				);
 
