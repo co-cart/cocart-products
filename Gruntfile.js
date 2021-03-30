@@ -45,16 +45,16 @@ module.exports = function(grunt) {
 				options: {
 					// map: false,
 					processors: [
-						require( 'autoprefixer' )(
-							{
-								overrideBrowserslist: [
-									'> 0.1%',
-									'ie 8',
-									'ie 9'
-								]
-							}
-						)
-					]
+					require( 'autoprefixer' )(
+						{
+							overrideBrowserslist: [
+								'> 0.1%',
+								'ie 8',
+								'ie 9'
+							]
+						}
+					)
+				]
 				},
 				dist: {
 					src: [
@@ -114,16 +114,16 @@ module.exports = function(grunt) {
 						domainPath: 'languages',                                  // Where to save the POT file.
 						exclude: [
 							'releases',
-							'node_modules'
+							'node_modules',
+							'vendor'
 						],
 						mainFile: '<%= pkg.name %>.php', // Main project file.
 						potComments: 'Copyright (c) {year} Sébastien Dumont\nThis file is distributed under the same license as the CoCart Products package.', // The copyright at the beginning of the POT file.
-						domainPath: 'languages', // Where to save the POT file.
 						potFilename: '<%= pkg.name %>.pot', // Name of the POT file.
 						potHeaders: {
 							'poedit': true,                                       // Includes common Poedit headers.
 							'x-poedit-keywordslist': true,                        // Include a list of all possible gettext functions.
-							'Report-Msgid-Bugs-To': 'https://cocart.xyz/feedback/',
+							'Report-Msgid-Bugs-To': 'https://github.com/co-cart/cocart-products/issues',
 							'language-team': 'Sébastien Dumont <mailme@sebastiendumont.com>',
 							'language': 'en_US'
 						},
@@ -179,7 +179,8 @@ module.exports = function(grunt) {
 					src:  [
 						'*.php',
 						'**/*.php', // Include all files
-						'!node_modules/**' // Exclude node_modules/
+						'!node_modules/**', // Exclude node_modules/
+						'!vendor/**' // Exclude vendor/
 					],
 					expand: true
 				},
@@ -204,7 +205,10 @@ module.exports = function(grunt) {
 			// Bump version numbers (replace with version in package.json)
 			replace: {
 				php: {
-					src: [ '<%= pkg.name %>.php' ],
+					src: [
+						'<%= pkg.name %>.php',
+						'includes/class-<%= pkg.name %>.php'
+					],
 					overwrite: true,
 					replacements: [
 						{
@@ -242,13 +246,16 @@ module.exports = function(grunt) {
 						{
 							from: /public static \$required_woo = \'.*.'/m,
 							to: "public static $required_woo = '<%= pkg.wc_requires %>'"
+						},
+						{
+							from: /public static \$required_php = \'.*.'/m,
+							to: "public static $required_php = '<%= pkg.requires_php %>'"
 						}
 					]
 				},
 				readme: {
 					src: [
 						'readme.txt',
-						'README.md'
 					],
 					overwrite: true,
 					replacements: [
@@ -297,20 +304,20 @@ module.exports = function(grunt) {
 							src: [
 								'**',
 								'!.*',
-								'!**/*.{gif,jpg,jpeg,js,json,log,md,png,scss,sh,txt,xml,zip}',
+								'!**/*.{gif,jpg,jpeg,js,json,log,lock,md,png,scss,sh,txt,xml,zip}',
 								'!.*/**',
 								'!.DS_Store',
 								'!.htaccess',
 								'!assets/scss/**',
 								'!assets/**/*.scss',
+								'assets/**/**',
 								'!<%= pkg.name %>-git/**',
 								'!<%= pkg.name %>-svn/**',
 								'!node_modules/**',
 								'!releases/**',
 								'!vendor/**',
-								'readme.txt',
-								'assets/images/**',
-								'assets/js/**'
+								'!unit-tests/**',
+								'readme.txt'
 							],
 							dest: 'build/',
 							dot: true
