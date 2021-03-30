@@ -9,10 +9,10 @@
  * Text Domain: cocart-products
  * Domain Path: /languages/
  *
- * Requires at least: 5.2
+ * Requires at least: 5.4
  * Requires PHP: 7.0
- * WC requires at least: 4.0
- * WC tested up to: 4.7
+ * WC requires at least: 4.3
+ * WC tested up to: 5.1
  *
  * Copyright: © 2020 Sébastien Dumont, (mailme@sebastiendumont.com)
  *
