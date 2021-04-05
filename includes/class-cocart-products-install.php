@@ -92,7 +92,7 @@ if ( ! class_exists( 'CoCart_Products_Install' ) ) {
 		 * @static
 		 */
 		public static function set_install_date() {
-			add_site_option( 'cocart_products_install_date', time() );
+			add_option( 'cocart_products_install_date', time() );
 		} // END set_install_date()
 
 	} // END class.

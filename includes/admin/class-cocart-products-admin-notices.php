@@ -32,7 +32,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 		 * @access public
 		 */
 		public function __construct() {
-			self::$install_date = get_site_option( 'cocart_products_install_date', time() );
+			self::$install_date = get_option( 'cocart_products_install_date', time() );
 
 			// Don't bug the user if they don't want to see any notices.
 			add_action( 'admin_init', array( $this, 'dont_bug_me' ), 15 );
