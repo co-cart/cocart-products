@@ -614,11 +614,36 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			$args[ $on_sale_key ] += $on_sale_ids;
 		}
 
-		// Force the post_type argument, since it's not a user input variable.
-		if ( ! empty( $request['sku'] ) ) {
-			$args['post_type'] = $this->get_post_types();
-		} else {
-			$args['post_type'] = $this->post_type;
+		// Filter by Catalog Visibility
+		$catalog_visibility = $request['catalog_visibility'];
+		$visibility_options = wc_get_product_visibility_options();
+
+		if ( in_array( $catalog_visibility, array_keys( $visibility_options ), true ) ) {
+			$exclude_from_catalog = 'search' === $catalog_visibility ? '' : 'exclude-from-catalog';
+			$exclude_from_search  = 'catalog' === $catalog_visibility ? '' : 'exclude-from-search';
+
+			$args['tax_query'][] = array(
+				'taxonomy'      => 'product_visibility',
+				'field'         => 'name',
+				'terms'         => array( $exclude_from_catalog, $exclude_from_search ),
+				'operator'      => 'hidden' === $catalog_visibility ? 'AND' : 'NOT IN',
+				'rating_filter' => true,
+			);
+		}
+
+		// Filter by Product Rating
+		if ( ! empty( $request['rating'] ) ) {
+			$rating_terms = array();
+
+			foreach ( $rating as $value ) {
+				$rating_terms[] = 'rated-' . $value;
+			}
+
+			$args['tax_query'][] = array(
+				'taxonomy' => 'product_visibility',
+				'field'    => 'name',
+				'terms'    => $rating_terms,
+			);
 		}
 
 		return $args;
@@ -1834,6 +1859,23 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'default'           => 'and',
 			'sanitize_callback' => 'sanitize_key',
 			'validate_callback' => 'rest_validate_request_arg',
+		);
+		$params['catalog_visibility'] = array(
+			'description'       => __( 'Determines if hidden or visible catalog products are shown.', 'cocart-products' ),
+			'type'              => 'string',
+			'enum'              => array( 'any', 'visible', 'catalog', 'search', 'hidden' ),
+			'sanitize_callback' => 'sanitize_key',
+			'validate_callback' => 'rest_validate_request_arg',
+		);
+		$params['rating']             = array(
+			'description'       => __( 'Limit result set to products with a certain average rating.', 'cocart-products' ),
+			'type'              => 'array',
+			'items'             => array(
+				'type' => 'integer',
+				'enum' => range( 1, 5 ),
+			),
+			'default'           => array(),
+			'sanitize_callback' => 'wp_parse_id_list',
 		);
 		$params['orderby']            = array(
 			'description'       => __( 'Sort collection by object attribute.', 'cocart-products' ),
