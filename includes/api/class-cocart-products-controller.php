@@ -364,7 +364,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 
 		switch ( $args['orderby'] ) {
 			case 'id':
-				$args['orderby'] = 'ID';
+				$args['orderby'] = 'ID'; // ID must be capitalized.
 				break;
 			case 'menu_order':
 				$args['orderby'] = 'menu_order title';
@@ -479,11 +479,13 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			$args['date_query'][0]['after'] = $request['after'];
 		}
 
-		// Taxonomy query to filter products by type, category,
-		// tag and attribute.
-		$tax_query = array();
+		$operator_mapping = array(
+			'in'     => 'IN',
+			'not_in' => 'NOT IN',
+			'and'    => 'AND',
+		);
 
-		// Map between taxonomy name and arg's key.
+		// Map between taxonomy name and arg key.
 		$taxonomies = array(
 			'product_cat' => 'category',
 			'product_tag' => 'tag',
@@ -492,40 +494,55 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		// Set tax_query for each passed arg.
 		foreach ( $taxonomies as $taxonomy => $key ) {
 			if ( ! empty( $request[ $key ] ) ) {
+				$operator    = $request[ $key . '_operator' ] && isset( $operator_mapping[ $request[ $key . '_operator' ] ] ) ? $operator_mapping[ $request[ $key . '_operator' ] ] : 'IN';
 				$tax_query[] = array(
 					'taxonomy' => $taxonomy,
-					'field'    => 'slug',
-					'terms'    => $request[ $key ],
-				);
-			}
-		}
-
-		// Filter product type by slug.
-		if ( ! empty( $request['type'] ) ) {
-			if ( 'variation' === $request['type'] ) {
-				$args['post_type'] = 'product_variation';
-			} else {
-				$tax_query[] = array(
-					'taxonomy' => 'product_type',
-					'field'    => 'slug',
-					'terms'    => $request['type'],
-				);
-			}
-		}
-
-		// Filter by attribute and term.
-		if ( ! empty( $request['attribute'] ) && ! empty( $request['attribute_term'] ) ) {
-			if ( in_array( $request['attribute'], wc_get_attribute_taxonomy_names(), true ) ) {
-				$tax_query[] = array(
-					'taxonomy' => $request['attribute'],
 					'field'    => 'term_id',
-					'terms'    => $request['attribute_term'],
+					'terms'    => $request[ $key ],
+					'operator' => $operator,
 				);
 			}
 		}
 
+		// Filter by attributes.
+		if ( ! empty( $request['attributes'] ) ) {
+			$att_queries = array();
+
+			foreach ( $request['attributes'] as $attribute ) {
+				if ( empty( $attribute['term_id'] ) && empty( $attribute['slug'] ) ) {
+					continue;
+				}
+
+				if ( in_array( $attribute['attribute'], wc_get_attribute_taxonomy_names(), true ) ) {
+					$operator      = isset( $attribute['operator'], $operator_mapping[ $attribute['operator'] ] ) ? $operator_mapping[ $attribute['operator'] ] : 'IN';
+					$att_queries[] = array(
+						'taxonomy' => $attribute['attribute'],
+						'field'    => ! empty( $attribute['term_id'] ) ? 'term_id' : 'slug',
+						'terms'    => ! empty( $attribute['term_id'] ) ? $attribute['term_id'] : $attribute['slug'],
+						'operator' => $operator,
+					);
+				}
+			}
+
+			if ( 1 < count( $att_queries ) ) {
+				// Add relation arg when using multiple attributes.
+				$relation    = $request['attribute_relation'] && isset( $operator_mapping[ $request['attribute_relation'] ] ) ? $operator_mapping[ $request['attribute_relation'] ] : 'IN';
+				$tax_query[] = array(
+					'relation' => $relation,
+					$att_queries,
+				);
+			} else {
+				$tax_query = array_merge( $tax_query, $att_queries );
+			}
+		}
+
+		// Build tax_query if taxonomies are set.
 		if ( ! empty( $tax_query ) ) {
-			$args['tax_query'] = $tax_query; // WPCS: slow query ok.
+			if ( ! empty( $args['tax_query'] ) ) {
+				$args['tax_query'] = array_merge( $tax_query, $args['tax_query'] );
+			} else {
+				$args['tax_query'] = $tax_query;
+			}
 		}
 
 		// Hide free products.
@@ -1715,22 +1732,26 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'sanitize_callback' => 'sanitize_text_field',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
-		$params['tag'] = array(
+		$params['category_operator']  = array(
+			'description'       => __( 'Operator to compare product category terms.', 'cocart-products' ),
+			'type'              => 'string',
+			'enum'              => array( 'in', 'not in', 'and' ),
+			'default'           => 'in',
+			'sanitize_callback' => 'sanitize_key',
+			'validate_callback' => 'rest_validate_request_arg',
+		);
+		$params['tag']                = array(
 			'description'       => __( 'Limit result set to products assigned a specific tag slug.', 'cocart-products' ),
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_text_field',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
-		$params['attribute'] = array(
-			'description'       => __( 'Limit result set to products with a specific attribute. Use the taxonomy name/attribute slug.', 'cocart-products' ),
+		$params['tag_operator']       = array(
+			'description'       => __( 'Operator to compare product tags.', 'cocart-products' ),
 			'type'              => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
-			'validate_callback' => 'rest_validate_request_arg',
-		);
-		$params['attribute_term'] = array(
-			'description'       => __( 'Limit result set to products with a specific attribute term ID (required an assigned attribute).', 'cocart-products' ),
-			'type'              => 'string',
-			'sanitize_callback' => 'wp_parse_id_list',
+			'enum'              => array( 'in', 'not in', 'and' ),
+			'default'           => 'in',
+			'sanitize_callback' => 'sanitize_key',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
 		$params['stock_status']       = array(
@@ -1768,6 +1789,50 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'description'       => __( 'Returns all variations for variable products.', 'cocart-products' ),
 			'type'              => 'boolean',
 			'sanitize_callback' => 'wc_string_to_bool',
+			'validate_callback' => 'rest_validate_request_arg',
+		);
+		$params['attributes']         = array(
+			'description' => __( 'Limit result set to products with selected global attributes.', 'cocart-products' ),
+			'type'        => 'array',
+			'items'       => array(
+				'type'       => 'object',
+				'properties' => array(
+					'attribute' => array(
+						'description'       => __( 'Attribute taxonomy name.', 'cocart-products' ),
+						'type'              => 'string',
+						'sanitize_callback' => 'wc_sanitize_taxonomy_name',
+					),
+					'term_id'   => array(
+						'description'       => __( 'List of attribute term IDs.', 'cocart-products' ),
+						'type'              => 'array',
+						'items'             => array(
+							'type' => 'integer',
+						),
+						'sanitize_callback' => 'wp_parse_id_list',
+					),
+					'slug'      => array(
+						'description'       => __( 'List of attribute slug(s). If a term ID is provided, this will be ignored.', 'cocart-products' ),
+						'type'              => 'array',
+						'items'             => array(
+							'type' => 'string',
+						),
+						'sanitize_callback' => 'wp_parse_slug_list',
+					),
+					'operator'  => array(
+						'description' => __( 'Operator to compare product attribute terms.', 'cocart-products' ),
+						'type'        => 'string',
+						'enum'        => array( 'in', 'not in', 'and' ),
+					),
+				),
+			),
+			'default'     => array(),
+		);
+		$params['attribute_relation'] = array(
+			'description'       => __( 'The logical relationship between attributes when filtering across multiple at once.', 'cocart-products' ),
+			'type'              => 'string',
+			'enum'              => array( 'in', 'and' ),
+			'default'           => 'and',
+			'sanitize_callback' => 'sanitize_key',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
 		$params['orderby']            = array(
