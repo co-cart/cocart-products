@@ -342,13 +342,20 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'post__in'            => $request['include'],
 			'post__not_in'        => $request['exclude'],
 			'posts_per_page'      => $request['per_page'],
-			'name'                => $request['slug'],
 			'post_parent__in'     => $request['parent'],
 			'post_parent__not_in' => $request['parent_exclude'],
+			'name'                => $request['slug'],
+			'fields'              => 'ids',
 			'ignore_sticky_posts' => true,
 			'post_status'         => 'publish',
 			'date_query'          => array(),
+			'post_type'           => 'product',
 		);
+
+		// If searching for a specific SKU, allow any post type.
+		if ( ! empty( $request['sku'] ) ) {
+			$args['post_type'] = $this->get_post_types();
+		}
 
 		// If order by is not set then use WooCommerce default catalog setting.
 		if ( empty( $args['orderby'] ) ) {
@@ -444,6 +451,22 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 				$args['order']    = 'DESC';
 				$args['meta_key'] = '_wc_average_rating';
 				break;
+		}
+
+		// Taxonomy query to filter products by type, category, tag and attribute.
+		$tax_query = array();
+
+		// Filter product type by slug.
+		if ( ! empty( $request['type'] ) ) {
+			if ( 'variation' === $request['type'] ) {
+				$args['post_type'] = 'product_variation';
+			} else {
+				$tax_query[] = array(
+					'taxonomy' => 'product_type',
+					'field'    => 'slug',
+					'terms'    => $request['type'],
+				);
+			}
 		}
 
 		// Set before into date query. Date query must be specified as an array of an array.
@@ -1664,7 +1687,7 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 		$params['type']               = array(
 			'description'       => __( 'Limit result set to products assigned a specific type.', 'cocart-products' ),
 			'type'              => 'string',
-			'enum'              => array_keys( wc_get_product_types() ),
+			'enum'              => array_merge( array_keys( wc_get_product_types() ), array( 'variation' ) ),
 			'sanitize_callback' => 'sanitize_key',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
@@ -1747,8 +1770,31 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			'sanitize_callback' => 'wc_string_to_bool',
 			'validate_callback' => 'rest_validate_request_arg',
 		);
-
-		$params['orderby']['enum'] = array( 'price', 'popularity', 'rating' );
+		$params['orderby']            = array(
+			'description'       => __( 'Sort collection by object attribute.', 'cocart-products' ),
+			'type'              => 'string',
+			'enum'              => array(
+				'date',
+				'id',
+				'menu_order',
+				'include',
+				'title',
+				'slug',
+				'name',
+				'popularity',
+				'alphabetical',
+				'reverse_alpha',
+				'by_stock',
+				'review_count',
+				'on_sale_first',
+				'featured_first',
+				'price_asc',
+				'price_desc',
+				'sales',
+				'rating',
+			),
+			'validate_callback' => 'rest_validate_request_arg',
+		);
 
 		return $params;
 	} // END get_collection_params()
