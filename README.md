@@ -2,7 +2,9 @@
 
 <p align="center"><img src="https://raw.githubusercontent.com/co-cart/co-cart/master/.github/Logo-1024x534.png.webp" alt="CoCart" /></p>
 
-This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews from your WooCommerce store without authentication.
+This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews from your WooCommerce store without the requirement of authentication.
+
+Supports other products types created by WooCommerce extensions such as Subscriptions and more. Everything you need to display your products to your customers and add to the cart is all here.
 
 <p align="center">
 	<a href="https://wordpress.org/" target="_blank">
@@ -41,15 +43,17 @@ Head over here: [https://docs.cocart.xyz/products.html](https://docs.cocart.xyz/
  * Return all product categories.
  * Return all product tags.
  * Return all product attributes.
- * Return a product attribute terms.
+ * Return product attribute terms.
  * Return all product reviews.
  * Return an individual product review.
  * Create a product review. (Requires customer to use same email address used for ordering the product)
  * No authentication required.
 
+Each API can be filtered to anything you require to display results for the front. There are no restrictions. If you need to add additional condidtions, there are filters that let you alter the query of the results before the query is made.
+
 ## Requirement
 
-You will need to be using [CoCart **v2.0**](https://wordpress.org/plugins/cart-rest-api-for-woocommerce) or higher before installing this add-on.
+You will need to be using [CoCart v2.0](https://wordpress.org/plugins/cart-rest-api-for-woocommerce) or higher before installing this add-on.
 
 ## Installation
 
