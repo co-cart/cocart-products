@@ -362,6 +362,10 @@ class CoCart_Products_Controller extends WP_REST_Controller {
 			case 'menu_order':
 				$args['orderby'] = 'menu_order title';
 				break;
+			case 'name':
+			case 'slug':
+				$args['orderby'] = 'name';
+				break;
 			case 'alphabetical':
 				$args['orderby']  = 'title';
 				$args['order']    = 'ASC';
