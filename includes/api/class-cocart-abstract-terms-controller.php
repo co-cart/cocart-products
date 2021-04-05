@@ -44,31 +44,39 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 	 * @access public
 	 */
 	public function register_routes() {
-		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base,
 			array(
-				'methods'             => WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_items' ),
-				'permission_callback' => array( $this, 'get_items_permissions_check' ),
-				'args'                => $this->get_collection_params(),
-			),
-			'schema' => array( $this, 'get_public_item_schema' ),
-		) );
-
-		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
-			array(
-				'methods'             => WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_item' ),
-				'permission_callback' => array( $this, 'get_item_permissions_check' ),
-				'args'                => array(
-					'id'              => array(
-						'description' => __( 'Unique identifier for the resource.','cocart-products' ),
-						'type'        => 'integer',
-					),
-					'context'         => $this->get_context_param( array( 'default' => 'view' ) ),
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_items' ),
+					'permission_callback' => array( $this, 'get_items_permissions_check' ),
+					'args'                => $this->get_collection_params(),
 				),
-			),
-			'schema' => array( $this, 'get_public_item_schema' ),
-		) );
+				'schema' => array( $this, 'get_public_item_schema' ),
+			)
+		);
+
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/(?P<id>[\d]+)',
+			array(
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_item' ),
+					'permission_callback' => array( $this, 'get_item_permissions_check' ),
+					'args'                => array(
+						'id'      => array(
+							'description' => __( 'Unique identifier for the resource.', 'cocart-products' ),
+							'type'        => 'integer',
+						),
+						'context' => $this->get_context_param( array( 'default' => 'view' ) ),
+					),
+				),
+				'schema' => array( $this, 'get_public_item_schema' ),
+			)
+		);
 	}
 
 	/**
@@ -107,7 +115,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 		}
 
 		if ( ! $permissions ) {
-			return new WP_Error( 'cocart_cannot_view_resource', __( 'Sorry, you cannot view this resource.',  'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
+			return new WP_Error( 'cocart_cannot_view_resource', __( 'Sorry, you cannot view this resource.', 'cocart-products' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;
@@ -125,7 +133,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 		$taxonomy = $this->get_taxonomy( $request );
 
 		if ( ! $taxonomy || ! taxonomy_exists( $taxonomy ) ) {
-			return new WP_Error( 'cocart_taxonomy_invalid', __( 'Taxonomy does not exist.','cocart-products' ), array( 'status' => 404 ) );
+			return new WP_Error( 'cocart_taxonomy_invalid', __( 'Taxonomy does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
 		}
 
 		// Check permissions for a single term.
@@ -135,7 +143,7 @@ abstract class CoCart_REST_Terms_Controller extends WP_REST_Controller {
 			$term = get_term( $id, $taxonomy );
 
 			if ( is_wp_error( $term ) || ! $term || $term->taxonomy !== $taxonomy ) {
-				return new WP_Error( 'cocart_term_invalid', __( 'Term does not exist.','cocart-products' ), array( 'status' => 404 ) );
+				return new WP_Error( 'cocart_term_invalid', __( 'Term does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
 			}
 
 			return true;

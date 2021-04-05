@@ -148,9 +148,9 @@ final class CoCart_Products {
 	 * @return void
 	 */
 	public static function includes() {
-		include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-autoloader.php' );
-		include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-helpers.php' );
-		require_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-install.php' );
+		include_once COCART_PRODUCTS_ABSPATH . '/includes/class-cocart-products-autoloader.php';
+		include_once COCART_PRODUCTS_ABSPATH . '/includes/class-cocart-products-helpers.php';
+		require_once COCART_PRODUCTS_ABSPATH . '/includes/class-cocart-products-install.php';
 	} // END includes()
 
 	/**

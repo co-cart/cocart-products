@@ -48,41 +48,49 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	 */
 	public function register_routes() {
 		// Get Products - cocart/v1/products/32/variations (GET)
-		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
-			'args' => array(
-				'product_id' => array(
-					'description' => __( 'Unique identifier for the variable product.', 'cocart-products' ),
-					'type'        => 'integer',
-				),
-			),
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base,
 			array(
-				'methods'             => WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_items' ),
-				'args'                => $this->get_collection_params(),
-				'permission_callback' => '__return_true',
-			),
-			'schema' => array( $this, 'get_public_item_schema' ),
-		) );
-
-		// Get Products - cocart/v1/products/32/variations/148 (GET)
-		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
-			array(
-				'methods'             => WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_item' ),
-				'args'                => array(
+				'args'   => array(
 					'product_id' => array(
 						'description' => __( 'Unique identifier for the variable product.', 'cocart-products' ),
 						'type'        => 'integer',
 					),
-					'id'         => array(
-						'description' => __( 'Unique identifier for the variation.', 'cocart-products' ),
-						'type'        => 'integer',
-					),
 				),
-				'permission_callback' => '__return_true',
-			),
-			'schema' => array( $this, 'get_public_item_schema' ),
-		) );
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_items' ),
+					'args'                => $this->get_collection_params(),
+					'permission_callback' => '__return_true',
+				),
+				'schema' => array( $this, 'get_public_item_schema' ),
+			)
+		);
+
+		// Get Products - cocart/v1/products/32/variations/148 (GET)
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/(?P<id>[\d]+)',
+			array(
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_item' ),
+					'args'                => array(
+						'product_id' => array(
+							'description' => __( 'Unique identifier for the variable product.', 'cocart-products' ),
+							'type'        => 'integer',
+						),
+						'id'         => array(
+							'description' => __( 'Unique identifier for the variation.', 'cocart-products' ),
+							'type'        => 'integer',
+						),
+					),
+					'permission_callback' => '__return_true',
+				),
+				'schema' => array( $this, 'get_public_item_schema' ),
+			)
+		);
 	}
 
 	/**
@@ -520,7 +528,7 @@ class CoCart_Product_Variations_Controller extends CoCart_Products_Controller {
 	protected function prepare_objects_query( $request ) {
 		$args = parent::prepare_objects_query( $request );
 
-		//$args = WC_REST_CRUD_Controller::prepare_objects_query( $request );
+		// $args = WC_REST_CRUD_Controller::prepare_objects_query( $request );
 
 		// Set post_status.
 		$args['post_status'] = 'publish';

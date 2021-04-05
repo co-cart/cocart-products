@@ -30,7 +30,7 @@ class CoCart_Subscription_Products_Controller {
 
 	/**
 	 * Add Subscription data for subscription products.
-	 * 
+	 *
 	 * @access public
 	 * @param  WP_REST_Response $response The response object.
 	 * @param  WC_Data          $object   Object data.
@@ -68,7 +68,7 @@ class CoCart_Subscription_Products_Controller {
 			'trial_length'      => $trial_length,
 			'sign_up_fee'       => html_entity_decode( strip_tags( wc_price( $sign_up_fee ) ) ),
 			'one_time_shipping' => $one_time_shipping,
-			'limit'             => $limit
+			'limit'             => $limit,
 		);
 
 		// Variation data.

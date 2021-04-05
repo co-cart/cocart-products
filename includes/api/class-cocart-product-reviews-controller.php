@@ -42,72 +42,81 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 	 * @access public
 	 */
 	public function register_routes() {
-		register_rest_route( $this->namespace, '/' . $this->rest_base, array(
-			'args' => array(
-				'product_id' => array(
-					'description' => __( 'Unique identifier for the variable product.', 'cocart-products' ),
-					'type'        => 'integer',
-				),
-				'id' => array(
-					'description' => __( 'Unique identifier for the variation.', 'cocart-products' ),
-					'type'        => 'integer',
-				),
-			),
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base,
 			array(
-				'methods'             => WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_items' ),
-				'permission_callback' => '__return_true',
-				'args'                => $this->get_collection_params(),
-			),
-			array(
-				'methods'             => WP_REST_Server::CREATABLE,
-				'callback'            => array( $this, 'create_item' ),
-				'permission_callback' => array( $this, 'create_item_permissions_check' ),
-				'args'                => array_merge(
-					$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ), array(
-						'product_id'     => array(
-							'required'    => true,
-							'description' => __( 'Unique identifier for the product.', 'cocart-products' ),
-							'type'        => 'integer',
-						),
-						'review'         => array(
-							'required'    => true,
-							'type'        => 'string',
-							'description' => __( 'Review content.', 'cocart-products' ),
-						),
-						'reviewer'       => array(
-							'required'    => true,
-							'type'        => 'string',
-							'description' => __( 'Name of the reviewer.', 'cocart-products' ),
-						),
-						'reviewer_email' => array(
-							'required'    => true,
-							'type'        => 'string',
-							'description' => __( 'Email of the reviewer.', 'cocart-products' ),
-						),
-					)
+				'args'   => array(
+					'product_id' => array(
+						'description' => __( 'Unique identifier for the variable product.', 'cocart-products' ),
+						'type'        => 'integer',
+					),
+					'id'         => array(
+						'description' => __( 'Unique identifier for the variation.', 'cocart-products' ),
+						'type'        => 'integer',
+					),
 				),
-			),
-			'schema' => array( $this, 'get_public_item_schema' ),
-		) );
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_items' ),
+					'permission_callback' => '__return_true',
+					'args'                => $this->get_collection_params(),
+				),
+				array(
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => array( $this, 'create_item' ),
+					'permission_callback' => array( $this, 'create_item_permissions_check' ),
+					'args'                => array_merge(
+						$this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
+						array(
+							'product_id'     => array(
+								'required'    => true,
+								'description' => __( 'Unique identifier for the product.', 'cocart-products' ),
+								'type'        => 'integer',
+							),
+							'review'         => array(
+								'required'    => true,
+								'type'        => 'string',
+								'description' => __( 'Review content.', 'cocart-products' ),
+							),
+							'reviewer'       => array(
+								'required'    => true,
+								'type'        => 'string',
+								'description' => __( 'Name of the reviewer.', 'cocart-products' ),
+							),
+							'reviewer_email' => array(
+								'required'    => true,
+								'type'        => 'string',
+								'description' => __( 'Email of the reviewer.', 'cocart-products' ),
+							),
+						)
+					),
+				),
+				'schema' => array( $this, 'get_public_item_schema' ),
+			)
+		);
 
-		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
-			'args'   => array(
-				'id' => array(
-					'description' => __( 'Unique identifier for the review.', 'cocart-products' ),
-					'type'        => 'integer',
-				),
-			),
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/(?P<id>[\d]+)',
 			array(
-				'methods'             => WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_item' ),
-				'permission_callback' => array( $this, 'check_review_exists' ),
-				'args'                => array(
-					'context' => $this->get_context_param( array( 'default' => 'view' ) ),
+				'args'   => array(
+					'id' => array(
+						'description' => __( 'Unique identifier for the review.', 'cocart-products' ),
+						'type'        => 'integer',
+					),
 				),
-			),
-			'schema' => array( $this, 'get_public_item_schema' ),
-		) );
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_item' ),
+					'permission_callback' => array( $this, 'check_review_exists' ),
+					'args'                => array(
+						'context' => $this->get_context_param( array( 'default' => 'view' ) ),
+					),
+				),
+				'schema' => array( $this, 'get_public_item_schema' ),
+			)
+		);
 	}
 
 	/**
@@ -601,7 +610,7 @@ class CoCart_Product_Reviews_Controller extends WC_REST_Controller {
 	 */
 	public function get_item_schema() {
 		$schema = array(
-			'schema'    => 'http://json-schema.org/draft-04/schema#',
+			'schema'     => 'http://json-schema.org/draft-04/schema#',
 			'title'      => 'product_review',
 			'type'       => 'object',
 			'properties' => array(

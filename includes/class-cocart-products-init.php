@@ -66,14 +66,14 @@ class CoCart_Products_Rest_API {
 	 * @access public
 	 */
 	public function rest_api_includes() {
-		include_once( dirname( __FILE__ ) . '/api/class-cocart-abstract-terms-controller.php' );
-		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-attribute-terms-controller.php' );
-		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-attributes-controller.php' );
-		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-categories-controller.php' );
-		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-reviews-controller.php' );
-		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-tags-controller.php' );
-		include_once( dirname( __FILE__ ) . '/api/class-cocart-products-controller.php' );
-		include_once( dirname( __FILE__ ) . '/api/class-cocart-product-variations-controller.php' );
+		include_once dirname( __FILE__ ) . '/api/class-cocart-abstract-terms-controller.php';
+		include_once dirname( __FILE__ ) . '/api/class-cocart-product-attribute-terms-controller.php';
+		include_once dirname( __FILE__ ) . '/api/class-cocart-product-attributes-controller.php';
+		include_once dirname( __FILE__ ) . '/api/class-cocart-product-categories-controller.php';
+		include_once dirname( __FILE__ ) . '/api/class-cocart-product-reviews-controller.php';
+		include_once dirname( __FILE__ ) . '/api/class-cocart-product-tags-controller.php';
+		include_once dirname( __FILE__ ) . '/api/class-cocart-products-controller.php';
+		include_once dirname( __FILE__ ) . '/api/class-cocart-product-variations-controller.php';
 	} // rest_api_includes()
 
 	/**
@@ -84,7 +84,7 @@ class CoCart_Products_Rest_API {
 	public function support_extensions() {
 		// WooCommerce Subscriptions
 		if ( class_exists( 'WC_Subscriptions' ) ) {
-			include_once( dirname( __FILE__ ) . '/extensions/subscriptions/class-cocart-products-subscriptions.php' );
+			include_once dirname( __FILE__ ) . '/extensions/subscriptions/class-cocart-products-subscriptions.php';
 		}
 	} // support_extensions()
 
@@ -101,7 +101,7 @@ class CoCart_Products_Rest_API {
 			'CoCart_Product_Reviews_Controller',
 			'CoCart_Product_Tags_Controller',
 			'CoCart_Products_Controller',
-			'CoCart_Product_Variations_Controller'
+			'CoCart_Product_Variations_Controller',
 		);
 
 		sort( $controllers );

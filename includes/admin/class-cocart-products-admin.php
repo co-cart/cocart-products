@@ -36,10 +36,8 @@ if ( ! class_exists( 'CoCart_Products_Admin' ) ) {
 		 * @access public
 		 */
 		public function includes() {
-			include COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-action-links.php'; // Action Links
-			include COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-assets.php';  // Admin Assets
-			include COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-notices.php'; // Plugin Notices
-			include COCART_PRODUCTS_FILE_PATH . '/includes/admin/class-cocart-products-admin-updater.php'; // Plugin Updater
+			include COCART_PRODUCTS_ABSPATH . '/includes/admin/class-cocart-products-admin-assets.php';  // Admin Assets
+			include COCART_PRODUCTS_ABSPATH . '/includes/admin/class-cocart-products-admin-notices.php'; // Plugin Notices
 		} // END includes()
 
 		/**

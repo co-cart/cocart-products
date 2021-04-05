@@ -83,7 +83,7 @@ class CoCart_Products_Helpers {
 	 * Returns true if the installed version of WooCommerce is greater than or equal to $version.
 	 *
 	 * @access public
-	 * @param  string  $version the version to compare
+	 * @param  string $version the version to compare
 	 * @return boolean true if the installed version of WooCommerce is > $version
 	 */
 	public static function is_wc_version_gte( $version ) {
@@ -97,7 +97,7 @@ class CoCart_Products_Helpers {
 	 * Returns true if the installed version of WooCommerce is greater than $version.
 	 *
 	 * @access public
-	 * @param  string  $version the version to compare
+	 * @param  string $version the version to compare
 	 * @return boolean true if the installed version of WooCommerce is > $version
 	 */
 	public static function is_wc_version_gt( $version ) {
@@ -127,7 +127,7 @@ class CoCart_Products_Helpers {
 	 * Returns true if the installed version of WordPress is greater than $version.
 	 *
 	 * @access public
-	 * @param  string  $version
+	 * @param  string $version
 	 * @return boolean
 	 */
 	public static function is_wp_version_gt( $version ) {
@@ -144,7 +144,7 @@ class CoCart_Products_Helpers {
 	 * Returns true if the installed version of WordPress is greater than or equal to $version.
 	 *
 	 * @access public
-	 * @param  string  $version
+	 * @param  string $version
 	 * @return boolean
 	 */
 	public static function is_wp_version_gte( $version ) {
@@ -166,7 +166,7 @@ class CoCart_Products_Helpers {
 	 */
 	public static function get_cocart_products_version() {
 		return defined( 'COCART_PRODUCTS_VERSION' ) && COCART_PRODUCTS_VERSION ? COCART_PRODUCTS_VERSION : null;
-	} // END get_cocart_version()
+	} // END get_cocart_products_version()
 
 	/**
 	 * Returns true if CoCart Products is a pre-release.
@@ -178,15 +178,12 @@ class CoCart_Products_Helpers {
 	public static function is_cocart_products_pre_release() {
 		$version = self::get_cocart_products_version();
 
-		if ( 
-			strpos( $version, 'beta' ) ||
-			strpos( $version, 'rc' )
-		) {
+		if ( strpos( $version, 'beta' ) || strpos( $version, 'rc' ) ) {
 			return true;
 		}
 
 		return false;
-	} // END is_cocart_pre_release()
+	} // END is_cocart_products_pre_release()
 
 	/**
 	 * Returns true if CoCart Products is a Beta release.
@@ -203,7 +200,7 @@ class CoCart_Products_Helpers {
 		}
 
 		return false;
-	} // END is_cocart_beta()
+	} // END is_cocart_products_beta()
 
 	/**
 	 * Returns true if CoCart Products is a Release Candidate.
@@ -220,7 +217,7 @@ class CoCart_Products_Helpers {
 		}
 
 		return false;
-	} // END is_cocart_rc()
+	} // END is_cocart_products_rc()
 
 	/**
 	 * Returns true if we are making a REST API request for CoCart.
@@ -256,7 +253,7 @@ class CoCart_Products_Helpers {
 	} // END is_cocart_installed()
 
 	/**
-	 * These are the only screens CoCart will focus 
+	 * These are the only screens CoCart will focus
 	 * on displaying notices or enqueue scripts/styles.
 	 *
 	 * @access public
@@ -267,7 +264,7 @@ class CoCart_Products_Helpers {
 		return array(
 			'dashboard',
 			'plugins',
-			'toplevel_page_cocart'
+			'toplevel_page_cocart',
 		);
 	} // END cocart_get_admin_screens()
 
@@ -384,7 +381,7 @@ class CoCart_Products_Helpers {
 	 *
 	 * @access public
 	 * @static
-	 * @param  int  $seconds - Time in seconds to check.
+	 * @param  int $seconds - Time in seconds to check.
 	 * @return bool Whether or not WooCommerce admin has been active for $seconds.
 	 */
 	public static function cocart_products_active_for( $seconds = '' ) {
