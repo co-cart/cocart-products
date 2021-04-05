@@ -252,10 +252,15 @@ class CoCart_Product_Attributes_Controller extends CoCart_REST_Terms_Controller 
 	protected function get_attribute( $id ) {
 		global $wpdb;
 
-		$attribute = $wpdb->get_row( $wpdb->prepare( "
+		$attribute = $wpdb->get_row(
+			$wpdb->prepare(
+				"
 			SELECT * FROM {$wpdb->prefix}woocommerce_attribute_taxonomies
 			WHERE attribute_id = %d
-		 ", $id ) );
+		 ",
+				$id
+			)
+		);
 
 		if ( is_wp_error( $attribute ) || is_null( $attribute ) ) {
 			return new WP_Error( 'cocart_attribute_invalid', __( 'Attribute does not exist.', 'cocart-products' ), array( 'status' => 404 ) );
