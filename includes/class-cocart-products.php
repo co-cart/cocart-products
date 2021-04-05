@@ -189,6 +189,8 @@ final class CoCart_Products {
 	 * @static
 	 */
 	public static function deactivate_plugin() {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
 		deactivate_plugins( plugin_basename( COCART_PRODUCTS_FILE ) );
 
 		if ( isset( $_GET['activate'] ) ) {
