@@ -41,8 +41,8 @@ if ( ! class_exists( 'CoCart_Products_Admin_Notices' ) ) {
 			add_action( 'admin_init', array( $this, 'check_cocart_products_dependency' ), 12 );
 
 			// Display other admin notices when required. All are dismissible.
-			add_action( 'admin_print_styles', array( $this, 'add_review_notice' ), 0 );
-			add_action( 'admin_print_styles', array( $this, 'add_pre_release_notice' ), 0 );
+			// add_action( 'admin_print_styles', array( $this, 'add_review_notice' ), 0 );
+			// add_action( 'admin_print_styles', array( $this, 'add_pre_release_notice' ), 0 );
 		} // END __construct()
 
 		/**
