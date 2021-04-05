@@ -399,6 +399,42 @@ class CoCart_Products_Helpers {
 		return ( ( time() - $cocart_products_installed ) >= $seconds );
 	} // END cocart_products_active_for()
 
+	/**
+	 * Determines if the server environment is compatible with this plugin.
+	 *
+	 * @access public
+	 * @static
+	 * @return bool
+	 */
+	public static function is_environment_compatible() {
+		return version_compare( PHP_VERSION, CoCart_Products::$required_php, '>=' );
+	} // END is_environment_compatible()
+
+	/**
+	 * Gets the message for display when the environment is incompatible with this plugin.
+	 *
+	 * @access public
+	 * @static
+	 * @return string
+	 */
+	public static function get_environment_message() {
+		/* translators: 1: CoCart Products, 2: Required PHP version */
+		return sprintf( __( 'The minimum PHP version required for %1$s is %2$s. You are running %3$s.', 'cocart-products' ), 'CoCart Products', CoCart_Products::$required_php, self::get_php_version() );
+	} // END get_environment_message()
+
+	/**
+	 * Gets the current site's PHP version, without the extra info.
+	 *
+	 * @access private
+	 * @static
+	 * @return string The PHP version.
+	 */
+	private static function get_php_version() {
+		$version = explode( '.', PHP_VERSION );
+
+		return (int) $version[0] . '.' . (int) $version[1];
+	} // END get_php_version()
+
 } // END class
 
 return new CoCart_Products_Helpers();

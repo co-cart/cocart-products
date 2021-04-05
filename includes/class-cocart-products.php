@@ -63,14 +63,17 @@ final class CoCart_Products {
 		self::setup_constants();
 		self::includes();
 
-		// Environment checking when activating.
-		//register_activation_hook( COCART_PRODUCTS_FILE, array( __CLASS__, 'activation_check' ) );
+		// Install CoCart Products upon activation.
+		register_activation_hook( COCART_PRODUCTS_FILE, array( __CLASS__, 'install_cocart_products' ) );
+
+		// Update CoCart add-on counter upon deactivation.
+		register_deactivation_hook( COCART_PRODUCTS_FILE, array( __CLASS__, 'deactivate_addon' ) );
 
 		// Load translation files.
 		add_action( 'init', array( __CLASS__, 'load_plugin_textdomain' ), 0 );
 
-		// Load Products.
-		add_action( 'init', array( __CLASS__, 'load_products' ) );
+		// Load REST API.
+		add_action( 'init', array( __CLASS__, 'load_rest_api' ) );
 	} // END init()
 
 	/**
@@ -115,15 +118,14 @@ final class CoCart_Products {
 	public static function setup_constants() {
 		self::define( 'COCART_PRODUCTS_ABSPATH', dirname( COCART_PRODUCTS_FILE ) . '/' );
 		self::define( 'COCART_PRODUCTS_PLUGIN_BASENAME', plugin_basename( COCART_PRODUCTS_FILE ) );
-		self::define( 'COCART_PRODUCTS_VERSION', self::$version);
-		self::define( 'COCART_PRODUCTS_SLUG', 'cocart-products');
+		self::define( 'COCART_PRODUCTS_VERSION', self::$version );
+		self::define( 'COCART_PRODUCTS_SLUG', 'cocart-products' );
 		self::define( 'COCART_PRODUCTS_URL_PATH', untrailingslashit( plugins_url( '/', COCART_PRODUCTS_FILE ) ) );
 		self::define( 'COCART_PRODUCTS_FILE_PATH', untrailingslashit( plugin_dir_path( COCART_PRODUCTS_FILE ) ) );
 		self::define( 'COCART_PRODUCTS_PLUGIN_URL', 'https://cocart.xyz/add-ons/products/' );
-		self::define( 'COCART_STORE_URL', 'https://cocart.xyz/');
-		self::define( 'COCART_PRODUCTS_REVIEW_URL', 'https://cocart.xyz/submit-review/?wpf15410_12=CoCart%20Products');
-		self::define( 'COCART_PRODUCTS_DOCUMENTATION_URL', 'https://docs.cocart.xyz/products.html');
-		self::define( 'COCART_PRODUCTS_TRANSLATION_URL', 'https://translate.cocart.xyz/projects/cocart-products/');
+		self::define( 'COCART_PRODUCTS_REVIEW_URL', 'https://cocart.xyz/submit-review/?wpf15410_12=CoCart%20Products' );
+		self::define( 'COCART_PRODUCTS_DOCUMENTATION_URL', 'https://docs.cocart.xyz/products.html' );
+		self::define( 'COCART_PRODUCTS_TRANSLATION_URL', 'https://translate.cocart.xyz/projects/cocart-products/' );
 	} // END setup_constants()
 
 	/**
@@ -131,7 +133,7 @@ final class CoCart_Products {
 	 *
 	 * @access private
 	 * @static
-	 * @param  string $name
+	 * @param  string      $name
 	 * @param  string|bool $value
 	 */
 	private static function define( $name, $value ) {
@@ -154,6 +156,20 @@ final class CoCart_Products {
 	} // END includes()
 
 	/**
+	 * Install CoCart Products upon activation.
+	 *
+	 * @access public
+	 * @static
+	 */
+	public static function install_cocart_products() {
+		self::activation_check();
+
+		CoCart_Products_Install::install();
+
+		self::activate_addon();
+	} // END install_cocart_products()
+
+	/**
 	 * Checks the server environment and other factors and deactivates the plugin if necessary.
 	 *
 	 * @access public
@@ -173,7 +189,7 @@ final class CoCart_Products {
 	 * @static
 	 */
 	public static function deactivate_plugin() {
-		deactivate_plugins( plugin_basename( COCART_FILE ) );
+		deactivate_plugins( plugin_basename( COCART_PRODUCTS_FILE ) );
 
 		if ( isset( $_GET['activate'] ) ) {
 			unset( $_GET['activate'] );
@@ -186,9 +202,47 @@ final class CoCart_Products {
 	 * @access public
 	 * @static
 	 */
-	public static function load_products() {
-		include_once( COCART_PRODUCTS_FILE_PATH . '/includes/class-cocart-products-init.php' );
-	} // END load_products()
+	public static function load_rest_api() {
+		include_once COCART_PRODUCTS_ABSPATH . '/includes/class-cocart-products-init.php';
+	} // END load_rest_api()
+
+	/**
+	 * Runs when the plugin is activated.
+	 *
+	 * Adds plugin to list of installed CoCart add-ons.
+	 *
+	 * @access public
+	 */
+	public static function activate_addon() {
+		$addons_installed = get_option( 'cocart_addons_installed', array() );
+
+		$plugin = plugin_basename( COCART_PRODUCTS_FILE );
+
+		// Check if plugin is already added to list of installed add-ons.
+		if ( ! in_array( $plugin, $addons_installed, true ) ) {
+			array_push( $addons_installed, $plugin );
+			update_option( 'cocart_addons_installed', $addons_installed );
+		}
+	} // END activate_addon()
+
+	/**
+	 * Runs when the plugin is deactivated.
+	 *
+	 * Removes plugin from list of installed CoCart add-ons.
+	 *
+	 * @access public
+	 */
+	public static function deactivate_addon() {
+		$addons_installed = get_option( 'cocart_addons_installed', array() );
+
+		$plugin = plugin_basename( COCART_PRODUCTS_FILE );
+
+		// Remove plugin from list of installed add-ons.
+		if ( in_array( $plugin, $addons_installed, true ) ) {
+			$addons_installed = array_diff( $addons_installed, array( $plugin ) );
+			update_option( 'cocart_addons_installed', $addons_installed );
+		}
+	} // END deactivate_addon()
 
 	/**
 	 * Load the plugin translations if any ready.

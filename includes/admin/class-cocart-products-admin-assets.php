@@ -37,7 +37,7 @@ if ( ! class_exists( 'CoCart_Products_Admin_Assets' ) ) {
 			$suffix    = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 			// CoCart Page and Notices
-			if ( ! CoCart_Products_Admin::is_cocart_installed() && in_array( $screen_id, CoCart_Products_Admin::cocart_get_admin_screens() ) ) {
+			if ( ! CoCart_Products_Helpers::is_cocart_installed() && in_array( $screen_id, CoCart_Products_Helpers::cocart_get_admin_screens() ) ) {
 				wp_register_style( COCART_PRODUCTS_SLUG . '_admin', COCART_PRODUCTS_URL_PATH . '/assets/css/admin/cocart' . $suffix . '.css' );
 				wp_enqueue_style( COCART_PRODUCTS_SLUG . '_admin' );
 			}
