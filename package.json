@@ -47,9 +47,10 @@
 		"test": "grunt",
 		"watch": "grunt watch",
 		"build": "grunt build",
-		"version": "grunt version",
-		"update": "grunt update-pot",
-		"release": "grunt zip"
+		"update:version": "grunt version",
+		"update:pot": "grunt update-pot",
+		"update:stable": "grunt stable",
+		"zip:release": "grunt zip"
 	},
 	"devDependencies": {
 		"grunt": "1.3.0",
@@ -96,5 +97,10 @@
 			"no-descending-specificity": null,
 			"order/properties-alphabetical-order": true
 		}
-	}
+	},
+	"browserslist": [
+		"> 0.1%",
+		"ie 8",
+		"ie 9"
+	]
 }
