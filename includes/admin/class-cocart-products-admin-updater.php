@@ -50,7 +50,6 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 				'version'            => COCART_PRODUCTS_VERSION,
 				'slug'               => COCART_PRODUCTS_SLUG,
 				'proper_folder_name' => COCART_PRODUCTS_SLUG,
-				'api_url'            => 'https://download.cocart.xyz/',
 			);
 
 			// Hooks into the plugin updater and checks for updates for CoCart Products.
@@ -65,17 +64,11 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 			// Hook into the plugin install process to provide plugin information.
 			add_filter( 'plugins_api', array( $this, 'get_plugin_info' ), 10, 3 );
 
-			//add_filter( 'upgrader_source_selection', array( $this, 'upgrader_source_selection' ), 10, 3 );
-
 			// Clear update transients when the user clicks the "Check Again" button from the update screen.
 			add_action( 'current_screen', array( $this, 'check_again_clear_transients' ) );
 
 			// Auto update CoCart Products.
-			add_action( 'manage_plugins_custom_column', array( $this, 'wp_autoupdates_plugin_column' ), 10, 3 );
-			add_filter( 'wp_plugin_allows_auto_update', array( $this, 'disable_auto_updates_action' ), 10, 2 );
 			add_filter( 'auto_update_plugin', array( $this, 'auto_update_plugin' ), 100, 2 );
-			add_filter( 'wp_plugin_bulk_enabled_autoupdate', array( $this, 'remove_bulk_autoupdate' ), 10 );
-			add_filter( 'wp_plugin_bulk_disabled_autoupdate', array( $this, 'remove_bulk_autoupdate' ), 10 );
 
 			// Add after_plugin_row... action for CoCart Products.
 			add_action( 'after_plugin_row_' . plugin_basename( $this->config['file'] ), array( $this, 'plugin_row' ), 11, 2 );
@@ -106,7 +99,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		} // END check_again_clear_transients()
 
 		/**
-		 * Enable auto updates for CoCart Products if latest release supports 
+		 * Enable auto updates for CoCart Products if latest release supports
 		 * the current installed version of WooCommerce.
 		 *
 		 * @access public
@@ -125,7 +118,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 			}
 
 			/**
-			 * Check to see if the current installed WooCommerce version 
+			 * Check to see if the current installed WooCommerce version
 			 * is less than a version required or more than a tested up to.
 			 */
 			if (
@@ -145,7 +138,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		} // END auto_update_plugin()
 
 		/**
-		 * Notifies the user on the plugins table whether or 
+		 * Notifies the user on the plugins table whether or
 		 * not auto updates are enabled for CoCart Products.
 		 *
 		 * @access public
@@ -178,7 +171,8 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 					} else {
 						// TODO: Add licence status checker here.
 
-						/*if ( ! is_cocart_licence_valid() ) {
+						/*
+						if ( ! is_cocart_licence_valid() ) {
 							echo '<span class="plugin-autoupdate-disabled"><span class="dashicons dashicons-update" aria-hidden="true"></span> ' . __( 'Updates available if licence renewed.', 'cocart-products' ) . ' </span>';
 						} else {*/
 							echo '<span class="plugin-autoupdate-enabled"><span class="dashicons dashicons-update" aria-hidden="true"></span> ' . __( 'Automatic updates enabled!', 'cocart-products' ) . '</span>';
@@ -192,14 +186,14 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 
 							$plugins_updates = get_site_transient( 'update_plugins' );
 
-							if ( isset( $plugins_updates->response[ $plugin_file ] ) ) {
-								echo sprintf(
-									/* translators: Time until the next update. */
-									__( 'Update scheduled in %s', 'cocart-products' ),
-									$time_to_next_update
-								);
-							}
-						//}
+						if ( isset( $plugins_updates->response[ $plugin_file ] ) ) {
+							echo sprintf(
+								/* translators: Time until the next update. */
+								__( 'Update scheduled in %s', 'cocart-products' ),
+								$time_to_next_update
+							);
+						}
+						// }
 					}
 				}
 			}
@@ -217,7 +211,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 			if ( $plugin_file === plugin_basename( $this->config['file'] ) ) {
 				return false;
 			}
-		
+
 			return $status;
 		} // END disable_auto_updates_action()
 
@@ -241,7 +235,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		 * @return array
 		 */
 		public function get_update_data() {
-			$plugin_data                  = $this->get_plugin_data();
+			$plugin_data = $this->get_plugin_data();
 
 			$this->get_update(); // Check for updates.
 
@@ -273,9 +267,12 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		public function get_zip( $version ) {
 			// TODO: Add licence key for extra validation.
 
-			return add_query_arg( array( 
-				'release' => $version
-			), $this->api_url );
+			return add_query_arg(
+				array(
+					'release' => $version,
+				),
+				$this->api_url
+			);
 		} // END get_zip()
 
 		/**
@@ -287,7 +284,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		public function get_latest_release() {
 			$tagged_version = '';
 
-			$release        = $this->get_update();
+			$release = $this->get_update();
 
 			if ( ! empty( $release ) ) {
 				$tagged_version = isset( $release['version'] ) ? $release['version'] : COCART_PRODUCTS_VERSION;
@@ -305,7 +302,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		public function get_latest_release_date() {
 			$published_date = '';
 
-			$release        = $this->get_update();
+			$release = $this->get_update();
 
 			if ( ! empty( $release ) ) {
 				$published_date = isset( $release['published_at'] ) ? $release['published_at'] : '';
@@ -323,7 +320,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		public function get_latest_release_changelog() {
 			$changelog = '';
 
-			$release   = $this->get_update();
+			$release = $this->get_update();
 
 			if ( ! empty( $release ) ) {
 				$changelog = isset( $release['sections'] ) ? $release['sections']['changelog'] : '';
@@ -343,32 +340,35 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 			$timeout = get_site_transient( md5( $this->config['slug'] ) . '_timeout' );
 
 			/**
-			 * If an update has not been saved before and there is no 
+			 * If an update has not been saved before and there is no
 			 * timeout set from the last check then check for an update.
 			 */
 			if ( empty( $update ) && empty( $timeout ) ) {
-				$response = wp_remote_get( add_query_arg( array( 'get-update' => true ), $this->api_url ), array(
-					'timeout' => 30
-				) );
+				$response = wp_remote_get(
+					add_query_arg( array( 'get-update' => true ), $this->api_url ),
+					array(
+						'timeout' => 30,
+					)
+				);
 
 				if ( is_wp_error( $response ) ) {
 					// Set a 1 hour timeout to prevent constant checking if an error occurred.
-					set_site_transient( md5( $this->config['slug'] ) . '_timeout', '1', 60*60 );
+					set_site_transient( md5( $this->config['slug'] ) . '_timeout', '1', 60 * 60 );
 
 					return false;
 				} else {
 					$update = json_decode( wp_remote_retrieve_body( $response ), true );
-		
+
 					// Return just the plugin info should it return a 404 error or is not valid data.
 					if ( wp_remote_retrieve_response_code( $response ) == '404' || ! is_object( $update ) && ! is_array( $update ) ) {
 						$update = array(
-							'version' => COCART_PRODUCTS_VERSION
+							'version' => COCART_PRODUCTS_VERSION,
 						);
 					}
 				}
 
 				// Save update response.
-				set_site_transient( md5( $this->config['slug'] ) . '_latest', $update, 60*60*6 );
+				set_site_transient( md5( $this->config['slug'] ) . '_latest', $update, 60 * 60 * 6 );
 			}
 
 			return $update;
@@ -462,9 +462,9 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 				),
 				'banners'        => array(
 					'low'  => esc_url( trailingslashit( $this->api_url ) . 'updater/banner-772x250.jpg' ),
-					'high' => esc_url( trailingslashit( $this->api_url ) . 'updater/banner-1544x500.jpg' )
+					'high' => esc_url( trailingslashit( $this->api_url ) . 'updater/banner-1544x500.jpg' ),
 				),
-				'upgrade_notice' => ''
+				'upgrade_notice' => '',
 			);
 
 			// Only set the package if the user is approved to download the update.
@@ -514,7 +514,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 			}
 
 			/**
-			 * Check to see if the current installed WooCommerce version 
+			 * Check to see if the current installed WooCommerce version
 			 * is less than a version required or more than a tested up to.
 			 */
 			if (
@@ -584,7 +584,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 			}
 
 			/**
-			 * Check to see if the current installed WooCommerce version 
+			 * Check to see if the current installed WooCommerce version
 			 * is less than tested up to.
 			 */
 			if ( version_compare( WC_VERSION, $this->config['wc_tested_up_to'], '<' ) ) {
@@ -606,26 +606,29 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 			$response->plugin          = $this->config['slug'];
 
 			// Sections
-			$response->sections        = array(
+			$response->sections = array(
 				'description' => $this->config['description'],
 				'changelog'   => $this->config['changelog'],
 				'faq'         => $this->config['faq'],
 			);
 
-			$response->contributors    = array(
+			$response->contributors = array(
 				'sebd86' => array(
 					'display_name' => 'Sébastien Dumont',
 					'profile'      => esc_url( 'https://sebastiendumont.com' ),
-					'avatar'       => get_avatar_url( 'mailme@sebastiendumont.com', array(
-						'size' => '36',
-					) ),
+					'avatar'       => get_avatar_url(
+						'mailme@sebastiendumont.com',
+						array(
+							'size' => '36',
+						)
+					),
 				),
 			);
 
 			// Add WordPress dot org banners for recognition.
-			$response->banners         = array(
+			$response->banners = array(
 				'low'  => esc_url( trailingslashit( $this->api_url ) . 'updater/banner-772x250.jpg' ),
-				'high' => esc_url( trailingslashit( $this->api_url ) . 'updater/banner-1544x500.jpg' )
+				'high' => esc_url( trailingslashit( $this->api_url ) . 'updater/banner-1544x500.jpg' ),
 			);
 
 			// Apply warning to all sections if any.
@@ -645,32 +648,6 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 
 			return $response;
 		} // END get_plugin_info()
-
-		/**
-		 * Rename the downloaded zip file.
-		 *
-		 * @access public
-		 * @global $wp_filesystem
-		 * @param  string $source
-		 * @param  string $remote_source
-		 * @param  $upgrader
-		 * @return file|WP_Error
-		 */
-		public function upgrader_source_selection( $source, $remote_source, $upgrader ) {
-			global $wp_filesystem;
-
-			if ( strstr( $source, '/'. COCART_PRODUCTS_SLUG . '-' . COCART_PRODUCTS_SLUG . '-' ) ) {
-				$corrected_source = trailingslashit( $remote_source ) . trailingslashit( $this->config[ 'proper_folder_name' ] );
-
-				if ( $wp_filesystem->move( $source, $corrected_source, true ) ) {
-					return $corrected_source;
-				} else {
-					return new WP_Error( 'upgrader_source_selection', __( 'Unable to update!', 'cocart-products' ), 500 );
-				}
-			}
-
-			return $source;
-		} // END upgrader_source_selection()
 
 		/**
 		 * Return true if version string is a beta version.
@@ -718,7 +695,7 @@ if ( ! class_exists( 'CoCart_Products_Updater' ) ) {
 		public function get_requirement( $value ) {
 			$release = $this->get_update();
 
-			switch( $value ) {
+			switch ( $value ) {
 				case 'requires':
 					$requirement = isset( $release['requires'] ) ? $release['requires'] : '';
 					break;
