@@ -2,7 +2,7 @@
 /*
  * Plugin Name: CoCart - Products
  * Plugin URI:  https://cocart.xyz
- * Description: Access products without the requirement of authenticating. Get each variation for a variable product in one request and more.
+ * Description: Provides access to non-sensitive product information, categories, tags, attributes and even reviews from your store without the need to authenticate.
  * Author:      Sébastien Dumont
  * Author URI:  https://sebastiendumont.com
  * Version:     1.0.0-beta.11

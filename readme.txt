@@ -2,7 +2,7 @@
 
 This premium add-on provides a public version of accessing products, categories, tags, attributes and even reviews without the need to authenticate.
 
-> Once you have the plugin installed you will see new routes registered under `/cocart/v1/products`.
+> Once you have the plugin installed you will see the routes registered under `/cocart/v1/products`.
 
 ## Features
 

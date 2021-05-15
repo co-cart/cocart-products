@@ -1,14 +1,14 @@
-# Copyright (c) 2020 Sébastien Dumont
+# Copyright (c) 2021 Sébastien Dumont
 # This file is distributed under the same license as the CoCart Products package.
 msgid ""
 msgstr ""
 "Project-Id-Version: CoCart - Products 1.0.0-beta.11\n"
-"Report-Msgid-Bugs-To: https://cocart.xyz/feedback/\n"
-"POT-Creation-Date: 2020-12-06 18:41:09+00:00\n"
+"Report-Msgid-Bugs-To: https://github.com/co-cart/cocart-products/issues\n"
+"POT-Creation-Date: 2021-05-15 06:11:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Sébastien Dumont <mailme@sebastiendumont.com>\n"
 "Language: en_US\n"
@@ -57,15 +57,15 @@ msgstr ""
 msgid "Leave a Review"
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:177
+#: includes/admin/class-cocart-products-admin-updater.php:170
 msgid "Automatic updates disabled!"
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:184
+#: includes/admin/class-cocart-products-admin-updater.php:178
 msgid "Automatic updates enabled!"
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:198
+#: includes/admin/class-cocart-products-admin-updater.php:192
 #. translators: Time until the next update.
 msgid "Update scheduled in %s"
 msgstr ""
@@ -96,11 +96,7 @@ msgid ""
 "with this release.%1$s"
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:668
-msgid "Unable to update!"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin-updater.php:791
+#: includes/admin/class-cocart-products-admin-updater.php:768
 #. translators: 1: plugin name, 2: details URL, 3: additional link attributes,
 #. 4: version number
 msgid ""
@@ -108,15 +104,15 @@ msgid ""
 "version %4$s details</a>."
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:797
-#: includes/admin/class-cocart-products-admin-updater.php:810
-#: includes/admin/class-cocart-products-admin-updater.php:824
-#: includes/admin/class-cocart-products-admin-updater.php:843
+#: includes/admin/class-cocart-products-admin-updater.php:774
+#: includes/admin/class-cocart-products-admin-updater.php:787
+#: includes/admin/class-cocart-products-admin-updater.php:801
+#: includes/admin/class-cocart-products-admin-updater.php:820
 #. translators: 1: plugin name, 2: version number
 msgid "View %1$s version %2$s details"
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:804
+#: includes/admin/class-cocart-products-admin-updater.php:781
 #. translators: 1: plugin name, 2: details URL, 3: additional link attributes,
 #. 4: version number
 msgid ""
@@ -125,7 +121,7 @@ msgid ""
 "plugin.</em>"
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:818
+#: includes/admin/class-cocart-products-admin-updater.php:795
 #. translators: 1: plugin name, 2: details URL, 3: additional link attributes,
 #. 4: version number, 5: update URL, 6: additional link attributes
 msgid ""
@@ -133,92 +129,18 @@ msgid ""
 "version %4$s details</a> or <a href=\"%5$s\" %6$s>update now</a>."
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:831
+#: includes/admin/class-cocart-products-admin-updater.php:808
 #. translators: %s: plugin name
 msgid "Update %s now"
 msgstr ""
 
-#: includes/admin/class-cocart-products-admin-updater.php:837
+#: includes/admin/class-cocart-products-admin-updater.php:814
 #. translators: 1: plugin name, 2: details URL, 3: additional link attributes,
 #. 4: version number 5: Update PHP page URL
 msgid ""
 "There is a new version of %1$s available, but it doesn&#8217;t work with "
 "your version of PHP. <a href=\"%2$s\" %3$s>View version %4$s details</a> or "
 "<a href=\"%5$s\">learn more about updating PHP</a>."
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:110
-#: includes/class-cocart-products-helpers.php:323
-#. translators: Number of years
-msgid "%s years"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:112
-#: includes/class-cocart-products-helpers.php:325
-msgid "a year"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:118
-msgid "%s months ago"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:120
-msgid "1 month ago"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:127
-#: includes/class-cocart-products-helpers.php:340
-#. translators: Number of weeks
-msgid "%s weeks"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:129
-#: includes/class-cocart-products-helpers.php:342
-msgid "a week"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:136
-#: includes/class-cocart-products-helpers.php:349
-#. translators: Number of days
-msgid "%s days"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:138
-#: includes/class-cocart-products-helpers.php:351
-msgid "a day"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:145
-#: includes/class-cocart-products-helpers.php:358
-#. translators: Number of hours
-msgid "%s hours"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:147
-#: includes/class-cocart-products-helpers.php:360
-msgid "an hour"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:154
-#: includes/class-cocart-products-helpers.php:367
-#. translators: Number of minutes
-msgid "%s minutes"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:156
-#: includes/class-cocart-products-helpers.php:369
-msgid "a minute"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:163
-#: includes/class-cocart-products-helpers.php:376
-#. translators: Number of seconds
-msgid "%s seconds"
-msgstr ""
-
-#: includes/admin/class-cocart-products-admin.php:165
-#: includes/class-cocart-products-helpers.php:378
-msgid "a second"
 msgstr ""
 
 #: includes/admin/views/html-notice-cocart-not-installed.php:19
@@ -314,96 +236,96 @@ msgstr ""
 msgid "Don't ask me again"
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:64
-#: includes/api/class-cocart-product-attributes-controller.php:163
+#: includes/api/class-cocart-abstract-terms-controller.php:71
+#: includes/api/class-cocart-product-attributes-controller.php:188
 #: includes/api/class-cocart-product-categories-controller.php:116
 #: includes/api/class-cocart-product-tags-controller.php:88
-#: includes/api/class-cocart-product-variations-controller.php:238
+#: includes/api/class-cocart-product-variations-controller.php:246
 msgid "Unique identifier for the resource."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:89
+#: includes/api/class-cocart-abstract-terms-controller.php:97
 msgid "Sorry, you cannot list resources."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:110
+#: includes/api/class-cocart-abstract-terms-controller.php:118
 msgid "Sorry, you cannot view this resource."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:128
+#: includes/api/class-cocart-abstract-terms-controller.php:136
 msgid "Taxonomy does not exist."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:138
+#: includes/api/class-cocart-abstract-terms-controller.php:146
 msgid "Term does not exist."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:410
-#: includes/api/class-cocart-product-reviews-controller.php:716
+#: includes/api/class-cocart-abstract-terms-controller.php:418
+#: includes/api/class-cocart-product-reviews-controller.php:731
 msgid "Ensure result set excludes specific IDs."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:419
+#: includes/api/class-cocart-abstract-terms-controller.php:427
 msgid "Limit result set to specific ids."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:429
-#: includes/api/class-cocart-product-reviews-controller.php:732
+#: includes/api/class-cocart-abstract-terms-controller.php:437
+#: includes/api/class-cocart-product-reviews-controller.php:747
 msgid "Offset the result set by a specific number of items."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:436
-#: includes/api/class-cocart-product-reviews-controller.php:736
+#: includes/api/class-cocart-abstract-terms-controller.php:444
+#: includes/api/class-cocart-product-reviews-controller.php:751
 msgid "Order sort attribute ascending or descending."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:447
+#: includes/api/class-cocart-abstract-terms-controller.php:455
 msgid "Sort collection by resource attribute."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:463
+#: includes/api/class-cocart-abstract-terms-controller.php:471
 msgid "Whether to hide resources not assigned to any products."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:470
+#: includes/api/class-cocart-abstract-terms-controller.php:478
 msgid "Limit result set to resources assigned to a specific parent."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:477
+#: includes/api/class-cocart-abstract-terms-controller.php:485
 msgid "Limit result set to resources assigned to a specific product."
 msgstr ""
 
-#: includes/api/class-cocart-abstract-terms-controller.php:483
+#: includes/api/class-cocart-abstract-terms-controller.php:491
 msgid "Limit result set to resources with a specific slug."
 msgstr ""
 
-#: includes/api/class-cocart-product-attribute-terms-controller.php:41
-#: includes/api/class-cocart-product-attribute-terms-controller.php:61
+#: includes/api/class-cocart-product-attribute-terms-controller.php:44
+#: includes/api/class-cocart-product-attribute-terms-controller.php:68
 msgid "Unique identifier for the attribute of the terms."
 msgstr ""
 
-#: includes/api/class-cocart-product-attribute-terms-controller.php:57
-#: includes/api/class-cocart-product-attribute-terms-controller.php:130
+#: includes/api/class-cocart-product-attribute-terms-controller.php:64
+#: includes/api/class-cocart-product-attribute-terms-controller.php:138
 msgid "Unique identifier for the attribute term."
 msgstr ""
 
-#: includes/api/class-cocart-product-attribute-terms-controller.php:136
+#: includes/api/class-cocart-product-attribute-terms-controller.php:144
 msgid "Term name."
 msgstr ""
 
-#: includes/api/class-cocart-product-attribute-terms-controller.php:144
+#: includes/api/class-cocart-product-attribute-terms-controller.php:152
 msgid "An alphanumeric identifier for the attribute term unique to its type."
 msgstr ""
 
-#: includes/api/class-cocart-product-attribute-terms-controller.php:152
+#: includes/api/class-cocart-product-attribute-terms-controller.php:160
 msgid "HTML description of the attribute term."
 msgstr ""
 
-#: includes/api/class-cocart-product-attribute-terms-controller.php:160
+#: includes/api/class-cocart-product-attribute-terms-controller.php:168
 msgid "Menu order, used to custom sort the attribute term."
 msgstr ""
 
-#: includes/api/class-cocart-product-attribute-terms-controller.php:165
+#: includes/api/class-cocart-product-attribute-terms-controller.php:173
 msgid "Number of published products for the attribute term."
 msgstr ""
 
@@ -412,7 +334,7 @@ msgid "Sorry, you cannot list attributes."
 msgstr ""
 
 #: includes/api/class-cocart-product-attributes-controller.php:63
-#: includes/api/class-cocart-product-attributes-controller.php:261
+#: includes/api/class-cocart-product-attributes-controller.php:291
 msgid "Attribute does not exist."
 msgstr ""
 
@@ -420,33 +342,33 @@ msgstr ""
 msgid "Sorry, you cannot view this attribute."
 msgstr ""
 
-#: includes/api/class-cocart-product-attributes-controller.php:169
-#: includes/api/class-cocart-product-variations-controller.php:465
-#: includes/api/class-cocart-products-controller.php:1448
-#: includes/api/class-cocart-products-controller.php:1494
+#: includes/api/class-cocart-product-attributes-controller.php:194
+#: includes/api/class-cocart-product-variations-controller.php:473
+#: includes/api/class-cocart-products-controller.php:1546
+#: includes/api/class-cocart-products-controller.php:1592
 msgid "Attribute name."
 msgstr ""
 
-#: includes/api/class-cocart-product-attributes-controller.php:177
+#: includes/api/class-cocart-product-attributes-controller.php:202
 #: includes/api/class-cocart-product-categories-controller.php:130
 #: includes/api/class-cocart-product-tags-controller.php:102
 msgid "An alphanumeric identifier for the resource unique to its type."
 msgstr ""
 
-#: includes/api/class-cocart-product-attributes-controller.php:185
+#: includes/api/class-cocart-product-attributes-controller.php:210
 msgid "Type of attribute."
 msgstr ""
 
-#: includes/api/class-cocart-product-attributes-controller.php:192
+#: includes/api/class-cocart-product-attributes-controller.php:217
 msgid "Sort order."
 msgstr ""
 
-#: includes/api/class-cocart-product-attributes-controller.php:199
+#: includes/api/class-cocart-product-attributes-controller.php:224
 msgid "Attribute has archives?"
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:122
-#: includes/api/class-cocart-products-controller.php:1331
+#: includes/api/class-cocart-products-controller.php:1429
 msgid "Category name."
 msgstr ""
 
@@ -468,50 +390,50 @@ msgid "Image data."
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:163
-#: includes/api/class-cocart-product-variations-controller.php:406
-#: includes/api/class-cocart-products-controller.php:1382
+#: includes/api/class-cocart-product-variations-controller.php:414
+#: includes/api/class-cocart-products-controller.php:1480
 msgid "Image ID."
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:168
-#: includes/api/class-cocart-product-variations-controller.php:411
-#: includes/api/class-cocart-products-controller.php:1387
+#: includes/api/class-cocart-product-variations-controller.php:419
+#: includes/api/class-cocart-products-controller.php:1485
 msgid "The date the image was created, in the site's timezone."
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:174
-#: includes/api/class-cocart-product-variations-controller.php:417
-#: includes/api/class-cocart-products-controller.php:1393
+#: includes/api/class-cocart-product-variations-controller.php:425
+#: includes/api/class-cocart-products-controller.php:1491
 msgid "The date the image was created, as GMT."
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:180
-#: includes/api/class-cocart-product-variations-controller.php:423
-#: includes/api/class-cocart-products-controller.php:1399
+#: includes/api/class-cocart-product-variations-controller.php:431
+#: includes/api/class-cocart-products-controller.php:1497
 msgid "The date the image was last modified, in the site's timezone."
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:186
-#: includes/api/class-cocart-product-variations-controller.php:429
-#: includes/api/class-cocart-products-controller.php:1405
+#: includes/api/class-cocart-product-variations-controller.php:437
+#: includes/api/class-cocart-products-controller.php:1503
 msgid "The date the image was last modified, as GMT."
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:192
-#: includes/api/class-cocart-product-variations-controller.php:435
-#: includes/api/class-cocart-products-controller.php:1411
+#: includes/api/class-cocart-product-variations-controller.php:443
+#: includes/api/class-cocart-products-controller.php:1509
 msgid "Image URL."
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:198
-#: includes/api/class-cocart-product-variations-controller.php:441
-#: includes/api/class-cocart-products-controller.php:1417
+#: includes/api/class-cocart-product-variations-controller.php:449
+#: includes/api/class-cocart-products-controller.php:1515
 msgid "Image name."
 msgstr ""
 
 #: includes/api/class-cocart-product-categories-controller.php:203
-#: includes/api/class-cocart-product-variations-controller.php:446
-#: includes/api/class-cocart-products-controller.php:1422
+#: includes/api/class-cocart-product-variations-controller.php:454
+#: includes/api/class-cocart-products-controller.php:1520
 msgid "Image alternative text."
 msgstr ""
 
@@ -524,657 +446,748 @@ msgstr ""
 msgid "Number of published products for the resource."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:48
-#: includes/api/class-cocart-product-variations-controller.php:54
-#: includes/api/class-cocart-product-variations-controller.php:74
-msgid "Unique identifier for the variable product."
-msgstr ""
-
-#: includes/api/class-cocart-product-reviews-controller.php:52
-#: includes/api/class-cocart-product-variations-controller.php:78
-msgid "Unique identifier for the variation."
-msgstr ""
-
-#: includes/api/class-cocart-product-reviews-controller.php:70
-#: includes/api/class-cocart-products-controller.php:67
-#: includes/api/class-cocart-products-controller.php:981
+#: includes/api/class-cocart-product-reviews-controller.php:51
+#: includes/api/class-cocart-product-reviews-controller.php:74
+#: includes/api/class-cocart-products-controller.php:74
+#: includes/api/class-cocart-products-controller.php:1079
 msgid "Unique identifier for the product."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:76
-msgid "Review content."
-msgstr ""
-
-#: includes/api/class-cocart-product-reviews-controller.php:81
-msgid "Name of the reviewer."
-msgstr ""
-
-#: includes/api/class-cocart-product-reviews-controller.php:86
-msgid "Email of the reviewer."
-msgstr ""
-
-#: includes/api/class-cocart-product-reviews-controller.php:97
-#: includes/api/class-cocart-product-reviews-controller.php:609
+#: includes/api/class-cocart-product-reviews-controller.php:55
+#: includes/api/class-cocart-product-reviews-controller.php:105
+#: includes/api/class-cocart-product-reviews-controller.php:624
 msgid "Unique identifier for the review."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:128
+#: includes/api/class-cocart-product-reviews-controller.php:80
+msgid "Review content."
+msgstr ""
+
+#: includes/api/class-cocart-product-reviews-controller.php:85
+msgid "Name of the reviewer."
+msgstr ""
+
+#: includes/api/class-cocart-product-reviews-controller.php:90
+msgid "Email of the reviewer."
+msgstr ""
+
+#: includes/api/class-cocart-product-reviews-controller.php:135
+#: includes/api/class-cocart-product-reviews-controller.php:142
 msgid "Sorry, this product review does not exist."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:151
+#: includes/api/class-cocart-product-reviews-controller.php:165
 msgid "Sorry, you are not allowed to create a review for this product."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:306
+#: includes/api/class-cocart-product-reviews-controller.php:320
 msgid "Cannot create existing product review."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:312
-#: includes/api/class-cocart-product-reviews-controller.php:815
+#: includes/api/class-cocart-product-reviews-controller.php:326
+#: includes/api/class-cocart-product-reviews-controller.php:830
 msgid "Invalid product ID."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:326
+#: includes/api/class-cocart-product-reviews-controller.php:340
 msgid "Invalid review content."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:351
+#: includes/api/class-cocart-product-reviews-controller.php:365
 msgid "Product review field exceeds maximum length allowed."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:391
+#: includes/api/class-cocart-product-reviews-controller.php:406
 msgid "Creating product review failed."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:615
+#: includes/api/class-cocart-product-reviews-controller.php:630
 msgid "The date the review was created, in the site's timezone."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:621
+#: includes/api/class-cocart-product-reviews-controller.php:636
 msgid "The date the review was created, as GMT."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:627
+#: includes/api/class-cocart-product-reviews-controller.php:642
 msgid "Unique identifier for the product that the review belongs to."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:632
+#: includes/api/class-cocart-product-reviews-controller.php:647
 msgid "Status of the review."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:639
+#: includes/api/class-cocart-product-reviews-controller.php:654
 msgid "Reviewer name."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:644
+#: includes/api/class-cocart-product-reviews-controller.php:659
 msgid "Reviewer email."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:650
+#: includes/api/class-cocart-product-reviews-controller.php:665
 msgid "The content of the review."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:658
+#: includes/api/class-cocart-product-reviews-controller.php:673
 msgid "Review rating (0 to 5)."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:663
+#: includes/api/class-cocart-product-reviews-controller.php:678
 msgid "Shows if the reviewer bought the product or not."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:677
+#: includes/api/class-cocart-product-reviews-controller.php:692
 #. translators: %d: avatar image size in pixels
 msgid "Avatar URL with image size of %d pixels."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:684
+#: includes/api/class-cocart-product-reviews-controller.php:699
 msgid "Avatar URLs for the object reviewer."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:706
+#: includes/api/class-cocart-product-reviews-controller.php:721
 msgid "Limit response to reviews published after a given ISO8601 compliant date."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:711
+#: includes/api/class-cocart-product-reviews-controller.php:726
 msgid "Limit response to reviews published before a given ISO8601 compliant date."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:724
+#: includes/api/class-cocart-product-reviews-controller.php:739
 msgid "Limit result set to specific IDs."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:745
+#: includes/api/class-cocart-product-reviews-controller.php:760
+#: includes/api/class-cocart-products-controller.php:1881
 msgid "Sort collection by object attribute."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:757
+#: includes/api/class-cocart-product-reviews-controller.php:772
 msgid "Limit result set to reviews assigned to specific user IDs."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:764
+#: includes/api/class-cocart-product-reviews-controller.php:779
 msgid "Ensure result set excludes reviews assigned to specific user IDs."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:772
+#: includes/api/class-cocart-product-reviews-controller.php:787
 msgid "Limit result set to reviews assigned to specific product IDs."
 msgstr ""
 
-#: includes/api/class-cocart-product-reviews-controller.php:800
+#: includes/api/class-cocart-product-reviews-controller.php:815
 msgid "Invalid review ID."
 msgstr ""
 
 #: includes/api/class-cocart-product-tags-controller.php:94
-#: includes/api/class-cocart-products-controller.php:1359
+#: includes/api/class-cocart-products-controller.php:1457
 msgid "Tag name."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:244
+#: includes/api/class-cocart-product-variations-controller.php:57
+#: includes/api/class-cocart-product-variations-controller.php:81
+msgid "Unique identifier for the variable product."
+msgstr ""
+
+#: includes/api/class-cocart-product-variations-controller.php:85
+msgid "Unique identifier for the variation."
+msgstr ""
+
+#: includes/api/class-cocart-product-variations-controller.php:252
 msgid "The date the variation was created, in the site's timezone."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:250
+#: includes/api/class-cocart-product-variations-controller.php:258
 msgid "The date the variation was last modified, in the site's timezone."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:256
+#: includes/api/class-cocart-product-variations-controller.php:264
 msgid "Variation description."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:261
+#: includes/api/class-cocart-product-variations-controller.php:269
 msgid "Variation URL."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:268
-#: includes/api/class-cocart-products-controller.php:1064
+#: includes/api/class-cocart-product-variations-controller.php:276
+#: includes/api/class-cocart-products-controller.php:1162
 msgid "Unique identifier."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:273
+#: includes/api/class-cocart-product-variations-controller.php:281
 msgid "Current variation price."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:279
+#: includes/api/class-cocart-product-variations-controller.php:287
 msgid "Variation regular price."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:284
+#: includes/api/class-cocart-product-variations-controller.php:292
 msgid "Variation sale price."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:289
-#: includes/api/class-cocart-products-controller.php:1088
+#: includes/api/class-cocart-product-variations-controller.php:297
+#: includes/api/class-cocart-products-controller.php:1186
 msgid "Start date of sale price, in the site's timezone."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:294
-#: includes/api/class-cocart-products-controller.php:1094
+#: includes/api/class-cocart-product-variations-controller.php:302
+#: includes/api/class-cocart-products-controller.php:1192
 msgid "Start date of sale price, as GMT."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:299
-#: includes/api/class-cocart-product-variations-controller.php:304
-#: includes/api/class-cocart-products-controller.php:1100
+#: includes/api/class-cocart-product-variations-controller.php:307
+#: includes/api/class-cocart-product-variations-controller.php:312
+#: includes/api/class-cocart-products-controller.php:1198
 msgid "End date of sale price, in the site's timezone."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:309
+#: includes/api/class-cocart-product-variations-controller.php:317
 msgid "Shows if the variation is on sale."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:315
+#: includes/api/class-cocart-product-variations-controller.php:323
 msgid "Shows if the variation can be bought."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:321
+#: includes/api/class-cocart-product-variations-controller.php:329
 msgid "If the variation is virtual."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:327
+#: includes/api/class-cocart-product-variations-controller.php:335
 msgid "If the variation is downloadable."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:333
+#: includes/api/class-cocart-product-variations-controller.php:341
 msgid "Stock management at variation level."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:339
-#: includes/api/class-cocart-products-controller.php:1164
+#: includes/api/class-cocart-product-variations-controller.php:347
+#: includes/api/class-cocart-products-controller.php:1262
 msgid "Stock quantity."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:344
+#: includes/api/class-cocart-product-variations-controller.php:352
 msgid "Controls the stock status of the product."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:351
-#: includes/api/class-cocart-products-controller.php:1184
+#: includes/api/class-cocart-product-variations-controller.php:359
+#: includes/api/class-cocart-products-controller.php:1282
 msgid "If managing stock, this controls if backorders are allowed."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:358
+#: includes/api/class-cocart-product-variations-controller.php:366
 msgid "Shows if backorders are allowed."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:364
+#: includes/api/class-cocart-product-variations-controller.php:372
 msgid "Shows if the variation is on backordered."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:371
+#: includes/api/class-cocart-product-variations-controller.php:379
 #. translators: %s: weight unit
 msgid "Variation weight (%s)."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:376
+#: includes/api/class-cocart-product-variations-controller.php:384
 msgid "Variation dimensions."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:382
+#: includes/api/class-cocart-product-variations-controller.php:390
 #. translators: %s: dimension unit
 msgid "Variation length (%s)."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:388
+#: includes/api/class-cocart-product-variations-controller.php:396
 #. translators: %s: dimension unit
 msgid "Variation width (%s)."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:394
+#: includes/api/class-cocart-product-variations-controller.php:402
 #. translators: %s: dimension unit
 msgid "Variation height (%s)."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:401
+#: includes/api/class-cocart-product-variations-controller.php:409
 msgid "Variation image data."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:453
-#: includes/api/class-cocart-products-controller.php:1436
+#: includes/api/class-cocart-product-variations-controller.php:461
+#: includes/api/class-cocart-products-controller.php:1534
 msgid "List of attributes."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:460
-#: includes/api/class-cocart-products-controller.php:1443
-#: includes/api/class-cocart-products-controller.php:1489
+#: includes/api/class-cocart-product-variations-controller.php:468
+#: includes/api/class-cocart-products-controller.php:1541
+#: includes/api/class-cocart-products-controller.php:1587
 msgid "Attribute ID."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:470
-#: includes/api/class-cocart-products-controller.php:1499
+#: includes/api/class-cocart-product-variations-controller.php:478
+#: includes/api/class-cocart-products-controller.php:1597
 msgid "Selected attribute term name."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:478
-#: includes/api/class-cocart-products-controller.php:1526
+#: includes/api/class-cocart-product-variations-controller.php:486
+#: includes/api/class-cocart-products-controller.php:1624
 msgid "Menu order, used to custom sort products."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:483
-#: includes/api/class-cocart-products-controller.php:1532
+#: includes/api/class-cocart-product-variations-controller.php:491
+#: includes/api/class-cocart-products-controller.php:1630
 msgid "Meta data."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:490
-#: includes/api/class-cocart-products-controller.php:1539
+#: includes/api/class-cocart-product-variations-controller.php:498
+#: includes/api/class-cocart-products-controller.php:1637
 msgid "Meta ID."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:496
-#: includes/api/class-cocart-products-controller.php:1545
+#: includes/api/class-cocart-product-variations-controller.php:504
+#: includes/api/class-cocart-products-controller.php:1643
 msgid "Meta key."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:501
-#: includes/api/class-cocart-products-controller.php:1550
+#: includes/api/class-cocart-product-variations-controller.php:509
+#: includes/api/class-cocart-products-controller.php:1648
 msgid "Meta value."
 msgstr ""
 
-#: includes/api/class-cocart-product-variations-controller.php:606
-#: includes/api/class-cocart-products-controller.php:1681
+#: includes/api/class-cocart-product-variations-controller.php:614
+#: includes/api/class-cocart-products-controller.php:1783
 msgid "Limit result set to products with specified stock status."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:310
+#: includes/api/class-cocart-products-controller.php:320
 msgid "Invalid ID."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:638
-#: includes/api/class-cocart-products-controller.php:639
+#: includes/api/class-cocart-products-controller.php:735
+#: includes/api/class-cocart-products-controller.php:736
 msgid "Placeholder"
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:987
+#: includes/api/class-cocart-products-controller.php:1085
 msgid "Product name."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:993
+#: includes/api/class-cocart-products-controller.php:1091
 msgid "Product slug."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:999
+#: includes/api/class-cocart-products-controller.php:1097
 msgid "Product permalink."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1005
+#: includes/api/class-cocart-products-controller.php:1103
 msgid "The date the product was created, in the site's timezone."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1011
+#: includes/api/class-cocart-products-controller.php:1109
 msgid "The date the product was created, as GMT."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1017
+#: includes/api/class-cocart-products-controller.php:1115
 msgid "The date the product was last modified, in the site's timezone."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1023
+#: includes/api/class-cocart-products-controller.php:1121
 msgid "The date the product was last modified, as GMT."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1029
+#: includes/api/class-cocart-products-controller.php:1127
 msgid "Product type."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1037
+#: includes/api/class-cocart-products-controller.php:1135
 msgid "Featured product."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1044
+#: includes/api/class-cocart-products-controller.php:1142
 msgid "Catalog visibility."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1052
+#: includes/api/class-cocart-products-controller.php:1150
 msgid "Product description."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1058
+#: includes/api/class-cocart-products-controller.php:1156
 msgid "Product short description."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1070
+#: includes/api/class-cocart-products-controller.php:1168
 msgid "Current product price."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1076
+#: includes/api/class-cocart-products-controller.php:1174
 msgid "Product regular price."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1082
+#: includes/api/class-cocart-products-controller.php:1180
 msgid "Product sale price."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1106
+#: includes/api/class-cocart-products-controller.php:1204
 msgid "End date of sale price, as GMT."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1112
+#: includes/api/class-cocart-products-controller.php:1210
 msgid "Shows if the product is on sale."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1118
+#: includes/api/class-cocart-products-controller.php:1216
 msgid "Shows if the product can be bought."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1124
+#: includes/api/class-cocart-products-controller.php:1222
 msgid "Amount of sales."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1130
+#: includes/api/class-cocart-products-controller.php:1228
 msgid "If the product is virtual."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1137
+#: includes/api/class-cocart-products-controller.php:1235
 msgid "If the product is downloadable."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1144
+#: includes/api/class-cocart-products-controller.php:1242
 msgid "Product external URL. Only for external products."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1151
+#: includes/api/class-cocart-products-controller.php:1249
 msgid "Product external button text. Only for external products."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1157
+#: includes/api/class-cocart-products-controller.php:1255
 msgid "Stock management at product level."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1170
+#: includes/api/class-cocart-products-controller.php:1268
 msgid ""
 "Determines whether or not the product has additional options that need "
 "selecting before adding to cart."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1177
+#: includes/api/class-cocart-products-controller.php:1275
 msgid "Determines if product is listed as \"in stock\" or \"out of stock\"."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1192
+#: includes/api/class-cocart-products-controller.php:1290
 msgid "Are backorders allowed?"
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1198
+#: includes/api/class-cocart-products-controller.php:1296
 msgid "Shows if the product is on backordered."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1204
+#: includes/api/class-cocart-products-controller.php:1302
 msgid "Allow one of the item to be bought in a single order."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1212
+#: includes/api/class-cocart-products-controller.php:1310
 #. translators: %s: weight unit
 msgid "Product weight (%s)."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1218
+#: includes/api/class-cocart-products-controller.php:1316
 msgid "Product dimensions."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1224
+#: includes/api/class-cocart-products-controller.php:1322
 #. translators: %s: dimension unit
 msgid "Product length (%s)."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1230
+#: includes/api/class-cocart-products-controller.php:1328
 #. translators: %s: dimension unit
 msgid "Product width (%s)."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1236
+#: includes/api/class-cocart-products-controller.php:1334
 #. translators: %s: dimension unit
 msgid "Product height (%s)."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1244
+#: includes/api/class-cocart-products-controller.php:1342
 msgid "Shows if the product need to be shipped."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1250
+#: includes/api/class-cocart-products-controller.php:1348
 msgid "Shows if reviews are allowed."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1257
+#: includes/api/class-cocart-products-controller.php:1355
 msgid "Returns a list of product review IDs"
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1262
+#: includes/api/class-cocart-products-controller.php:1360
 msgid "Reviews average rating."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1268
+#: includes/api/class-cocart-products-controller.php:1366
 msgid "Amount of reviews that the product has."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1274
+#: includes/api/class-cocart-products-controller.php:1372
 msgid "Amount of reviews that the product have."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1280
+#: includes/api/class-cocart-products-controller.php:1378
 msgid "Returns the rating of the product in html."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1286
+#: includes/api/class-cocart-products-controller.php:1384
 msgid "List of related products IDs."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1295
+#: includes/api/class-cocart-products-controller.php:1393
 msgid "List of up-sell products IDs."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1304
+#: includes/api/class-cocart-products-controller.php:1402
 msgid "List of cross-sell products IDs."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1313
+#: includes/api/class-cocart-products-controller.php:1411
 msgid "Product parent ID."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1319
+#: includes/api/class-cocart-products-controller.php:1417
 msgid "List of product categories."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1326
+#: includes/api/class-cocart-products-controller.php:1424
 msgid "Category ID."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1337
+#: includes/api/class-cocart-products-controller.php:1435
 msgid "Category slug."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1347
+#: includes/api/class-cocart-products-controller.php:1445
 msgid "List of product tags."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1354
+#: includes/api/class-cocart-products-controller.php:1452
 msgid "Tag ID."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1365
+#: includes/api/class-cocart-products-controller.php:1463
 msgid "Tag slug."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1375
+#: includes/api/class-cocart-products-controller.php:1473
 msgid "List of product images."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1427
+#: includes/api/class-cocart-products-controller.php:1525
 msgid "Image position. 0 means that the image is featured."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1453
+#: includes/api/class-cocart-products-controller.php:1551
 msgid "Attribute position."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1458
+#: includes/api/class-cocart-products-controller.php:1556
 msgid ""
 "Is the attribute visible on the \"Additional information\" tab in the "
 "product's page."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1464
+#: includes/api/class-cocart-products-controller.php:1562
 msgid "Can the attribute be used as variation?"
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1470
+#: includes/api/class-cocart-products-controller.php:1568
 msgid "List of available term names of the attribute."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1482
+#: includes/api/class-cocart-products-controller.php:1580
 msgid "Defaults variation attributes."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1508
+#: includes/api/class-cocart-products-controller.php:1606
 msgid "List of all variations and data."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1517
+#: includes/api/class-cocart-products-controller.php:1615
 msgid "List of grouped products ID."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1559
+#: includes/api/class-cocart-products-controller.php:1657
 msgid "Add to Cart button."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1564
+#: includes/api/class-cocart-products-controller.php:1662
 msgid "Text"
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1566
+#: includes/api/class-cocart-products-controller.php:1664
 msgid "Add to Cart"
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1570
+#: includes/api/class-cocart-products-controller.php:1668
 msgid "Description"
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1627
+#: includes/api/class-cocart-products-controller.php:1725
 msgid "Limit result set to products with a specific slug."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1632
+#: includes/api/class-cocart-products-controller.php:1730
 msgid "Limit result set to products assigned a specific type."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1639
+#: includes/api/class-cocart-products-controller.php:1737
 msgid "Limit result set to products with specific SKU(s). Use commas to separate."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1645
+#: includes/api/class-cocart-products-controller.php:1743
 msgid "Limit result set to hide free products."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1651
+#: includes/api/class-cocart-products-controller.php:1749
 msgid "Limit result set to featured products."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1657
+#: includes/api/class-cocart-products-controller.php:1755
 msgid "Limit result set to products assigned a specific category slug."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1663
+#: includes/api/class-cocart-products-controller.php:1761
+msgid "Operator to compare product category terms."
+msgstr ""
+
+#: includes/api/class-cocart-products-controller.php:1769
 msgid "Limit result set to products assigned a specific tag slug."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1669
-msgid ""
-"Limit result set to products with a specific attribute. Use the taxonomy "
-"name/attribute slug."
+#: includes/api/class-cocart-products-controller.php:1775
+msgid "Operator to compare product tags."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1675
-msgid ""
-"Limit result set to products with a specific attribute term ID (required an "
-"assigned attribute)."
-msgstr ""
-
-#: includes/api/class-cocart-products-controller.php:1688
+#: includes/api/class-cocart-products-controller.php:1790
 msgid "Limit result set to products on sale."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1694
+#: includes/api/class-cocart-products-controller.php:1796
 msgid "Limit result set to products based on a minimum price."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1700
+#: includes/api/class-cocart-products-controller.php:1802
 msgid "Limit result set to products based on a maximum price."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1706
+#: includes/api/class-cocart-products-controller.php:1808
 msgid "Returns product reviews for all products or an individual product."
 msgstr ""
 
-#: includes/api/class-cocart-products-controller.php:1712
+#: includes/api/class-cocart-products-controller.php:1814
 msgid "Returns all variations for variable products."
 msgstr ""
 
-#: includes/class-cocart-products-helpers.php:331
+#: includes/api/class-cocart-products-controller.php:1820
+msgid "Limit result set to products with selected global attributes."
+msgstr ""
+
+#: includes/api/class-cocart-products-controller.php:1826
+msgid "Attribute taxonomy name."
+msgstr ""
+
+#: includes/api/class-cocart-products-controller.php:1831
+msgid "List of attribute term IDs."
+msgstr ""
+
+#: includes/api/class-cocart-products-controller.php:1839
+msgid "List of attribute slug(s). If a term ID is provided, this will be ignored."
+msgstr ""
+
+#: includes/api/class-cocart-products-controller.php:1847
+msgid "Operator to compare product attribute terms."
+msgstr ""
+
+#: includes/api/class-cocart-products-controller.php:1856
+msgid ""
+"The logical relationship between attributes when filtering across multiple "
+"at once."
+msgstr ""
+
+#: includes/api/class-cocart-products-controller.php:1864
+msgid "Determines if hidden or visible catalog products are shown."
+msgstr ""
+
+#: includes/api/class-cocart-products-controller.php:1871
+msgid "Limit result set to products with a certain average rating."
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:320
+#. translators: Number of years
+msgid "%s years"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:322
+msgid "a year"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:328
 msgid "%s months"
 msgstr ""
 
-#: includes/class-cocart-products-helpers.php:333
+#: includes/class-cocart-products-helpers.php:330
 msgid "1 month"
 msgstr ""
 
-#: includes/class-cocart-products.php:165
+#: includes/class-cocart-products-helpers.php:337
+#. translators: Number of weeks
+msgid "%s weeks"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:339
+msgid "a week"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:346
+#. translators: Number of days
+msgid "%s days"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:348
+msgid "a day"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:355
+#. translators: Number of hours
+msgid "%s hours"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:357
+msgid "an hour"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:364
+#. translators: Number of minutes
+msgid "%s minutes"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:366
+msgid "a minute"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:373
+#. translators: Number of seconds
+msgid "%s seconds"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:375
+msgid "a second"
+msgstr ""
+
+#: includes/class-cocart-products-helpers.php:422
+#. translators: 1: CoCart Products, 2: Required PHP version
+msgid "The minimum PHP version required for %1$s is %2$s. You are running %3$s."
+msgstr ""
+
+#: includes/class-cocart-products.php:181
 msgid "%1$s could not be activated. %2$s"
 msgstr ""

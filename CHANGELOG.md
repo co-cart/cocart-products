@@ -1,5 +1,13 @@
 # Changelog for CoCart Products
 
+## v1.0.0-beta.11 - 15th May, 2021
+
+* NEW: Added orderby product name.
+* NEW: Added orderby include posts in.
+* NEW: Filter by catalog visitbility and rating.
+* Improved: Filter by many attributes and taxonomies instead of singular.
+* Fixed: Multi-site support.
+* Fixed: Permission issues with viewing taxnomies.
 
 ## v1.0.0-beta.10 - 10th August, 2020
 
