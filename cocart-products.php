@@ -12,7 +12,7 @@
  * Requires at least: 5.4
  * Requires PHP: 7.0
  * WC requires at least: 4.3
- * WC tested up to: 5.1
+ * WC tested up to: 5.4
  *
  * Copyright: © 2020 Sébastien Dumont, (mailme@sebastiendumont.com)
  *

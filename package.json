@@ -22,7 +22,7 @@
 	"requires_php": "7.0",
 	"tested_up_to": "5.7",
 	"wc_requires": "4.3",
-	"wc_tested_up_to": "5.3",
+	"wc_tested_up_to": "5.4",
 	"license": "GPL-3.0",
 	"copyright": "Copyright (c) 2021, Sébastien Dumont",
 	"description": "Provides access to non-sensitive product information, categories, tags, attributes and even reviews from your store without the need to authenticate.",
