@@ -4,7 +4,7 @@
  *
  * @author   Sébastien Dumont
  * @category Classes
- * @package  CoCart Products/Classes/AutoLoader
+ * @package  CoCart Products\Classes\AutoLoader
  * @license  GPL-2.0+
  */
 

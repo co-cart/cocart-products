@@ -6,11 +6,14 @@
  *
  * @author   Sébastien Dumont
  * @category API
- * @package  CoCart Products/API
+ * @package  CoCart Products\API
  * @license  GPL-2.0+
  */
 
-defined( 'ABSPATH' ) || exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 /**
  * REST API variations controller class.
