@@ -19,7 +19,7 @@ final class CoCart_Products {
 	 * @access public
 	 * @static
 	 */
-	public static $version = '1.0.0-beta.11';
+	public static $version = '1.0.0-beta.12';
 
 	/**
 	 * Required WordPress Version

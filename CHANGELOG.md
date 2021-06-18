@@ -1,5 +1,11 @@
 # Changelog for CoCart Products
 
+## v1.0.0-beta.12 - 19th June, 2021
+
+⚠️ Best to update **CoCart Products add-on** before updating CoCart to `v3.1`. This will help prevent crashing the site as the products API has now merged with CoCart. ⚠️
+
+* Compatible: CoCart v3.1
+
 ## v1.0.0-beta.11 - 15th May, 2021
 
 * NEW: Added orderby product name.

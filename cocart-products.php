@@ -5,7 +5,7 @@
  * Description: Provides access to non-sensitive product information, categories, tags, attributes and even reviews from your store without the need to authenticate.
  * Author:      Sébastien Dumont
  * Author URI:  https://sebastiendumont.com
- * Version:     1.0.0-beta.11
+ * Version:     1.0.0-beta.12
  * Text Domain: cocart-products
  * Domain Path: /languages/
  *
